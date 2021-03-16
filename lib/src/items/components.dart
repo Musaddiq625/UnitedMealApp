@@ -64,20 +64,22 @@ class Components {
                   )),
               iconData == null
                   ? Container()
-                  : GestureDetector(
-                      onTap: () {
-                        if(onPressedWidget!=null)
-                        onPressedWidget();
-                      },
-                      child: inCircleAvatar
-                          ? CircleAvatar(
-                              radius: 18,
-                              foregroundColor: Colors.black,
-                              backgroundColor:Constants.GREY_COLOR,
-                              child: Icon(iconData,size: 18),
-                            )
-                          : Icon(iconData),
-                    ),
+                  : Expanded(
+                    child: GestureDetector(
+                        onTap: () {
+                          if(onPressedWidget!=null)
+                          onPressedWidget();
+                        },
+                        child: inCircleAvatar
+                            ? CircleAvatar(
+                                radius: 18,
+                                foregroundColor: Colors.black,
+                                backgroundColor:Constants.GREY_COLOR,
+                                child: Icon(iconData,size: 18),
+                              )
+                            : Icon(iconData),
+                      ),
+                  ),
             ],
           ),
         ),

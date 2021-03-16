@@ -7,7 +7,7 @@ import 'const.dart';
 import 'pages/account_bottomsheet.dart';
 
 class Dashboard extends StatelessWidget {
-  final HomeController homeController = Get.find();
+  final  homeController = Get.put(HomeController());
   final GlobalKey<ExpandableBottomSheetState> bottomSheetKey = new GlobalKey();
 
   BottomNavigationBarItem bottomNavItem(index) => BottomNavigationBarItem(

@@ -9,8 +9,8 @@ class User {
   int id;
   String name;
   String email;
-  bool isLoggedIn;
+  bool isGuest;
   String phoneNo;
 
-  User({this.id, this.name, this.email, this.isLoggedIn, this.phoneNo});
+  User({this.id, this.name, this.email, this.isGuest=false, this.phoneNo});
   }

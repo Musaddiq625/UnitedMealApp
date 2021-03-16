@@ -10,7 +10,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final homeController = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
     // return GetMaterialApp(
@@ -24,7 +24,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        fontFamily: 'STC'
+        // fontFamily: 'Poppins'
+        // fontFamily: 'STC'
+        fontFamily: 'ProductSans'
       ),
       home: SplashScreen(),
     );

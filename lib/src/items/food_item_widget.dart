@@ -36,7 +36,7 @@ class FoodItemWidget extends StatelessWidget {
                   Text(
                     '\$0 ' + 'delivery_fee'.tr,
                     style: TextStyle(
-                      color: Constants.APP_SECOND_COLOR,
+                      color: Constants.APP_BLUE_COLOR,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

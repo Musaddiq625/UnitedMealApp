@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/controllers/login_controller.dart';
 import 'package:getx_app/src/items/button_widget.dart';
 import 'package:getx_app/src/items/textfield_widget.dart';
@@ -44,6 +45,14 @@ class Login extends StatelessWidget {
               'login'.tr,
               function: () {
                 loginController.loginUser();
+              },
+            ), SizedBox(height: 20),
+            ButtonWidget(
+              'guest'.tr,
+              fontColor: Colors.black,
+              btnColor: Constants.GREY_COLOR,
+              function: () {
+                loginController.loginAsGuest();
               },
             ),
 

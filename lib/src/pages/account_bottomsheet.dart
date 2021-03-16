@@ -87,7 +87,7 @@ class Account extends StatelessWidget {
               SizedBox(height: 5),
               components.textWithWidget('get'.tr + ' \$0 ' + 'delivery_fee_with_dash_pass'.tr,
                   fontSize: 8,
-                  fontColor: Constants.APP_SECOND_COLOR,
+                  fontColor: Constants.APP_BLUE_COLOR,
                   addPadding: false,
                   iconData: Icons.keyboard_arrow_right,
                   inCircleAvatar: false),

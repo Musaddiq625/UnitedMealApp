@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/src/controllers/user_controller.dart';
 import 'package:getx_app/src/pages/Offers.dart';
 import 'package:getx_app/src/pages/Orders.dart';
 import 'package:getx_app/src/pages/PickUp.dart';
@@ -9,6 +10,7 @@ import 'package:getx_app/src/pages/login.dart';
 
 class HomeController extends GetxController {
   // final Rx<GlobalKey<State<StatefulWidget>>> bottomSheetKey = GlobalKey().obs;
+  final UserController userController = Get.find();
   RxInt currentIndex = 0.obs;
   final List<Map> navBarItemsMap = [
     {'label': 'home', 'page': Home(), 'icon': Icons.home_outlined},
@@ -20,28 +22,22 @@ class HomeController extends GetxController {
 
   changeIndex(int index) => currentIndex.value = index;
 
+  // ignore: missing_return
   Future<bool> onBackButtonPressed() async {
     // return currentIndex.value == 0 ? true : currentIndex.value = 0;
     if (currentIndex.value != 0) {
       currentIndex.value = 0;
       return false;
     } else {
-      return Get.defaultDialog(
-          title: '',
-          titleStyle: TextStyle(fontSize: 1),
-          content: Container(
-            child: Text(
-              'Are you sure you want\nto Logout?',
-              textAlign: TextAlign.center,
-              textScaleFactor: 1.2,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-          actions: [
-            TextButton(
-                child: Text('Logout', textScaleFactor: 1.2), onPressed: () => Get.offAll(Login())),
-            TextButton(child: Text('Cancel', textScaleFactor: 1.2), onPressed: () => Get.back()),
-          ]);
+      // print('value ${userController?.user?.isGuest}');
+      // if (userController.user.isGuest) {
+      //   Get.offAll(Login());
+      //   userController.logOutUser();
+      // } else {
+      //   userController.checkIsLoggedIn();
+      //   // Get.offAll(Login());
+      // }
+      userController.logoutUserDialog();
     }
   }
 }

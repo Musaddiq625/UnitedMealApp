@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getx_app/src/controllers/user_controller.dart';
 import 'package:getx_app/temp_data.dart';
 import '../const.dart';
 import '../images_path.dart';
 
 class FeaturedAdsSlider extends StatelessWidget {
-  item(String imagePath, String adText, String deliveryTimeText, String btnText) {
+  final UserController userController = Get.find();
+  item(String imagePath, String adText, String deliveryTimeText, String btnText,
+      {Function onBtnTap}) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH / 2.2),
       child: Stack(
@@ -43,14 +47,19 @@ class FeaturedAdsSlider extends StatelessWidget {
                             fontWeight: FontWeight.bold, height: 1.2)),
                     Text(deliveryTimeText, style: TextStyle(
                         color: Constants.TEXT_WHITE_COLOR,fontWeight: FontWeight.bold)),
-                    Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                        decoration: BoxDecoration(
-                            color: Colors.black54, borderRadius: BorderRadius.circular(50)),
-                        child: Text(btnText,
-                            textScaleFactor: 0.9,
-                            style: TextStyle(
-                                color: Constants.TEXT_WHITE_COLOR, fontWeight: FontWeight.bold)))
+                    GestureDetector(
+                      onTap: (){
+                        onBtnTap();
+                      },
+                      child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          decoration: BoxDecoration(
+                              color: Colors.black54, borderRadius: BorderRadius.circular(50)),
+                          child: Text(btnText,
+                              textScaleFactor: 0.9,
+                              style: TextStyle(
+                                  color: Constants.TEXT_WHITE_COLOR, fontWeight: FontWeight.bold))),
+                    )
                   ],
                 ),
               ),
@@ -84,7 +93,7 @@ class FeaturedAdsSlider extends StatelessWidget {
                   e['image'],
                   e['adText'],
                   e['deliveryTime'],
-                  e['btnText'],
+                  e['btnText'],onBtnTap:()=> userController.checkIsLoggedIn()
                 ))
             .toList(),
       ),

@@ -3,8 +3,8 @@ import 'package:getx_app/src/const.dart';
 import 'package:get/get.dart';
 
 class TopBarDeliveringTo extends StatelessWidget {
-  final Function  onTapFunction;
-  TopBarDeliveringTo({this.onTapFunction});
+  final Function  onTapFunctionLeading,  onTapFunctionTrailing;
+  TopBarDeliveringTo(this.onTapFunctionLeading, this.onTapFunctionTrailing);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,7 +14,7 @@ class TopBarDeliveringTo extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         GestureDetector(
-          onTap:()=>onTapFunction(),
+          onTap:()=>onTapFunctionLeading(),
             child: Icon(Icons.person_outline)),
         Column(
           children: [
@@ -36,7 +36,9 @@ class TopBarDeliveringTo extends StatelessWidget {
             )
           ],
         ),
-        Text('')
+        GestureDetector(
+            onTap:()=>onTapFunctionTrailing(),
+            child: Icon(Icons.shopping_cart_outlined))
       ]),
     );
   }

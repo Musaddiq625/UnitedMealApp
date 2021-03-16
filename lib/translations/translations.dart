@@ -38,6 +38,7 @@ class MyTranslations extends Translations {
           'email': 'Email',
           'password': 'Password',
           'login': 'Login',
+          'guest': 'Guest',
           'not_a_user': 'Not a User',
 
           //SIGN UP PAGE
@@ -99,6 +100,24 @@ class MyTranslations extends Translations {
           'stores': 'Stores',
           'items': 'Items',
           'free_delivery':'Free Delivery',
+
+          //ALERT DIALOG - DIALOGS
+          'are_you_sure_you_want_to_logout': 'Are you sure you want\nto Logout?',
+          'please_login_first_to_continue': 'Please Login First to continue',
+
+          //CART
+          'you_saved':'You saved',
+          'with_new_user_promotion':'with New User Promotion',
+          'add_more_items':'Add more items',
+          'people_also_ordered':'People also ordered',
+          'total':'Total',
+          'promo_code':'Promo code',
+          'subtotal':'Subtotal',
+          'fees_and_estimated_tax':'Fees & Estimated Tax',
+          'continue':'Continue'
+
+
+
         },
         'es': {'home': 'Ola'},
       };

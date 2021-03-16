@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/src/items/cart.dart';
 import 'package:getx_app/src/items/chip_widget.dart';
 import 'package:getx_app/src/items/components.dart';
 import 'package:getx_app/src/items/cuisines_slider.dart';
@@ -22,9 +23,13 @@ class Home extends StatelessWidget {
         child: Column(
           children: [
             TopBarDeliveringTo(
-              onTapFunction: () {
+               () {
                 Get.bottomSheet(Account(),isScrollControlled: true);
               },
+                  () {
+                Get.to(()=>CartPage('Wendy\'s'));
+              },
+
             ),
             CuisinesSlider(),
             SizedBox(height: 10),

@@ -71,10 +71,12 @@ flutter:
   # example:
   fonts:
 #    - family: Poppins
-    - family: STC
+#    - family: STC
+    - family: ProductSans
       fonts:
 #        - asset: assets/fonts/Poppins-Black.ttf
-        - asset: assets/fonts/STC-Regular.ttf
+#        - asset: assets/fonts/STC-Regular.ttf
+        - asset: assets/fonts/ProductSans-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
