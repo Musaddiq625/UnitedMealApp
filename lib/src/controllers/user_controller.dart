@@ -27,7 +27,20 @@ class UserController extends GetxController {
             TextButton(child: Text('Cancel', textScaleFactor: 1.2), onPressed: () => Get.back()),
           ]);
       // logOutUser();
-    }
+    }else  Get.defaultDialog(
+        title: '',
+        titleStyle: TextStyle(fontSize: 1),
+        content: Container(
+          child: Text(
+            'Hello logged in User'.tr,
+            textAlign: TextAlign.center,
+            textScaleFactor: 1.2,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        actions: [
+          TextButton(child: Text('Okay', textScaleFactor: 1.2), onPressed: () => Get.back()),
+        ]);
   }
 
   Future logoutUserDialog() async {

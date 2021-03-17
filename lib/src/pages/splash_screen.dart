@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/images_path.dart';
-import 'package:getx_app/src/pages/login.dart';
+
+import 'get_started.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   toNextScreenWithDelay() {
     Future.delayed(Duration(seconds: 2))
-        .then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => Login())));
+        .then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => GetStartedPage())));
   }
 
   @override

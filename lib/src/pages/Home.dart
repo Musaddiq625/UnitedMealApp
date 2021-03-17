@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_app/src/items/cart.dart';
+import 'file:///D:/Flutter%20Projects/getx_app/lib/src/pages/cart.dart';
 import 'package:getx_app/src/items/chip_widget.dart';
 import 'package:getx_app/src/items/components.dart';
 import 'package:getx_app/src/items/cuisines_slider.dart';

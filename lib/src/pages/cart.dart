@@ -5,10 +5,9 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/images_path.dart';
+import 'package:getx_app/src/pages/scan_card.dart';
 import 'package:getx_app/temp_data.dart';
-
-import 'button_widget.dart';
-import 'button_widget_round.dart';
+import '../items/button_widget_round.dart';
 
 class CartPage extends StatelessWidget {
   final String shopName;
@@ -111,7 +110,7 @@ class CartPage extends StatelessWidget {
                   child: Icon(Icons.close)),
               Text(
                 shopName,
-                textScaleFactor: 1.4,
+                textScaleFactor: 1.3,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Icon(Icons.group_add)
@@ -250,7 +249,10 @@ class CartPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ButtonWidgetRound('continue'.toString().tr,
-                radius: 30, btnColor: Constants.APP_DARK_COLOR,trailingText: '\$8.99',),
+                radius: 30, btnColor: Constants.APP_DARK_COLOR,trailingText: '\$8.99',
+            function: (){
+              Get.to(ScanCard());
+            },),
           ),
               SizedBox(height: 20),
         ])),

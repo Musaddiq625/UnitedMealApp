@@ -5,13 +5,12 @@ class MyTranslations extends Translations {
   // TODO: implement keys
   Map<String, Map<String, String>> get keys => {
         'en': {
-
           //HEADINGS
           'convenience_grocery_more': 'Convenience, Grocery & More',
-          ///TEMP DATA
-          'temp_name':'Duane Reade',
-          'temp_time_in_min':'16',
 
+          ///TEMP DATA
+          'temp_name': 'Duane Reade',
+          'temp_time_in_min': '16',
 
           //TAB NAMES
           'home': 'Home',
@@ -33,6 +32,12 @@ class MyTranslations extends Translations {
           'introducing_offers_details':
               'Savings on meals and free delivery fees from great local and national restaurants, updated for you each week.',
           'delivery_fee': 'Delivery Fee',
+
+          //GET STARTED PAGE
+          'log_in': 'Log In',
+          'get_started': 'Get Started',
+          'why_delivery_with_door_dash': 'Why delivery with DoorDash',
+          'sign_up_details': 'Sign up details',
 
           //LOGIN PAGE
           'email': 'Email',
@@ -90,34 +95,38 @@ class MyTranslations extends Translations {
           'pay_pal': 'PayPal',
           'door_dash_credits': 'DoorDash Credits',
           'your_usd_credit_will_be_automatically_applied_to_your_next_order':
-      'Your USD credit will be automatically applied to next order.',
-          'usd':'USD',
-          'can_be_applied_only_in_usa':'Can be applied only in USA',
-          'redeem_gift_card':'Redeem Gift Card',
-          'invite_friends_on_earn_credits':'Invite friends to earn credits',
+              'Your USD credit will be automatically applied to next order.',
+          'usd': 'USD',
+          'can_be_applied_only_in_usa': 'Can be applied only in USA',
+          'redeem_gift_card': 'Redeem Gift Card',
+          'invite_friends_on_earn_credits': 'Invite friends to earn credits',
 
           'get': 'Get',
           'stores': 'Stores',
           'items': 'Items',
-          'free_delivery':'Free Delivery',
+          'free_delivery': 'Free Delivery',
 
           //ALERT DIALOG - DIALOGS
           'are_you_sure_you_want_to_logout': 'Are you sure you want\nto Logout?',
           'please_login_first_to_continue': 'Please Login First to continue',
 
           //CART
-          'you_saved':'You saved',
-          'with_new_user_promotion':'with New User Promotion',
-          'add_more_items':'Add more items',
-          'people_also_ordered':'People also ordered',
-          'total':'Total',
-          'promo_code':'Promo code',
-          'subtotal':'Subtotal',
-          'fees_and_estimated_tax':'Fees & Estimated Tax',
-          'continue':'Continue'
+          'you_saved': 'You saved',
+          'with_new_user_promotion': 'with New User Promotion',
+          'add_more_items': 'Add more items',
+          'people_also_ordered': 'People also ordered',
+          'total': 'Total',
+          'promo_code': 'Promo code',
+          'subtotal': 'Subtotal',
+          'fees_and_estimated_tax': 'Fees & Estimated Tax',
+          'continue': 'Continue',
+          '4242_hint': '4242 4242 4242 4242',
+          'scan_card_info_text':
+              'This will update your existing payment card. This card will only be charged when you place an order.',
+          'scan_card':'Scan Card',
 
-
-
+          //SCAN CARD
+          'save': 'Save',
         },
         'es': {'home': 'Ola'},
       };

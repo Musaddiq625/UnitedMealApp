@@ -19,7 +19,7 @@ class Components {
     Widget onTapNavigateTo,
     String subTitleText,
     Color subFontColor = Colors.black,
-        Widget leadingIcon,
+    Widget leadingIcon,
   }) {
     return GestureDetector(
       onTap: () {
@@ -33,7 +33,7 @@ class Components {
         child: Container(
           child: Row(
             children: [
-              if(leadingIcon!=null)
+              if (leadingIcon != null)
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: leadingIcon,
@@ -65,21 +65,20 @@ class Components {
               iconData == null
                   ? Container()
                   : Expanded(
-                    child: GestureDetector(
+                      child: GestureDetector(
                         onTap: () {
-                          if(onPressedWidget!=null)
-                          onPressedWidget();
+                          if (onPressedWidget != null) onPressedWidget();
                         },
                         child: inCircleAvatar
                             ? CircleAvatar(
                                 radius: 18,
                                 foregroundColor: Colors.black,
-                                backgroundColor:Constants.GREY_COLOR,
-                                child: Icon(iconData,size: 18),
+                                backgroundColor: Constants.GREY_COLOR,
+                                child: Icon(iconData, size: 18),
                               )
                             : Icon(iconData),
                       ),
-                  ),
+                    ),
             ],
           ),
         ),
@@ -166,15 +165,16 @@ class Components {
   //     ),
   //   );
   // }
-  myDivider()=> Divider(color: Colors.grey, thickness: 0.3);
+  myDivider() => Divider(color: Colors.grey, thickness: 0.3);
+
   slideSelector(List<String> stringList, int selectedItemIndex) {
     return Stack(
       children: [
         Container(
           height: 40,
           width: double.infinity,
-          decoration: BoxDecoration(
-              color:Constants.GREY_COLOR, borderRadius: BorderRadius.circular(50)),
+          decoration:
+              BoxDecoration(color: Constants.GREY_COLOR, borderRadius: BorderRadius.circular(50)),
           child: Row(
             children: [
               for (int i = 0; i < stringList.length; i++)
@@ -186,6 +186,29 @@ class Components {
           ),
         )
       ],
+    );
+  }
+
+  roundButton(String label, Function onButtonPressed, {IconData leadingIcon}) {
+    return GestureDetector(
+      onTap: () => onButtonPressed(),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Constants.APP_COLOR.withOpacity(.1), borderRadius: BorderRadius.circular(50)),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        child: Wrap(
+
+          children: [
+            Icon(leadingIcon,size:leadingIcon==null?0:22,color: Constants.APP_COLOR),
+            Text(
+              leadingIcon==null?label:'  '+
+              label,
+              textScaleFactor: 1.3,
+              style: TextStyle(color: Constants.APP_COLOR, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
