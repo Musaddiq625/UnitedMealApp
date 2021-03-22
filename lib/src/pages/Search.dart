@@ -4,6 +4,7 @@ import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/controllers/search_controller.dart';
 import 'package:getx_app/src/images_path.dart';
 import 'package:getx_app/src/items/components.dart';
+import 'file:///D:/Flutter%20Projects/getx_app/lib/src/pages/food_item_details.dart';
 import 'package:getx_app/src/items/food_item_widget_expanded.dart';
 
 import '../../temp_data.dart';
@@ -55,8 +56,8 @@ class Search extends StatelessWidget {
               children: [
                 for (int i = 0; i < TempData.tempFoodItems.length; i++)
                   // FoodItemWidgetExpanded(
-                  //     'Wendy\'s',
-                  //     ImagesPath.uploadFileIcon,
+                  //     TempData.tempFoodItems[i]['label'],
+                  //     TempData.tempFoodItems[i]['image'],
                   //     24,
                   //     [
                   //       'Burgers',
@@ -68,20 +69,14 @@ class Search extends StatelessWidget {
                   //     4.1,
                   //     3000,
                   //     'Free Delivery'),
-                FoodItemWidgetExpanded(
-                    TempData.tempFoodItems[i]['label'],
-                    TempData.tempFoodItems[i]['image'],
-                      24,
-                      [
-                        'Burgers',
-                        'American (New)',
-                        'Dinner',
-                        'Sandwich',
-                        'Burgers',
-                      ],
-                      4.1,
-                      3000,
-                      'Free Delivery'),
+                  GestureDetector(
+                    onTap:(){
+
+                      Get.to(()=>FoodItemDetails(  TempData.tempFoodItems[i]['food']));
+    },
+                    child: FoodItemWidgetExpanded(
+                        TempData.tempFoodItems[i]['food']),
+                  ),
               ],
             ),
           ),

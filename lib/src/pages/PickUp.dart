@@ -144,11 +144,13 @@ class _PickUpState extends State<PickUp> {
                 SizedBox(height: 15),
                 for (int i = 0; i < 2 /*TempData.tempFoodItems.length*/; i++)
                   FoodItemBottomSheet(
-                      TempData.tempFoodItems[i]['label'],
-                      TempData.tempFoodItems[i]['cuisines'],
-                      TempData.tempFoodItems[i]['image'],
-                      11,
-                      200),
+                      TempData.tempFoodItems[i]['food']),
+                  // FoodItemBottomSheet(
+                  //     TempData.tempFoodItems[i]['food'].name,
+                  //     TempData.tempFoodItems[i]['cuisines'],
+                  //     TempData.tempFoodItems[i]['image'],
+                  //     11,
+                  //     200),
                 // FoodItemBottomSheet('Lucky\'s Breakfast Diner', 'Breakfast, Comfort Food',
                 //     ImagesPath.uploadFileIcon, 11, 200),
               ],

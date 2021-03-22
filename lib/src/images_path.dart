@@ -49,4 +49,19 @@ static List<String> tempImages = [
   static String foodImage10 =_temp_food_images_main_path + 'meatballs_2.jpg';
   static String foodImage11 =_temp_food_images_main_path + 'meatballs_3.jpg';
   static String foodImage12 =_temp_food_images_main_path + 'sandwich_1.jpg';
+
+  static List<String> tempNames = [
+    _temp_food_images_main_path + 'breakfast_1.jpg',
+    _temp_food_images_main_path + 'breakfast_2.jpg',
+    _temp_food_images_main_path + 'breakfast_3.jpg',
+    _temp_food_images_main_path + 'breakfast_4.jpg',
+    _temp_food_images_main_path + 'burger_1.jpg',
+    _temp_food_images_main_path + 'burger_2.jpg',
+    _temp_food_images_main_path + 'chicken_1.jpg',
+    _temp_food_images_main_path + 'curry_1.jpg',
+    _temp_food_images_main_path + 'meatballs_1.jpg',
+    _temp_food_images_main_path + 'meatballs_2.jpg',
+    _temp_food_images_main_path + 'meatballs_3.jpg',
+    _temp_food_images_main_path + 'sandwich_1.jpg',
+  ];
 }

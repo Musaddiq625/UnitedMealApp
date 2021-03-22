@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/models/food.dart';
 import '../const.dart';
 
 class FoodItemWidgetExpanded extends StatelessWidget {
-  FoodItemWidgetExpanded(this.name, this.imagePath, this.deliveryTime, this.cuisines,
-      this.averageRating, this.totalRatings, this.deliveryType);
+  final Food foodModel;
+  FoodItemWidgetExpanded(this.foodModel);
+  // FoodItemWidgetExpanded(this.name, this.imagePath, this.deliveryTime, this.cuisines,
+  //     this.averageRating, this.totalRatings, this.deliveryType);
 
-  final String name, imagePath, deliveryType;
-  final int deliveryTime, totalRatings;
-  final List<String> cuisines;
-  final double averageRating;
+  // final String name, imagePath, deliveryType;
+  // final int deliveryTime, totalRatings;
+  // final List<String> cuisines;
+  // final double averageRating;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class FoodItemWidgetExpanded extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(.5),
                   borderRadius: BorderRadius.circular(5),
-                  image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover)),
+                  image: DecorationImage(image: AssetImage(foodModel.imagePath), fit: BoxFit.cover)),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),
@@ -39,7 +42,7 @@ class FoodItemWidgetExpanded extends StatelessWidget {
                 children: [
                   SizedBox(height: 10),
                   Text(
-                    name,
+                    foodModel.name,
                     textScaleFactor: 1.3,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -49,7 +52,7 @@ class FoodItemWidgetExpanded extends StatelessWidget {
                       Expanded(
                         child: Text(
                           '\$ • ' +
-                              cuisines.toString().substring(1, cuisines.toString().length - 1),
+                              foodModel.cuisines.toString().substring(1, foodModel.cuisines.toString().length - 1),
                           textScaleFactor: 1.1,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -60,7 +63,7 @@ class FoodItemWidgetExpanded extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Text('$deliveryTime min')
+                      Text('${foodModel.deliveryTimeInMin} min')
                     ],
                   ),
                   SizedBox(height: 5),
@@ -70,16 +73,16 @@ class FoodItemWidgetExpanded extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Text('$averageRating',
+                          Text('${foodModel.ratings}',
                               textScaleFactor: 1.1,
                               style: TextStyle(color:Constants.FONT_GREY_COLOR, fontWeight: FontWeight.bold)),
                           Icon(Icons.star, color: Constants.FONT_GREY_COLOR,size: 22),
-                          Text(' $totalRatings+' + 'ratings'.tr,
+                          Text(' ${foodModel.totalRatings}+' + 'ratings'.tr,
                               textScaleFactor: 1.1,
                               style: TextStyle(color: Constants.FONT_GREY_COLOR, fontWeight: FontWeight.bold)),
                         ],
                       ),
-                      Text('$deliveryType',
+                      Text('${foodModel.deliveryType}',
                           textScaleFactor: 1.1,
                           style: TextStyle(color: Constants.FONT_GREY_COLOR, fontWeight: FontWeight.bold))
                     ],

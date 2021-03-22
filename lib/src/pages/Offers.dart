@@ -48,7 +48,7 @@ class Offers extends StatelessWidget {
             SizedBox(height: 10),
             for (int i = 0; i < TempData.tempFoodItems.length; i++)
               FoodItemWidget(
-                  TempData.tempFoodItems[i]['label'], TempData.tempFoodItems[i]['image'], '20 min'),
+                  TempData.tempFoodItems[i]['food'])
           ],
         ),
       ),

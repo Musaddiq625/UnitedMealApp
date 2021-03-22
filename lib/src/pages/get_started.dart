@@ -104,7 +104,7 @@ class GetStartedPage extends StatelessWidget {
                 Icon(Icons.menu),
                 Text('LOGO'),
                 components.roundButton('log_in'.tr, () {
-                  Get.to(Login());
+                  Get.to(()=>Login());
                 })
               ],
             ),

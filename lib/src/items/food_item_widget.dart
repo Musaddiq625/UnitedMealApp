@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/models/food.dart';
 import '../const.dart';
 
 class FoodItemWidget extends StatelessWidget {
-  FoodItemWidget(this.name, this.imagePath, this.deliveryTime);
-
-  final String name, imagePath, deliveryTime;
+  final Food foodModel;
+  FoodItemWidget(this.foodModel);
+  // FoodItemWidget(this.name, this.imagePath, this.deliveryTime);
+  //
+  // final String name, imagePath, deliveryTime;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class FoodItemWidget extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(.5),
                   borderRadius: BorderRadius.circular(5),
-                  image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover)),
+                  image: DecorationImage(image: AssetImage(foodModel.imagePath), fit: BoxFit.cover)),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),
@@ -42,12 +45,12 @@ class FoodItemWidget extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    name,
+                    foodModel.name,
                     textScaleFactor: 1.2,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 5),
-                  Text(deliveryTime)
+                  Text("${foodModel.deliveryTimeInMin} Min")
                 ],
               ),
             )

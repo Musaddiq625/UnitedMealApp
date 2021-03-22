@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 class MyTranslations extends Translations {
   @override
-  // TODO: implement keys
   Map<String, Map<String, String>> get keys => {
         'en': {
           //HEADINGS
@@ -12,6 +11,7 @@ class MyTranslations extends Translations {
           'temp_name': 'Duane Reade',
           'temp_time_in_min': '16',
 
+          'delivery':'Delivery',
           //TAB NAMES
           'home': 'Home',
           'pickup': 'Pickup',
@@ -127,6 +127,29 @@ class MyTranslations extends Translations {
 
           //SCAN CARD
           'save': 'Save',
+
+          //ITEM DETAILS
+          'back':'Back',
+          'newly_added':'Newly Added',
+          'this_is_a_pickup_order':'This is a Pickup Order',
+          'you_ll_need_to_go_to':'You\'ll need to go to',
+          'to_pickup_this_order':'to pick up this order',
+          'featured_items':'Featured Items',
+          'full_menu':'Full Menu',
+          'switch_menu':'Switch Menu',
+          'popular_items':'Popular Items',
+          'weekend_special':'Weekend Special',
+
+          //POPULAR ITEMS
+          'popular_items_tagline':'The most commonly ordered items and dishes from this store',
+
+
+          //ADD TO ORDER
+          'add_special_instruction':'Add Special Instruction',
+
+
+
+
         },
         'es': {'home': 'Ola'},
       };
