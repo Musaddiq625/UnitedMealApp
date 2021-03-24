@@ -1,5 +1,3 @@
-
-
 class User {
   // final RxString name = ''.obs;
   // final RxString email = ''.obs;
@@ -12,6 +10,19 @@ class User {
   bool isGuest;
   String phoneNo;
 
+  User({
+    this.id,
+    this.name,
+    this.email,
+    this.isGuest = false,
+    this.phoneNo,
+  });
 
-  User({this.id, this.name, this.email, this.isGuest=false, this.phoneNo});
-  }
+  toMap() => {
+        'id': id,
+        'name': name,
+        'email': email,
+        'isGuest': isGuest,
+        'phoneNo': phoneNo,
+      };
+}

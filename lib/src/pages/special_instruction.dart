@@ -1,0 +1,70 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getx_app/src/const.dart';
+
+class SpecialInstruction extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+            body: SingleChildScrollView(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Container(
+          decoration: BoxDecoration(
+              color: Colors.grey.withOpacity(.05),
+              border: Border(bottom: BorderSide(color: Colors.grey.withOpacity(.5)))),
+          child: Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: Constants.APP_HORIZONTAL_WIDTH, vertical: 20),
+              child: Stack(
+                alignment: Alignment.centerRight,
+                children: [
+                  Center(
+                    child: Text(
+                      'special_instruction'.tr,
+                      textScaleFactor: 1.1,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => Get.back(),
+                    child: Text('done'.tr,
+                        textScaleFactor: 1.1,
+                        style: TextStyle(
+                            color: Constants.APP_COLOR,
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline)),
+                  ),
+                ],
+              ))),
+      Container(
+        height: 250,
+        padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH),
+        child: Column(
+          children: [
+            TextField(
+              maxLines: null,
+              maxLength: 500,
+              decoration: InputDecoration.collapsed(hintText: 'special_instruction_hint'.tr),
+            )
+          ],
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('if_item_is_unavailable'.tr.toUpperCase(), textScaleFactor: 0.8),
+              SizedBox(height: 5),
+              Text('contact_me'.tr,
+                  textScaleFactor: 1.2, style: TextStyle(fontWeight: FontWeight.bold)),
+            ]),
+            Icon(Icons.arrow_forward_ios, size: 20, color: Constants.FONT_GREY_COLOR)
+          ],
+        ),
+      )
+    ]))));
+  }
+}

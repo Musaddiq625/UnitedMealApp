@@ -30,7 +30,7 @@ class CartItem extends StatelessWidget {
                     Text(foodModel.name,
                         textScaleFactor: 1.2, style: TextStyle(fontWeight: FontWeight.bold)),
                     SizedBox(height: 5),
-                    Text(foodModel.cuisines.toString().substring(1,foodModel.cuisines.toString().length-1), textScaleFactor: .9, style: TextStyle(color: Colors.grey)),
+                    Text(foodModel.cuisine, textScaleFactor: .9, style: TextStyle(color: Colors.grey)),
                   ],
                 ),
               ),

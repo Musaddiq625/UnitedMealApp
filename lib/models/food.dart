@@ -6,21 +6,32 @@ class Food {
   double price;
   int deliveryTimeInMin;
   String deliveryType;
-  List<String> cuisines;
-  double ratings;
+  String cuisine;
+
   int totalRatings;
 
   Food(
       {this.id,
       this.name,
-        this.restaurantName,
+      this.restaurantName,
       this.imagePath,
       this.price,
       this.deliveryTimeInMin,
       this.deliveryType,
-      this.cuisines,
-      this.ratings,
+      this.cuisine,
       this.totalRatings});
-  String getCuisines()=>
-      cuisines.toString().substring(1,cuisines.toString().length-1);
+
+  toMap() => {
+        'id': id,
+        'name': name,
+        'restaurantName': restaurantName,
+        'imagePath': imagePath,
+        'price': price,
+        'deliveryTimeInMin': deliveryTimeInMin,
+        'deliveryType': deliveryType,
+        'cuisine': cuisine,
+        'totalRatings': totalRatings,
+      };
+
+
 }

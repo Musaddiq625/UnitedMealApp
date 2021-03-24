@@ -7,18 +7,36 @@ import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/controllers/food_item_details_controller.dart';
 import 'package:getx_app/src/items/underlined_listTile.dart';
 import 'package:getx_app/src/pages/popular_items.dart';
+import 'package:getx_app/temp_data.dart';
 import '../items/app_bar.dart';
 import '../items/item_selector_widget.dart';
 
-class FoodItemDetails extends StatelessWidget {
+class RestaurantDetails extends StatelessWidget {
   final Food foodModel;
+  final Restaurant restaurantModel;
 
-  FoodItemDetails(this.foodModel);
+  RestaurantDetails(this.foodModel, this.restaurantModel);
 
   final FoodItemDetailsController foodItemDetailsController = Get.put(FoodItemDetailsController());
-  final Restaurant restaurantModel = Restaurant();
 
-
+  myWidget(String label1, double value1, String label2, double value2, String label3, double value3) {
+    return Row(children: [
+      Column(children: [
+        Text('\$$value1', textScaleFactor: 1.3, style: TextStyle(fontWeight: FontWeight.bold)),
+        Text('$label1'),
+      ]),
+      SizedBox(width: 10),
+      Column(children: [
+        Text('$value2', textScaleFactor: 1.3, style: TextStyle(fontWeight: FontWeight.bold)),
+        Text('$label2'),
+      ]),
+      SizedBox(width: 10),
+      Column(children: [
+        Text('$value3', textScaleFactor: 1.3, style: TextStyle(fontWeight: FontWeight.bold)),
+        Text('$label3'),
+      ]),
+    ]);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +69,10 @@ class FoodItemDetails extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(foodModel?.name,
+                Text(restaurantModel?.name,
                     textScaleFactor: 3, style: TextStyle(fontWeight: FontWeight.bold)),
                 SizedBox(height: 10),
-                Text('\$\$ • ' + foodModel.getCuisines(),
+                Text('\$\$ • ' + restaurantModel.getCuisines(),
                     style: TextStyle(color: Constants.FONT_GREY_COLOR)),
                 SizedBox(height: 10),
                 Row(
@@ -67,25 +85,36 @@ class FoodItemDetails extends StatelessWidget {
                             itemSize: 20,
                             ignoreGestures: true,
                             allowHalfRating: true,
-                            initialRating: foodModel.ratings,
+                            initialRating: restaurantModel?.ratings ?? 0,
                             itemBuilder: (context, _) => Icon(Icons.star, color: Colors.amber),
                             onRatingUpdate: (_) {}),
                         SizedBox(width: 5),
                         Text('newly_added'.tr, style: TextStyle(color: Constants.FONT_GREY_COLOR)),
                       ],
                     ),
-                    Obx(() => ItemSelectorWidget(
-                        'delivery'.tr,
-                        'pickup'.tr,
-                        foodItemDetailsController.selectedIndex.value,
-                        (int updatedIndex) =>
-                            foodItemDetailsController.changeDeliveryType(updatedIndex)))
+                    Text('')
                   ],
                 ),
                 SizedBox(height: 20),
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH),
+            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Obx(()=>myWidget(
+                'fees'.tr,foodItemDetailsController.selectedIndex.value==0?1.99:0,//
+                'min'.tr,foodItemDetailsController.selectedIndex.value==0?46:15,//
+                'miles'.tr, 3.5,//
+              )),
+              Obx(() => ItemSelectorWidget(
+                  'delivery'.tr,
+                  'pickup'.tr,
+                  foodItemDetailsController.selectedIndex.value,
+                  (int updatedIndex) => foodItemDetailsController.changeDeliveryType(updatedIndex)))
+            ]),
+          ),
+          SizedBox(height: 15),
           Obx(() => Column(children: [
                 foodItemDetailsController.selectedIndex.value == 0
                     ? Container()
@@ -105,7 +134,7 @@ class FoodItemDetails extends StatelessWidget {
                               TextSpan(
                                   text: 'you_ll_need_to_go_to'.tr +
                                       ' ' +
-                                      foodModel.restaurantName +
+                                      restaurantModel.name +
                                       ' ' +
                                       'to_pickup_this_order'.tr +
                                       ': ',
@@ -143,17 +172,18 @@ class FoodItemDetails extends StatelessWidget {
                         width: Get.size.width * 0.85,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage(foodModel.imagePath), fit: BoxFit.cover)),
+                                image: AssetImage(restaurantModel.restaurantFoods[i].imagePath),
+                                fit: BoxFit.cover)),
                       ),
                       SizedBox(height: 10),
                       Text(
-                        foodModel.name,
+                        restaurantModel.restaurantFoods[i].name,
                         textScaleFactor: 1.2,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 10),
                       Text(
-                        '\$ ${foodModel.price}',
+                        '\$ ${restaurantModel.restaurantFoods[i].price}',
                         textScaleFactor: 1.2,
                         style: TextStyle(
                             color: Constants.FONT_GREY_COLOR, fontWeight: FontWeight.bold),
@@ -179,11 +209,11 @@ class FoodItemDetails extends StatelessWidget {
             ),
           ),
           SizedBox(height: 25),
-              UnderLinedListTile('popular_items'.tr, 10,page: PopularItems()),
-              UnderLinedListTile('weekend_special'.tr, 1),
-          for (int i = 0; i < restaurantModel.tempFullMenuList.length; i++)
-            UnderLinedListTile(restaurantModel.tempFullMenuList[i]['name'],
-                restaurantModel.tempFullMenuList[i]['total_items']),
+          UnderLinedListTile('popular_items'.tr, restaurantModel.restaurantFoods.length.toString(), page: PopularItems(restaurantModel)),
+          UnderLinedListTile('weekend_special'.tr, '1'),
+          for (int i = 0; i < TempData.tempRestaurantsWithFoods[0].restaurantFoods.length; i++)
+            UnderLinedListTile(TempData.tempRestaurantsWithFoods[0].restaurantFoods[i].name,
+                TempData.tempRestaurantsWithFoods[0].restaurantFoods.length.toString()),
         ])),
       ),
     );

@@ -4,10 +4,13 @@ import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/controllers/search_controller.dart';
 import 'package:getx_app/src/images_path.dart';
 import 'package:getx_app/src/items/components.dart';
-import 'file:///D:/Flutter%20Projects/getx_app/lib/src/pages/food_item_details.dart';
+import 'file:///D:/Flutter%20Projects/getx_app/lib/src/pages/restaurant_details.dart';
 import 'package:getx_app/src/items/food_item_widget_expanded.dart';
+import 'package:getx_app/src/items/restaurant_widget_expanded.dart';
 
 import '../../temp_data.dart';
+import 'food_details.dart';
+import 'food_item_add_to_order.dart';
 
 class Search extends StatelessWidget {
   final Components components = Components();
@@ -38,47 +41,74 @@ class Search extends StatelessWidget {
         ),
         SizedBox(height: 10),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH),
+          padding: const EdgeInsets.only(
+              left: Constants.APP_HORIZONTAL_WIDTH,
+              right: Constants.APP_HORIZONTAL_WIDTH,
+              bottom: 10),
           child: Column(children: [
             GestureDetector(
                 onTap: () {
-                  searchController.changeValue(searchController.selectedIndex.value == 0 ? 1 : 0);
+                  SearchController.selectedIndex.value =
+                  SearchController.selectedIndex.value == 0 ? 1 : 0;
+                  searchController.changePageControllerValue(SearchController.selectedIndex.value);
                 },
                 child: Obx(() => components.slideSelector(
                     // searchController.searchTypesList
-                    ['stores'.toString().tr + '(50)', 'items'.toString().tr + '(3)']
-                    , searchController.selectedIndex.value)))
+                    ['stores'.toString().tr + '(50)', 'items'.toString().tr + '(3)'],
+                    SearchController.selectedIndex.value)))
           ]),
         ),
         Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                for (int i = 0; i < TempData.tempFoodItems.length; i++)
-                  // FoodItemWidgetExpanded(
-                  //     TempData.tempFoodItems[i]['label'],
-                  //     TempData.tempFoodItems[i]['image'],
-                  //     24,
-                  //     [
-                  //       'Burgers',
-                  //       'American (New)',
-                  //       'Dinner',
-                  //       'Sandwich',
-                  //       'Burgers',
-                  //     ],
-                  //     4.1,
-                  //     3000,
-                  //     'Free Delivery'),
-                  GestureDetector(
-                    onTap:(){
+          child: PageView(
+            controller: searchController.pageController,
+            physics: NeverScrollableScrollPhysics(),
+            children: [
+              ///STORES
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    for (int i = 0; i < TempData.tempRestaurantsWithFoods.length; i++)
+                      for (int j = 0;
+                          j < TempData.tempRestaurantsWithFoods[i].restaurantFoods.length;
+                          j++)
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(RestaurantDetails(
+                                  TempData.tempRestaurantsWithFoods[i].restaurantFoods[j],
+                                  TempData.tempRestaurantsWithFoods[i],
+                                ));
+                          },
+                          child: RestaurantItemWidgetExpanded(
+                            TempData.tempRestaurantsWithFoods[j].restaurantFoods[i],
+                            TempData.tempRestaurantsWithFoods[j],
+                          ),
+                        ),
+                  ],
+                ),
+              ),
 
-                      Get.to(()=>FoodItemDetails(  TempData.tempFoodItems[i]['food']));
-    },
-                    child: FoodItemWidgetExpanded(
-                        TempData.tempFoodItems[i]['food']),
-                  ),
-              ],
-            ),
+              ///ITEMS
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    for (int i = 0; i < TempData.tempRestaurantsWithFoods.length; i++)
+                      for (int j = 0;
+                          j < TempData.tempRestaurantsWithFoods[i].restaurantFoods.length;
+                          j++)
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => FoodItemAddToOrder(
+                                TempData.tempRestaurantsWithFoods[j].restaurantFoods[i]));
+                          },
+                          child: FoodItemWidgetExpanded(
+                            TempData.tempRestaurantsWithFoods[i].restaurantFoods[j],
+                            TempData.tempRestaurantsWithFoods[i],
+                          ),
+                        ),
+                  ],
+                ),
+              ),
+            ],
           ),
         )
       ],

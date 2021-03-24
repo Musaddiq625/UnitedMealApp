@@ -16,7 +16,6 @@ class LoginController extends GetxController {
   }
   Future loginUser() async {
     userController.user = User();
-    print(userController.user.isGuest);
     Get.to(()=>Dashboard());
     // try {
     //   if (emailTextEditingController.text == '' || passwordTextEditingController.text == '') {

@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/models/food.dart';
+import 'package:getx_app/models/restaurant.dart';
 import '../const.dart';
-import '../images_path.dart';
-
 class FoodItemBottomSheet extends StatelessWidget {
   final Food foodModel;
-  FoodItemBottomSheet(this.foodModel);
+  final Restaurant restaurantModel;
+  FoodItemBottomSheet(this.foodModel, this.restaurantModel);
   // final String name, cuisines, imagePath1, imagePath2;
   // final int readyInMint, distance;
   //
@@ -50,9 +50,8 @@ class FoodItemBottomSheet extends StatelessWidget {
               Expanded(
                   flex: 3,
                   child: Text(
-                    foodModel.cuisines.toString().substring(1,
-                        foodModel.cuisines.toString().length-1
-                    ),textScaleFactor: 1.2,
+                    restaurantModel.getCuisines()
+                    ,textScaleFactor: 1.2,
                     style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
                   )),
               Text(

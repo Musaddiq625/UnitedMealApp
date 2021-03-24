@@ -46,9 +46,9 @@ class Offers extends StatelessWidget {
             SizedBox(height: 10),
             components.textWithWidget('Top Picks For You'),
             SizedBox(height: 10),
-            for (int i = 0; i < TempData.tempFoodItems.length; i++)
+            for (int i = 0; i < TempData.tempRestaurantsWithFoods.length; i++)
               FoodItemWidget(
-                  TempData.tempFoodItems[i]['food'])
+                  TempData.tempRestaurantsWithFoods[0].restaurantFoods[i])
           ],
         ),
       ),

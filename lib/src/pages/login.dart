@@ -63,8 +63,7 @@ class Login extends StatelessWidget {
                 children: [
               Text('not_a_user'.tr+'? '),
               GestureDetector(
-                onTap: ()=>Get.to(()=>SignUp(),
-                  fullscreenDialog:true),
+                onTap: ()=>Get.to(SignUp()),
                 child: Text('sign_up'.tr,
                     textScaleFactor: 1.1,
                     style: TextStyle(fontWeight: FontWeight.bold)),

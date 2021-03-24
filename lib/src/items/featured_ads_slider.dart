@@ -7,7 +7,7 @@ import '../images_path.dart';
 
 class FeaturedAdsSlider extends StatelessWidget {
   final UserController userController = Get.find();
-  item(String imagePath, String adText, String deliveryTimeText, String btnText,
+  item( String adText, String deliveryTimeText, String btnText,
       {Function onBtnTap}) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH / 2.2),
@@ -88,12 +88,12 @@ class FeaturedAdsSlider extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: TempData.tempFoodItems
+        children: TempData.tempAds
             .map<Widget>((e) => item(
-                  e['image'],
-                  e['adText'],
-                  e['deliveryTime'],
-                  e['btnText'],onBtnTap:()=> userController.checkIsLoggedIn()
+
+                  e.adText,
+                  e.deliveryTime,
+                  e.btnText,onBtnTap:()=> userController.checkIsLoggedIn()
                 ))
             .toList(),
       ),

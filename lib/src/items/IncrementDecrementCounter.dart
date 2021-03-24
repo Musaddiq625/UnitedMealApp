@@ -22,12 +22,12 @@ class IncrementDecrementCounter extends StatelessWidget {
           children: [
             GestureDetector(
                 onTap: () => onDecrement(),
-                child: Text('-', textScaleFactor: 3, style: TextStyle(color: leadingButtonColor))),
+                child: Text('-', textScaleFactor: 2, style: TextStyle(color: leadingButtonColor))),
             Text('$counterValue',
-                textScaleFactor: 1.5, style: TextStyle(fontWeight: FontWeight.bold)),
+                textScaleFactor: 1.3, style: TextStyle(fontWeight: FontWeight.bold)),
             GestureDetector(
                 onTap: () => onIncrement(),
-                child: Text('+', textScaleFactor: 3, style: TextStyle(color: trailingButtonColor))),
+                child: Text('+', textScaleFactor: 2, style: TextStyle(color: trailingButtonColor))),
           ],
         ),
       ),

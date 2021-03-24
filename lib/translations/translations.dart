@@ -11,7 +11,7 @@ class MyTranslations extends Translations {
           'temp_name': 'Duane Reade',
           'temp_time_in_min': '16',
 
-          'delivery':'Delivery',
+          'delivery': 'Delivery',
           //TAB NAMES
           'home': 'Home',
           'pickup': 'Pickup',
@@ -66,6 +66,7 @@ class MyTranslations extends Translations {
           'payment': 'Payment',
           'manage_payment_methods_and_door_dash_credits':
               'Manage payment methods and DoorDash Credits',
+          'address': 'Address',
           'addresses': 'Addresses',
           'add_or_remove_a_delivery_address': 'Add or remove a delivery address',
           'privacy': 'Privacy',
@@ -123,30 +124,57 @@ class MyTranslations extends Translations {
           '4242_hint': '4242 4242 4242 4242',
           'scan_card_info_text':
               'This will update your existing payment card. This card will only be charged when you place an order.',
-          'scan_card':'Scan Card',
+          'scan_card': 'Scan Card',
+
+          //CHECKOUT
+          'my_cart':'My Cart',
+          'checkout':'Checkout',
+          'delivery_details':'Delivery Details',
+          'delivery_instruction':'Delivery Instruction',
+          'eta':'ETA',
+          'dasher_tip':'Dasher Tip',
 
           //SCAN CARD
           'save': 'Save',
 
-          //ITEM DETAILS
-          'back':'Back',
-          'newly_added':'Newly Added',
-          'this_is_a_pickup_order':'This is a Pickup Order',
-          'you_ll_need_to_go_to':'You\'ll need to go to',
-          'to_pickup_this_order':'to pick up this order',
-          'featured_items':'Featured Items',
-          'full_menu':'Full Menu',
-          'switch_menu':'Switch Menu',
-          'popular_items':'Popular Items',
-          'weekend_special':'Weekend Special',
+          //RESTAURANT DETAILS
+          'back': 'Back',
+          'newly_added': 'Newly Added',
+          'this_is_a_pickup_order': 'This is a Pickup Order',
+          'you_ll_need_to_go_to': 'You\'ll need to go to',
+          'to_pickup_this_order': 'to pick up this order',
+          'featured_items': 'Featured Items',
+          'full_menu': 'Full Menu',
+          'fees': 'fees',
+          'miles': 'miles',
+          'switch_menu': 'Switch Menu',
+          'popular_items': 'Popular Items',
+          'weekend_special': 'Weekend Special',
 
           //POPULAR ITEMS
-          'popular_items_tagline':'The most commonly ordered items and dishes from this store',
-
+          'popular_items_tagline': 'The most commonly ordered items and dishes from this store',
 
           //ADD TO ORDER
-          'add_special_instruction':'Add Special Instruction',
+          'add_special_instruction': 'Add Special Instruction',
+          'add_to_order': 'Add to Order',
 
+          //SPECIAL INSTRUCTION
+          'special_instruction': 'Special Instruction',
+          'done': 'Done',
+          'special_instruction_hint':
+              'Sauce on the side, no cilantro, extra spicy.. (500 characters max)',
+          'if_item_is_unavailable':'If Item is Unavailable',
+          'contact_me':'Contact me',
+
+
+          //PAYMENTS
+          'apple_pay':'Apple Pay',
+          'buy_with_pay':'Buy With Pay',
+          'processing_order':'Processing Order',
+
+          //LIVE MAP
+          'heading_to_you':'Heading to you',
+          'arrives_in':'Arrives in',
 
 
 

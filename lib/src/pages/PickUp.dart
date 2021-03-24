@@ -93,13 +93,8 @@ import 'package:getx_app/temp_data.dart';
 //   }
 // }
 
-class PickUp extends StatefulWidget {
-  @override
-  _PickUpState createState() => _PickUpState();
-}
-
-class _PickUpState extends State<PickUp> {
-  GlobalKey<ExpandableBottomSheetState> bottomSheetKey = new GlobalKey();
+class PickUp extends StatelessWidget {
+  final GlobalKey<ExpandableBottomSheetState> bottomSheetKey = new GlobalKey();
   final Components components = Components();
 
   // ExpansionStatus _expansionStatus = ExpansionStatus.contracted;
@@ -144,13 +139,15 @@ class _PickUpState extends State<PickUp> {
                 SizedBox(height: 15),
                 for (int i = 0; i < 2 /*TempData.tempFoodItems.length*/; i++)
                   FoodItemBottomSheet(
-                      TempData.tempFoodItems[i]['food']),
-                  // FoodItemBottomSheet(
-                  //     TempData.tempFoodItems[i]['food'].name,
-                  //     TempData.tempFoodItems[i]['cuisines'],
-                  //     TempData.tempFoodItems[i]['image'],
-                  //     11,
-                  //     200),
+                    TempData.tempRestaurantsWithFoods[0].restaurantFoods[i],
+                    TempData.tempRestaurantsWithFoods[0],
+                  ),
+                // FoodItemBottomSheet(
+                //     TempData.tempFoodItems[i]['food'].name,
+                //     TempData.tempFoodItems[i]['cuisines'],
+                //     TempData.tempFoodItems[i]['image'],
+                //     11,
+                //     200),
                 // FoodItemBottomSheet('Lucky\'s Breakfast Diner', 'Breakfast, Comfort Food',
                 //     ImagesPath.uploadFileIcon, 11, 200),
               ],

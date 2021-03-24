@@ -1,27 +1,57 @@
+import 'package:getx_app/models/ad.dart';
 import 'package:getx_app/models/food.dart';
 
+import 'models/restaurant.dart';
 import 'src/images_path.dart';
 
 class TempData {
-  static List<Map> tempFoodItems = [
-    for (int i = 0; i < 10; i++)
-      {
-        'food': Food(
-          name: 'Breakfast $i',
-          restaurantName: 'Kolachi $i',
-          imagePath: ImagesPath.tempImages[i],
-          price: 30.0,
-          deliveryTimeInMin: 60,
-          deliveryType: 'Free Delivery',
-          cuisines: ['Honey Mustard Dipping Sauce', 'Ketchup'],
+  static List<Ad> tempAds = [
+    for (int a = 0; a < 5; a++)
+      Ad(
+        adText: 'D\'Agostino is on DoorDash! 20% off your order of \$35+',
+        btnText: 'Start Shopping',
+        deliveryTime: '1-hour delivery',
+      )
+  ];
+  static List<Restaurant> tempRestaurantsWithFoods = [
+    for (int r = 0; r < 5; r++)
+      Restaurant(
+          id: r,
+          name: 'Restaurant $r',
+          imagePath: 'assets/restaurant_images/r$r.jpg',
           ratings: 4.5,
-          totalRatings: 3000,
-        ),
-        'btnText': 'Start Shopping',
-        'deliveryTime': '1-hour delivery',
-        'adText': 'D\'Agostino is on DoorDash! 20% off your order of \$35+',
-      },
+          address: '123 Street at 456',
+          cuisines: [
+            'Chinese',
+            'Mexican',
+            'Italian',
+            'Indian',
+            'Thai',
+          ],
+          restaurantFoods: [
+            for (int f = 0; f < 5; f++)
+              Food(
+                name: 'Food $f',
+                restaurantName: 'Restaurant $r',
+                imagePath: ImagesPath.tempImages[f],
+                price: 30.0,
+                deliveryTimeInMin: 60,
+                deliveryType: 'Free Delivery',
+                cuisine: f == 0
+                    ? 'Chinese'
+                    : f == 1
+                        ? 'Mexican'
+                        : f == 2
+                            ? 'Italian'
+                            : f == 3
+                                ? 'Indian'
+                                : 'Thai',
+                totalRatings: 3000,
+              )
+          ])
+  ];
 
+  static List<Map> tempFoodItemsOLD = [
     //
     //
     // {
@@ -57,7 +87,6 @@ class TempData {
     //   'adText': 'D\'Agostino is on DoorDash! 20% off your order of \$35+',
     // },
     // {
-    //   'label': 'Burger 2',
     //   'image': ImagesPath.tempImages[5],
     //   'btnText': 'Start Shopping',
     //   'deliveryTime': '1-hour delivery',

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/src/controllers/user_controller.dart';
+import 'package:getx_app/src/pages/food_details.dart';
+import 'package:getx_app/src/pages/food_item_add_to_order.dart';
 import '../../temp_data.dart';
 import '../const.dart';
 import 'package:get/get.dart';
 
-import '../pages/food_item_details.dart';
+import '../pages/restaurant_details.dart';
 
 class ImagesSliderFull extends StatelessWidget {
   // final String name, deliveryTime, deliveryType;
@@ -65,11 +67,14 @@ class ImagesSliderFull extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(children: [
-        for (int i = 0; i < TempData.tempFoodItems.length; i++)
+        for (int i = 0; i < TempData.tempRestaurantsWithFoods.length; i++)
           GestureDetector(
-              onTap: () => Get.to(() => FoodItemDetails(TempData.tempFoodItems[i]['food'])),
-              child: item(TempData.tempFoodItems[i]['food'].imagePath,
-                  TempData.tempFoodItems[i]['food'].name))
+              onTap: () => Get.to(() => FoodItemAddToOrder(
+                TempData.tempRestaurantsWithFoods[0].restaurantFoods[i],
+                // TempData.tempRestaurantsWithFoods[0],
+              )),
+              child: item(TempData.tempRestaurantsWithFoods[0].restaurantFoods[i].imagePath,
+                  TempData.tempRestaurantsWithFoods[0].restaurantFoods[i].name))
       ]),
     );
   }

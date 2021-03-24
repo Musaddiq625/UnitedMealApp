@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getx_app/models/restaurant.dart';
 import 'package:getx_app/src/items/app_bar.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/temp_data.dart';
@@ -6,6 +7,8 @@ import '../const.dart';
 import 'food_item_add_to_order.dart';
 
 class PopularItems extends StatelessWidget {
+  final Restaurant restaurantModel;
+  PopularItems(this.restaurantModel);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,14 +41,14 @@ class PopularItems extends StatelessWidget {
           // width: Get.size.width * 0.85,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(TempData.tempFoodItems[0]['food'].imagePath),
+                  image: AssetImage(restaurantModel.restaurantFoods[0].imagePath),
                   fit: BoxFit.cover)),
         ),
         SizedBox(height: 10),
-        for (int i = 0; i < TempData.tempFoodItems.length; i++)
+        for (int i = 0; i <restaurantModel.restaurantFoods.length; i++)
           GestureDetector(
             onTap: () {
-              Get.to(() => FoodItemAddToOrder(TempData.tempFoodItems[i]['food']));
+              Get.to(() => FoodItemAddToOrder(restaurantModel.restaurantFoods[i]));
             },
             child: Container(
               width: double.infinity,
@@ -54,10 +57,10 @@ class PopularItems extends StatelessWidget {
                   border:
                       Border(bottom: BorderSide(color: Constants.FONT_GREY_COLOR.withOpacity(.3)))),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(TempData.tempFoodItems[i]['food'].name,
+                Text(restaurantModel.restaurantFoods[i].name,
                     textScaleFactor: 1.1, style: TextStyle(fontWeight: FontWeight.bold)),
                 SizedBox(height: 2),
-                Text('\$${TempData.tempFoodItems[i]['food'].price}',
+                Text('\$${restaurantModel.restaurantFoods[i].price}',
                     textScaleFactor: 1.1, style: TextStyle(fontWeight: FontWeight.bold)),
               ]),
             ),
