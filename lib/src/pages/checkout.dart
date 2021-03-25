@@ -94,12 +94,18 @@ class Checkout extends StatelessWidget {
                               ])),
                               SizedBox(height: 20),
                               UnderLinedListTile('payment'.tr, 'apple_pay'.tr),
-                              SizedBox(height: 120),
-                              ButtonWidget('buy_with_pay'.tr,
-                                btnColor: Colors.black,fontColor: Colors.white,
-                                function: (){
-                                  checkoutController.startPaymentProcess();
-                                },)
+                              SizedBox(height: 100),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ButtonWidget('buy_with_pay'.tr,
+                                    btnColor: Colors.black,fontColor: Colors.white,
+                                    function: (){
+                                      checkoutController.startPaymentProcess();
+                                    }),
+                                ],
+                              ),
+                              SizedBox(height: 30),
                             ],
                           ),
                         )

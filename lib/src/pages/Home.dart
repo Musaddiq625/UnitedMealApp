@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
                 Get.bottomSheet(Account(),isScrollControlled: true);
               },
                   () {
-                Get.to(()=>CartPage('Wendy\'s'));
+                Get.to(CartPage('Wendy\'s'));
               },
 
             ),

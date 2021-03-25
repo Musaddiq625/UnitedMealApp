@@ -219,7 +219,7 @@ class CartPage extends StatelessWidget {
               btnColor: Constants.APP_DARK_COLOR,
               trailingText: '\$8.99',
               function: () {
-                Get.to(Checkout());
+                Get.to(()=>Checkout());
               },
             ),
           ),
