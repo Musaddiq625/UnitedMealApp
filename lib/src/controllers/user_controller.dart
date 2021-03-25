@@ -26,7 +26,6 @@ class UserController extends GetxController {
                 child: Text('Login', textScaleFactor: 1.2), onPressed: () => Get.offAll(Login())),
             TextButton(child: Text('Cancel', textScaleFactor: 1.2), onPressed: () => Get.back()),
           ]);
-      // logOutUser();
     }else  Get.defaultDialog(
         title: '',
         titleStyle: TextStyle(fontSize: 1),

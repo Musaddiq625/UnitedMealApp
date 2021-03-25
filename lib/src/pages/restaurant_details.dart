@@ -103,9 +103,9 @@ class RestaurantDetails extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH),
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Obx(()=>myWidget(
-                'fees'.tr,foodItemDetailsController.selectedIndex.value==0?1.99:0,//
-                'min'.tr,foodItemDetailsController.selectedIndex.value==0?46:15,//
-                'miles'.tr, 3.5,//
+                'fees'.tr,foodItemDetailsController.selectedIndex.value==0?1.99:0,
+                'min'.tr,foodItemDetailsController.selectedIndex.value==0?46:15,
+                'miles'.tr, 3.5,
               )),
               Obx(() => ItemSelectorWidget(
                   'delivery'.tr,

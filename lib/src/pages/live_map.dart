@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/items/components.dart';
-import 'package:getx_app/src/items/food_item_bottomsheet.dart';
-
-import '../../temp_data.dart';
-
 class LiveMap extends StatelessWidget {
   final GlobalKey<ExpandableBottomSheetState> bottomSheetKey = new GlobalKey();
   final Components components = Components();

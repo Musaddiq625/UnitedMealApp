@@ -6,7 +6,6 @@ import 'package:getx_app/src/pages/Orders.dart';
 import 'package:getx_app/src/pages/PickUp.dart';
 import 'package:getx_app/src/pages/Search.dart';
 import 'package:getx_app/src/pages/Home.dart';
-import 'package:getx_app/src/pages/login.dart';
 
 class HomeController extends GetxController {
   // final Rx<GlobalKey<State<StatefulWidget>>> bottomSheetKey = GlobalKey().obs;
@@ -29,14 +28,6 @@ class HomeController extends GetxController {
       currentIndex.value = 0;
       return false;
     } else {
-      // print('value ${userController?.user?.isGuest}');
-      // if (userController.user.isGuest) {
-      //   Get.offAll(Login());
-      //   userController.logOutUser();
-      // } else {
-      //   userController.checkIsLoggedIn();
-      //   // Get.offAll(Login());
-      // }
       userController.logoutUserDialog();
     }
   }

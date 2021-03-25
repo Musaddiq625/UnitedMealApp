@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:getx_app/src/controllers/user_controller.dart';
 import 'package:getx_app/temp_data.dart';
 import '../const.dart';
-import '../images_path.dart';
 
 class FeaturedAdsSlider extends StatelessWidget {
   final UserController userController = Get.find();
@@ -17,13 +16,8 @@ class FeaturedAdsSlider extends StatelessWidget {
             height: 130,
             width: 350,
             decoration: BoxDecoration(
-              // color: Colors.grey.withOpacity(.5),
               color: Constants.GREEN_COLOR,
               borderRadius: BorderRadius.circular(5),
-              // image: DecorationImage(
-              //   fit: BoxFit.cover,
-              //   image: AssetImage(imagePath),
-              // )
             ),
           ),
           Container(
@@ -69,20 +63,6 @@ class FeaturedAdsSlider extends StatelessWidget {
       ),
     );
   }
-
-  // final List<Map> sliderItems = [
-  //   {'label': 'Convenience', 'image': ImagesPath.uploadFileIcon},
-  //   {'label': 'Chicken', 'image': ImagesPath.uploadFileIcon},
-  //   {'label': 'Healthy', 'image': ImagesPath.uploadFileIcon},
-  //   {'label': 'Breakfast', 'image': ImagesPath.uploadFileIcon},
-  //   {'label': 'Dinner', 'image': ImagesPath.uploadFileIcon},
-  //   {'label': 'Convenience', 'image': ImagesPath.uploadFileIcon},
-  //   {'label': 'Chicken', 'image': ImagesPath.uploadFileIcon},
-  //   {'label': 'Healthy', 'image': ImagesPath.uploadFileIcon},
-  //   {'label': 'Breakfast', 'image': ImagesPath.uploadFileIcon},
-  //   {'label': 'Dinner', 'image': ImagesPath.uploadFileIcon},
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

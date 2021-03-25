@@ -51,7 +51,7 @@ class ScanCard extends StatelessWidget {
                         items: [
                           for (int i = 0; i < scanCardController.countryList.length; i++)
                             DropdownMenuItem(
-                                child: // Text(scanCardController.countryList[i]),
+                                child: 
                                     Row(
                                   children: [
                                     Icon(Icons.flag_outlined),

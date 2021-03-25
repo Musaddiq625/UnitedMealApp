@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:getx_app/src/images_path.dart';
 import 'package:getx_app/src/items/chip_widget.dart';
 import 'package:getx_app/src/items/closable_dialog.dart';
 import 'package:getx_app/src/items/components.dart';

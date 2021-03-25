@@ -8,14 +8,6 @@ class RestaurantItemWidgetExpanded extends StatelessWidget {
   final Food foodModel;
   final Restaurant currentRestaurantModel;
   RestaurantItemWidgetExpanded(this.foodModel,this.currentRestaurantModel);
-  // FoodItemWidgetExpanded(this.name, this.imagePath, this.deliveryTime, this.cuisines,
-  //     this.averageRating, this.totalRatings, this.deliveryType);
-
-  // final String name, imagePath, deliveryType;
-  // final int deliveryTime, totalRatings;
-  // final List<String> cuisines;
-  // final double averageRating;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,13 +16,11 @@ class RestaurantItemWidgetExpanded extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH),
-        // height: 110,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 150,
-              // width: 110,
               decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(.5),
                   borderRadius: BorderRadius.circular(5),

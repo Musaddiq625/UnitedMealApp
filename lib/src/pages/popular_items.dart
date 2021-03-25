@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:getx_app/models/restaurant.dart';
 import 'package:getx_app/src/items/app_bar.dart';
 import 'package:get/get.dart';
-import 'package:getx_app/temp_data.dart';
 import '../const.dart';
 import 'food_item_add_to_order.dart';
 
@@ -38,7 +37,7 @@ class PopularItems extends StatelessWidget {
         SizedBox(height: 10),
         Container(
           height: 220,
-          // width: Get.size.width * 0.85,
+          
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(restaurantModel.restaurantFoods[0].imagePath),

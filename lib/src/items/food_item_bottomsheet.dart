@@ -8,11 +8,6 @@ class FoodItemBottomSheet extends StatelessWidget {
   final Food foodModel;
   final Restaurant restaurantModel;
   FoodItemBottomSheet(this.foodModel, this.restaurantModel);
-  // final String name, cuisines, imagePath1, imagePath2;
-  // final int readyInMint, distance;
-  //
-  // FoodItemBottomSheet(this.name, this.cuisines, this.imagePath1, this.readyInMint, this.distance,
-  //     {this.imagePath2});
 
   @override
   Widget build(BuildContext context) {

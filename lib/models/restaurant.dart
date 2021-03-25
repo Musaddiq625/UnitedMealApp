@@ -10,8 +10,6 @@ class Restaurant {
   double longitude;
   List<Food> restaurantFoods;
   double ratings;
-
-
   Restaurant({
     this.id,
     this.name,

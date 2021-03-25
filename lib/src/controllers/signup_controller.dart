@@ -12,21 +12,5 @@ class SignUpController extends GetxController {
 
   Future signUpUser() async {
     Get.to(Login(),duration: Duration(milliseconds: 800));
-    // try {
-    //   if (emailTextEditingController.text == '' || passwordTextEditingController.text == '') {
-    //     Get.snackbar('Error', 'Enter in all fields to continue');
-    //   } else if (emailTextEditingController.text == 'admin' &&
-    //       passwordTextEditingController.text == 'admin') {
-    //     user = User(name: emailTextEditingController.text, email: emailTextEditingController.text);
-    //     Get.to(Dashboard());
-    //     print('LOGIN SUCCESSFUL');
-    //     return true;
-    //   } else {
-    //     print('LOGIN FAILED');
-    //     return false;
-    //   }
-    // } catch (e) {
-    //   print('CATCHING ERROR: $e');
-    // }
   }
 }

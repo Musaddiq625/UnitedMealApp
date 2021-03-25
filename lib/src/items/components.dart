@@ -142,29 +142,6 @@ class Components {
         ),
       );
 
-  // slideSelector(List<String> stringList, int selectedItemIndex) {
-  //   return Container(
-  //     height: 45,
-  //     child: Stack(
-  //       children: [
-  //         Row(
-  //           children: [
-  //             for (int i = 0; i < stringList.length; i++)
-  //               myTextChip(stringList[i], isSelected: i == selectedItemIndex),
-  //           ],
-  //         ),
-  //         // Row(
-  //         //   children: [
-  //         //     AnimatedContainer(
-  //         //       duration: Duration(milliseconds: 300),
-  //         //       child: myTextChip(stringList[0],isSelected: true),
-  //         //     ),
-  //         //   ],
-  //         // ),
-  //       ],
-  //     ),
-  //   );
-  // }
   myDivider() => Divider(color: Colors.grey, thickness: 0.3);
 
   slideSelector(List<String> stringList, int selectedItemIndex) {
@@ -179,9 +156,6 @@ class Components {
             children: [
               for (int i = 0; i < stringList.length; i++)
                 Expanded(child: myTextChip(stringList[i], isSelected: i == selectedItemIndex))
-              // Expanded(child: myTextChip(stringList[0])),
-              // Expanded(child: myTextChip(stringList[0])),
-              // Expanded(child: myTextChip(stringList[0])),
             ],
           ),
         )

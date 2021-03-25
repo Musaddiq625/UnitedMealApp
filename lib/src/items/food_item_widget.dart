@@ -6,10 +6,6 @@ import '../const.dart';
 class FoodItemWidget extends StatelessWidget {
   final Food foodModel;
   FoodItemWidget(this.foodModel);
-  // FoodItemWidget(this.name, this.imagePath, this.deliveryTime);
-  //
-  // final String name, imagePath, deliveryTime;
-
   @override
   Widget build(BuildContext context) {
     return Container(

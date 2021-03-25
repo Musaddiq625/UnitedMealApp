@@ -12,9 +12,6 @@ import 'package:getx_app/src/pages/account_bottomsheet.dart';
 class Home extends StatelessWidget {
   final Components components = Components();
 
-  // final int selectedMin = 30;
-  // final double selectedRatings = 4.5;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,8 +50,6 @@ class Home extends StatelessWidget {
                   ),
                   ChipWidget('${'under'.tr} 30 ${'min'.tr}'),
                   ChipWidget('pickup'.tr),
-                  // ChipWidget('${'over'.tr} 4.5'),
-                  // ChipWidget('${'under'.tr} 30 ${'min'.tr}'),
                 ],
               ),
             ),
@@ -72,7 +67,7 @@ class Home extends StatelessWidget {
             components.textWithWidget('convenience_grocery_more'.tr,
                 iconData: Icons.arrow_forward),
             SizedBox(height: 10),
-            ImagesSliderFull(/*'temp_name'.tr, 'temp_time_in_min'.tr, 'free_delivery'.tr*/),
+            ImagesSliderFull(),
             SizedBox(height: 20),
           ],
         ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:getx_app/models/food.dart';
 
 import '../const.dart';

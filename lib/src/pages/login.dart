@@ -56,7 +56,7 @@ class Login extends StatelessWidget {
               },
             ),
 
-            // ButtonWidget('Login as Guest')
+
             SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

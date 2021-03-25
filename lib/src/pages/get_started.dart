@@ -117,17 +117,6 @@ class GetStartedPage extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           SizedBox(height: 50),
-          // SingleChildScrollView(
-          //   scrollDirection: Axis.horizontal,
-          //   padding: EdgeInsets.only(left: 20),
-          //   child: Row(
-          //     children: [
-          //       for (int i = 0; i < 6; i++)
-          //         Padding(padding: EdgeInsets.only(right: 15), child: infoBox()),
-          //     ],
-          //   ),
-          // ),
-          // ADD CAROUSEL SLIDER
           CarouselSlider(
             options: CarouselOptions(
                 height: 230,

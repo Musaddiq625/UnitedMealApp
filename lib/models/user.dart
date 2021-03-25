@@ -1,9 +1,4 @@
 class User {
-  // final RxString name = ''.obs;
-  // final RxString email = ''.obs;
-  // final RxInt age = 0.obs;
-  // final RxString phoneNo = ''.obs;
-  // final RxInt count =0.ob  s;
   int id;
   String name;
   String email;

@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:getx_app/models/food.dart';
 import 'package:getx_app/src/pages/live_map.dart';
 
 class CheckoutController extends GetxController {

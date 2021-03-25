@@ -17,22 +17,5 @@ class LoginController extends GetxController {
   Future loginUser() async {
     userController.user = User();
     Get.to(()=>Dashboard());
-    // try {
-    //   if (emailTextEditingController.text == '' || passwordTextEditingController.text == '') {
-    //     Get.snackbar('Error', 'Enter in all fields to continue');
-    //   } else if (emailTextEditingController.text == 'admin' &&
-    //       passwordTextEditingController.text == 'admin') {
-    //
-    //     userController.user = User(name: emailTextEditingController.text, email: emailTextEditingController.text);
-    //     Get.to(Dashboard());
-    //     print('LOGIN SUCCESSFUL');
-    //     return true;
-    //   } else {
-    //     print('LOGIN FAILED');
-    //     return false;
-    //   }
-    // } catch (e) {
-    //   print('CATCHING ERROR: $e');
-    // }
   }
 }

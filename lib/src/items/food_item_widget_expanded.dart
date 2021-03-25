@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:getx_app/models/food.dart';
 import 'package:getx_app/models/restaurant.dart';
 import '../const.dart';
@@ -8,14 +7,6 @@ class FoodItemWidgetExpanded extends StatelessWidget {
   final Food foodModel;
   final Restaurant currentRestaurantModel;
   FoodItemWidgetExpanded(this.foodModel,this.currentRestaurantModel);
-  // FoodItemWidgetExpanded(this.name, this.imagePath, this.deliveryTime, this.cuisines,
-  //     this.averageRating, this.totalRatings, this.deliveryType);
-
-  // final String name, imagePath, deliveryType;
-  // final int deliveryTime, totalRatings;
-  // final List<String> cuisines;
-  // final double averageRating;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +15,6 @@ class FoodItemWidgetExpanded extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH),
-        // height: 110,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

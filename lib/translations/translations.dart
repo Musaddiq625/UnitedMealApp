@@ -179,6 +179,6 @@ class MyTranslations extends Translations {
 
 
         },
-        'es': {'home': 'Ola'},
+        'es': {'': ''},
       };
 }
