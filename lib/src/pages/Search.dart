@@ -95,8 +95,9 @@ class Search extends StatelessWidget {
                           j++)
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => FoodItemAddToOrder(
-                                TempData.tempRestaurantsWithFoods[j].restaurantFoods[i]));
+                            Get.to(() => FoodItemAddToOrder({}
+                                // TempData.tempRestaurantsWithFoods[j].restaurantFoods[i]
+                            ));
                           },
                           child: FoodItemWidgetExpanded(
                             TempData.tempRestaurantsWithFoods[i].restaurantFoods[j],

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.getx_app">
+    package="com.solutionhub.foodapp1">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="United Meal"

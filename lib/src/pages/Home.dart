@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/src/controllers/food_controller.dart';
 import 'file:///D:/Flutter%20Projects/getx_app/lib/src/pages/cart.dart';
 import 'package:getx_app/src/items/chip_widget.dart';
 import 'package:getx_app/src/items/components.dart';
@@ -11,6 +12,8 @@ import 'package:getx_app/src/pages/account_bottomsheet.dart';
 
 class Home extends StatelessWidget {
   final Components components = Components();
+  final FoodController foodController = Get.put(FoodController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +62,7 @@ class Home extends StatelessWidget {
             components.textWithWidget('convenience_grocery_more'.tr,
                 iconData: Icons.arrow_forward),
             SizedBox(height: 10),
-            ImagesSliderFull(/*'temp_name'.tr, 'temp_time_in_min'.tr, 'Free Delivery'*/),
+            ImagesSliderFull(foodController.firebaseFunctions/*'temp_name'.tr, 'temp_time_in_min'.tr, 'Free Delivery'*/),
             SizedBox(height: 10),
             ///
             FeaturedAdsSlider(),
@@ -67,7 +70,7 @@ class Home extends StatelessWidget {
             components.textWithWidget('convenience_grocery_more'.tr,
                 iconData: Icons.arrow_forward),
             SizedBox(height: 10),
-            ImagesSliderFull(),
+            ImagesSliderFull(foodController.firebaseFunctions),
             SizedBox(height: 20),
           ],
         ),

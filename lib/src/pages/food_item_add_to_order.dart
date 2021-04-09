@@ -10,8 +10,8 @@ import 'package:getx_app/src/pages/cart.dart';
 import 'package:getx_app/src/pages/special_instruction.dart';
 
 class FoodItemAddToOrder extends StatelessWidget {
-  final Food foodModel;
-
+  // final Food foodModel;
+  final Map foodModel;
   FoodItemAddToOrder(this.foodModel);
 
   final FoodItemAddToOrderController foodItemAddToOrderController =
@@ -29,7 +29,7 @@ class FoodItemAddToOrder extends StatelessWidget {
           Container(
             height: 220,
             decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage(foodModel.imagePath), fit: BoxFit.cover)),
+                image: DecorationImage(image: NetworkImage(foodModel['image']), fit: BoxFit.cover)),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH, vertical: 20),
@@ -44,7 +44,7 @@ class FoodItemAddToOrder extends StatelessWidget {
             horizontal: Constants.APP_HORIZONTAL_WIDTH,
             vertical: Constants.APP_HORIZONTAL_WIDTH * 1.2),
         child:
-            Text(foodModel.name, textScaleFactor: 2, style: TextStyle(fontWeight: FontWeight.bold)),
+            Text(foodModel['name'], textScaleFactor: 2, style: TextStyle(fontWeight: FontWeight.bold)),
       ),
       Container(
         height: 15,
@@ -68,7 +68,7 @@ class FoodItemAddToOrder extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH),
         child: ButtonWidget(
           'add_to_order'.tr,
-          trailingText: '\$'+foodModel.price.toString(),
+          trailingText: '\$'+foodModel['price'].toString(),
           function: (){
             Get.to(CartPage('shopName'));
           },
