@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getx_app/models/food.dart';
 import 'package:getx_app/models/restaurant.dart';
 import 'package:getx_app/src/items/app_bar.dart';
 import 'package:get/get.dart';
@@ -47,7 +48,7 @@ class PopularItems extends StatelessWidget {
         for (int i = 0; i <restaurantModel.restaurantFoods.length; i++)
           GestureDetector(
             onTap: () {
-              Get.to(() => FoodItemAddToOrder({}/*restaurantModel.restaurantFoods[i])*/));
+              Get.to(() => FoodItemAddToOrder(Food()/*restaurantModel.restaurantFoods[i])*/));
             },
             child: Container(
               width: double.infinity,

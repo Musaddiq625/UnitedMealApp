@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'src/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:getx_app/translations/translations.dart';
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
 

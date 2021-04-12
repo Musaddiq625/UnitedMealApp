@@ -7,6 +7,7 @@ class Food {
   int deliveryTimeInMin;
   String deliveryType;
   String cuisine;
+  int availableQuantity;
 
   int totalRatings;
 
@@ -15,10 +16,11 @@ class Food {
       this.name,
       this.restaurantName,
       this.imagePath,
-      this.price,
-      this.deliveryTimeInMin,
+      this.price=0,
+      this.deliveryTimeInMin=0,
       this.deliveryType,
       this.cuisine,
+      this.availableQuantity = 0  ,
       this.totalRatings});
 
   toMap() => {
@@ -30,6 +32,7 @@ class Food {
         'deliveryTimeInMin': deliveryTimeInMin,
         'deliveryType': deliveryType,
         'cuisine': cuisine,
+        'available_quantity': availableQuantity,
         'totalRatings': totalRatings,
       };
 

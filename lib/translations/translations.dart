@@ -11,6 +11,12 @@ class MyTranslations extends Translations {
           'temp_name': 'Duane Reade',
           'temp_time_in_min': '16',
 
+
+          /// ERRORS
+          'error':'Error',
+          'error_sign_up':'Some Error occurred in sign up',
+
+
           'delivery': 'Delivery',
           //TAB NAMES
           'home': 'Home',
@@ -38,6 +44,8 @@ class MyTranslations extends Translations {
           'get_started': 'Get Started',
           'why_delivery_with_door_dash': 'Why delivery with DoorDash',
           'sign_up_details': 'Sign up details',
+          'error_please_fill':'Please Fill in all the fields to Continue',
+          'error_pw_not_matched':'Password not matched',
 
           //LOGIN PAGE
           'email': 'Email',
@@ -45,11 +53,14 @@ class MyTranslations extends Translations {
           'login': 'Login',
           'guest': 'Guest',
           'not_a_user': 'Not a User',
+          'error_password':'Incorrect Email or Password',
 
           //SIGN UP PAGE
           're_password': 'Re-enter Password',
           'sign_up': 'SignUp',
           'register': 'Register',
+          'success':'Success',
+          'successfully_signed_up':'Successfully Signed Up',
 
           //NEAR BY
           'restaurants_nearby': 'Restaurants Nearby',
@@ -66,6 +77,7 @@ class MyTranslations extends Translations {
           'payment': 'Payment',
           'manage_payment_methods_and_door_dash_credits':
               'Manage payment methods and DoorDash Credits',
+          'name':'Name',
           'address': 'Address',
           'addresses': 'Addresses',
           'add_or_remove_a_delivery_address': 'Add or remove a delivery address',
@@ -106,6 +118,10 @@ class MyTranslations extends Translations {
           'stores': 'Stores',
           'items': 'Items',
           'free_delivery': 'Free Delivery',
+
+          ///FOOD
+          'available_quantity':'Available Quantity',
+          'item':'Item',
 
           //ALERT DIALOG - DIALOGS
           'are_you_sure_you_want_to_logout': 'Are you sure you want\nto Logout?',

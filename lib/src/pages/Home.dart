@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/src/controllers/cart_controller.dart';
 import 'package:getx_app/src/controllers/food_controller.dart';
 import 'file:///D:/Flutter%20Projects/getx_app/lib/src/pages/cart.dart';
 import 'package:getx_app/src/items/chip_widget.dart';
@@ -13,6 +14,7 @@ import 'package:getx_app/src/pages/account_bottomsheet.dart';
 class Home extends StatelessWidget {
   final Components components = Components();
   final FoodController foodController = Get.put(FoodController());
+  final CartController cartController = Get.put(CartController());
 
 
   @override
@@ -28,8 +30,7 @@ class Home extends StatelessWidget {
               },
                   () {
                 Get.to(CartPage('Wendy\'s'));
-              },
-
+              }
             ),
             CuisinesSlider(),
             SizedBox(height: 10),

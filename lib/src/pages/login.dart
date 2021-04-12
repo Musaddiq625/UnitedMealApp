@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/controllers/login_controller.dart';
+import 'package:getx_app/src/controllers/user_controller.dart';
 import 'package:getx_app/src/items/button_widget.dart';
 import 'package:getx_app/src/items/textfield_widget.dart';
 import 'package:getx_app/src/pages/signup.dart';
@@ -11,6 +12,7 @@ import '../images_path.dart';
 
 class Login extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
+  final UserController userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,8 @@ class Login extends StatelessWidget {
             ButtonWidget(
               'login'.tr,
               function: () {
-                loginController.loginUser();
+                // loginController.loginUser();
+                userController.loginUser(loginController.emailTextEditingController.text,loginController.passwordTextEditingController.text);
               },
             ), SizedBox(height: 20),
             ButtonWidget(

@@ -2,12 +2,19 @@ import 'package:get/get.dart';
 import 'package:getx_app/models/food.dart';
 
 class CartController extends GetxController{
-  int totalItems;
-  List<Food> items;
+
+  RxList<Food> items = <Food>[
+
+  ].obs;
   List<String> comments;
 
-  addToCart(Food food, String comment){
+  addToCart(
+      Food food, String comment){
+    items.add(food);
 
+  }
+  removeFromCart(Food food){
+    items.remove(food);
   }
 
 }

@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:get/get.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+
 class Utilities {
   static Future<bool> isInternetConnected() async {
     try {
@@ -9,5 +12,7 @@ class Utilities {
       return false;
     }
   }
-
+mySnackBar(String title, String body){
+    return Get.snackbar(title, body,snackPosition: SnackPosition.BOTTOM);
+}
 }

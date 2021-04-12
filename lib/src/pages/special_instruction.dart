@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/models/food.dart';
 import 'package:getx_app/src/const.dart';
 
+import 'food_item_add_to_order.dart';
+
 class SpecialInstruction extends StatelessWidget {
+  final Function updateFoodComment;
+  final Food foodModel;
+  SpecialInstruction(this.updateFoodComment,this.foodModel);
+   final TextEditingController commentController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
         child: Scaffold(
             body: SingleChildScrollView(
@@ -27,7 +35,10 @@ class SpecialInstruction extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => Get.back(),
+                    onTap: () {
+                      updateFoodComment(commentController.text);
+                      Get.off(FoodItemAddToOrder(foodModel));
+                    },
                     child: Text('done'.tr,
                         textScaleFactor: 1.1,
                         style: TextStyle(
@@ -43,6 +54,7 @@ class SpecialInstruction extends StatelessWidget {
         child: Column(
           children: [
             TextField(
+              controller: commentController,
               maxLines: null,
               maxLength: 500,
               decoration: InputDecoration.collapsed(hintText: 'special_instruction_hint'.tr),

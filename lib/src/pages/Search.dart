@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/models/food.dart';
 import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/controllers/search_controller.dart';
 import 'package:getx_app/src/items/components.dart';
@@ -95,7 +96,7 @@ class Search extends StatelessWidget {
                           j++)
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => FoodItemAddToOrder({}
+                            Get.to(() => FoodItemAddToOrder(Food()
                                 // TempData.tempRestaurantsWithFoods[j].restaurantFoods[i]
                             ));
                           },

@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/models/food.dart';
 import 'package:getx_app/src/const.dart';
+import 'package:getx_app/src/controllers/cart_controller.dart';
 import 'package:getx_app/src/items/cart_item.dart';
 import 'package:getx_app/temp_data.dart';
 import '../items/button_widget_round.dart';
@@ -14,7 +15,7 @@ class CartPage extends StatelessWidget {
   final String shopName;
 
   CartPage(this.shopName);
-
+final CartController cartController= Get.find();
   @override
   Widget build(BuildContext context) {
     cartItemBox(String totalPCs, Food foodModel) {
@@ -101,8 +102,11 @@ class CartPage extends StatelessWidget {
                     textScaleFactor: 1.3, style: TextStyle(fontWeight: FontWeight.bold)),
               ]),
               SizedBox(height: 30),
-              for (int i = 0; i < 2; i++)
-                CartItem(i + 1, TempData.tempRestaurantsWithFoods[0].restaurantFoods[i]),
+
+              for (int i = 0; i < cartController.items.length; i++)
+              CartItem(i + 1, cartController.items[i]),
+              // for (int i = 0; i < 2; i++)
+              //   CartItem(i + 1, TempData.tempRestaurantsWithFoods[0].restaurantFoods[i]),
               SizedBox(height: 12),
               Row(children: [
                 SizedBox(width: 20),

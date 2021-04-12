@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getx_app/models/food.dart';
+import 'package:getx_app/src/controllers/cart_controller.dart';
 
 import '../const.dart';
 class CartItem extends StatelessWidget {
@@ -7,6 +9,7 @@ class CartItem extends StatelessWidget {
   final Food foodModel;
 
   CartItem(this.count,this.foodModel);
+  final CartController cartController= Get.find();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,18 +29,24 @@ class CartItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(foodModel.name,
+                    Text(foodModel?.name??'',
                         textScaleFactor: 1.2, style: TextStyle(fontWeight: FontWeight.bold)),
                     SizedBox(height: 5),
-                    Text(foodModel.cuisine, textScaleFactor: .9, style: TextStyle(color: Colors.grey)),
+                    Text(foodModel?.cuisine??'', textScaleFactor: .9, style: TextStyle(color: Colors.grey)),
                   ],
                 ),
               ),
             ),
             Expanded(child: Text('\$${foodModel.price}', textScaleFactor: 1.2)),
-            CircleAvatar(
-                backgroundColor: Constants.GREY_COLOR,
-                child: Icon(Icons.delete_outline, color: Colors.black, size: 20))
+            GestureDetector(
+              onTap: (){
+                cartController.removeFromCart(foodModel);
+              },
+              child: CircleAvatar(
+                  backgroundColor: Constants.GREY_COLOR,
+
+                  child: Icon(Icons.delete_outline, color: Colors.black, size: 20)),
+            )
           ],
         ),
       ),
