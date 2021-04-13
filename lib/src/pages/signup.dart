@@ -9,7 +9,8 @@ import 'package:getx_app/src/items/textfield_widget.dart';
 import '../images_path.dart';
 
 class SignUp extends StatelessWidget {
-  final UserController userController = Get.put(UserController());
+
+  final UserController userController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +35,22 @@ class SignUp extends StatelessWidget {
                 SizedBox(height: 30),
                 TextFieldWidget(userController.nameTextEditingController, hintText: 'name'.tr),
                 SizedBox(height: 15),
-                TextFieldWidget(userController.emailTextEditingController, hintText: 'email'.tr),
+                TextFieldWidget(userController.signUpEmailTextEditingController,
+                    hintText: 'email'.tr),
                 SizedBox(height: 15),
-                TextFieldWidget(userController.passwordTextEditingController,
-                    hintText: 'password'.tr),
+                Obx(() => TextFieldWidget(userController.signUpPasswordTextEditingController,
+                    hintText: 'password'.tr,
+                    isObscure: userController.getSignUpPasswordObscure,
+                    isPasswordField: true,
+                    onPressed: () => userController
+                        .switchSignUpPasswordObscure(!userController.getSignUpPasswordObscure))),
                 SizedBox(height: 15),
-                TextFieldWidget(userController.rePasswordTextEditingController,
-                    hintText: 're_password'.tr),
+                Obx(() => TextFieldWidget(userController.signUpRePasswordTextEditingController,
+                    hintText: 're_password'.tr,
+                    isObscure: userController.getSignUpPasswordObscure,
+                    isPasswordField: true,
+                    onPressed: () => userController
+                        .switchSignUpPasswordObscure(!userController.getSignUpPasswordObscure))),
                 SizedBox(height: 15),
                 TextFieldWidget(userController.addressTextEditingController,
                     hintText: 'address'.tr),
@@ -50,25 +60,25 @@ class SignUp extends StatelessWidget {
                   function: () {
                     User user = User(
                         name: userController.nameTextEditingController.text,
-                        email: userController.emailTextEditingController.text,
-                        password: userController.passwordTextEditingController.text,
+                        email: userController.signUpEmailTextEditingController.text,
+                        password: userController.signUpPasswordTextEditingController.text,
                         address: userController.addressTextEditingController.text);
                     if (userController.nameTextEditingController.text == '' ||
-                        userController.emailTextEditingController.text == '' ||
-                        userController.rePasswordTextEditingController.text == '' ||
-                        userController.passwordTextEditingController.text == '' ||
-                        userController.addressTextEditingController.text == '') print('Enter in all fields to continue');
-                    else print('continue');
+                        userController.signUpEmailTextEditingController.text == '' ||
+                        userController.signUpRePasswordTextEditingController.text == '' ||
+                        userController.signUpPasswordTextEditingController.text == '' ||
+                        userController.addressTextEditingController.text == '')
+                      print('Enter in all fields to continue');
+                    else
+                      print('continue');
                     userController.signUpUser(
                         user,
                         (userController.nameTextEditingController.text == '' ||
-                            userController.emailTextEditingController.text == '' ||
-                            userController.rePasswordTextEditingController.text == '' ||
-                            userController.passwordTextEditingController.text == '' ||
+                            userController.signUpEmailTextEditingController.text == '' ||
+                            userController.signUpRePasswordTextEditingController.text == '' ||
+                            userController.signUpPasswordTextEditingController.text == '' ||
                             userController.addressTextEditingController.text == ''),
-                        userController.rePasswordTextEditingController.text
-
-                    );
+                        userController.signUpRePasswordTextEditingController.text);
                   },
                 ),
 
@@ -86,14 +96,14 @@ class SignUp extends StatelessWidget {
             ),
           ),
         )),
-        !userController.isLoading.value
+        Obx(()=>!userController.isLoading.value
             ? Container()
             : Container(
-                height: double.infinity,
-                width: double.infinity,
-                alignment: Alignment.center,
-                color: Colors.grey.withOpacity(.5),
-                child: CircularProgressIndicator())
+            height: double.infinity,
+            width: double.infinity,
+            alignment: Alignment.center,
+            color: Colors.grey.withOpacity(.5),
+            child: CircularProgressIndicator()))
       ],
     )));
   }

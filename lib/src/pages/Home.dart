@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/src/controllers/cart_controller.dart';
 import 'package:getx_app/src/controllers/food_controller.dart';
-import 'file:///D:/Flutter%20Projects/getx_app/lib/src/pages/cart.dart';
 import 'package:getx_app/src/items/chip_widget.dart';
 import 'package:getx_app/src/items/components.dart';
 import 'package:getx_app/src/items/cuisines_slider.dart';
@@ -11,10 +10,12 @@ import 'package:getx_app/src/items/items_slider_full.dart';
 import 'package:getx_app/src/items/top_bar_delivering_to.dart';
 import 'package:getx_app/src/pages/account_bottomsheet.dart';
 
+import 'cart.dart';
+
 class Home extends StatelessWidget {
   final Components components = Components();
   final FoodController foodController = Get.put(FoodController());
-  final CartController cartController = Get.put(CartController());
+  final CartController cartController = Get.find();
 
 
   @override
@@ -29,7 +30,7 @@ class Home extends StatelessWidget {
                 Get.bottomSheet(Account(),isScrollControlled: true);
               },
                   () {
-                Get.to(CartPage('Wendy\'s'));
+                Get.to(()=>CartPage(''));
               }
             ),
             CuisinesSlider(),

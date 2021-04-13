@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:getx_app/src/const.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/src/controllers/cart_controller.dart';
+import 'package:getx_app/src/controllers/user_controller.dart';
 
 class TopBarDeliveringTo extends StatelessWidget {
   final Function onTapFunctionLeading, onTapFunctionTrailing;
@@ -21,6 +22,7 @@ class TopBarDeliveringTo extends StatelessWidget {
         Column(
           children: [
             Text(
+
               'delivering_to'.tr,
               style: TextStyle(color: Constants.APP_COLOR, fontWeight: FontWeight.bold),
             ),
@@ -43,6 +45,7 @@ class TopBarDeliveringTo extends StatelessWidget {
           child: GestureDetector(
               onTap: () => onTapFunctionTrailing(),
               child:Obx(()=> Badge(
+                badgeColor:Constants.APP_COLOR,
                   badgeContent: Text(cartController.cartItems.length.toString(),
                       textScaleFactor: 0.9,
                       style: TextStyle(color: Colors.white)),

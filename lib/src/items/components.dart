@@ -23,7 +23,9 @@ class Components {
   }) {
     return GestureDetector(
       onTap: () {
-        if (onTapNavigateTo != null) {
+        if (onPressedWidget != null)
+          onPressedWidget();
+        else if (onTapNavigateTo != null) {
           Get.off(() => onTapNavigateTo);
         } else
           print('navigation is null');
@@ -110,13 +112,14 @@ class Components {
     );
   }
 
-  searchTextField() {
+  searchTextField(TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
         decoration: BoxDecoration(
             color: Colors.grey.withOpacity(.1), borderRadius: BorderRadius.circular(15)),
         child: TextField(
+          controller: controller,
           decoration: InputDecoration(
             border: InputBorder.none,
             prefixIcon: Icon(Icons.search, color: Colors.black),
@@ -171,12 +174,10 @@ class Components {
             color: Constants.APP_COLOR.withOpacity(.1), borderRadius: BorderRadius.circular(50)),
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Wrap(
-
           children: [
-            Icon(leadingIcon,size:leadingIcon==null?0:22,color: Constants.APP_COLOR),
+            Icon(leadingIcon, size: leadingIcon == null ? 0 : 22, color: Constants.APP_COLOR),
             Text(
-              leadingIcon==null?label:'  '+
-              label,
+              leadingIcon == null ? label : '  ' + label,
               textScaleFactor: 1.3,
               style: TextStyle(color: Constants.APP_COLOR, fontWeight: FontWeight.bold),
             ),

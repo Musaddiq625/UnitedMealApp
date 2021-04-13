@@ -10,7 +10,7 @@ class Cart{
   Map toMap()=>
       {
         'id':id,
-        'food':food,
+        'food':food.toMap(),
         'quantity':quantity,
         'comment':comment
 

@@ -1,34 +1,52 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/database/get_firebase_data.dart';
+import 'package:getx_app/database/shared_pref.dart';
 import 'package:getx_app/models/user.dart';
 import 'package:getx_app/src/dashboard.dart';
 import 'package:getx_app/src/pages/login.dart';
 import 'package:getx_app/src/utils/utilities.dart';
 
 class UserController extends GetxController {
-  User user;
+  User user = User();
   FirebaseFunctions firebaseFunctions = FirebaseFunctions();
   Utilities utilities = Utilities();
-  RxBool isLoading = false.obs;
+  RxBool isLoading = false.obs, _loginPasswordObscure = true.obs, _signUpPasswordObscure = true.obs;
 
-  final nameTextEditingController = TextEditingController();
-  final emailTextEditingController = TextEditingController();
-  final passwordTextEditingController = TextEditingController();
-  final rePasswordTextEditingController = TextEditingController();
-  final phoneNoTextEditingController = TextEditingController();
-  final addressTextEditingController = TextEditingController();
+  final TextEditingController nameTextEditingController = TextEditingController();
+  final TextEditingController signUpEmailTextEditingController = TextEditingController();
+  final TextEditingController signUpPasswordTextEditingController = TextEditingController();
+  final TextEditingController signUpRePasswordTextEditingController = TextEditingController();
+  final TextEditingController phoneNoTextEditingController = TextEditingController();
+  final TextEditingController addressTextEditingController = TextEditingController();
+  final TextEditingController emailTextEditingController = TextEditingController();
+  final TextEditingController passwordTextEditingController = TextEditingController();
+
+  get getLoginPasswordObscure => _loginPasswordObscure.value;
+
+  get getSignUpPasswordObscure => _signUpPasswordObscure.value;
+
+  switchLoginPasswordObscure(bool value) => _loginPasswordObscure.value = value;
+
+  switchSignUpPasswordObscure(bool value) => _signUpPasswordObscure.value = value;
 
   _clearTextFields() {
     nameTextEditingController.clear();
-    emailTextEditingController.clear();
-    passwordTextEditingController.clear();
-    rePasswordTextEditingController.clear();
+    signUpEmailTextEditingController.clear();
+    signUpPasswordTextEditingController.clear();
+    signUpRePasswordTextEditingController.clear();
     phoneNoTextEditingController.clear();
     addressTextEditingController.clear();
   }
 
-  Future logOutUser() async => user = User(isGuest: false);
+  Future logOutUser() async {
+    MySharedPref().clearLoginDetails();
+    user = User(isGuest: true);
+    print('loggging out');
+    Get.offAll(()=>Login());
+  }
 
   Future checkIsLoggedIn() async {
     if (user.isGuest) {
@@ -89,8 +107,6 @@ class UserController extends GetxController {
   }
 
   Future signUpUser(User user, bool isNull, String rePass) async {
-    print('isNull $isNull');
-    print(user.toMap());
     if (isNull)
       utilities.mySnackBar('error'.tr, 'error_please_fill'.tr);
     else if (user.password != rePass)
@@ -114,10 +130,36 @@ class UserController extends GetxController {
     }
   }
 
+  Future loginAsGuest() async {
+    user = User(isGuest: true);
+    Get.to(() => Dashboard());
+  }
+
   loginUser(String email, String password) async {
     if (email == '' || password == '')
       utilities.mySnackBar('error'.tr, 'error_please_fill'.tr);
-    else
-      firebaseFunctions.login(email, password).then((value) => Get.to(() => Dashboard()));
+    else {
+      isLoading.value = true;
+      firebaseFunctions.login(email, password).then((value) {
+        if (value != '') {
+          var _value = jsonDecode(value);
+          User _user = User(
+            id: _value['id'],
+            name: _value['name'],
+            email: _value['email'],
+            phoneNo: _value['phoneNo'],
+            address: _value['address'],
+          );
+
+          isLoading.value = false;
+          user = _user;
+          MySharedPref().setLoginDetails(_user);
+          return Get.to(() => Dashboard());
+        } else {
+          isLoading.value = false;
+          utilities.mySnackBar('error'.tr, 'error_password'.tr);
+        }
+      });
+    }
   }
 }

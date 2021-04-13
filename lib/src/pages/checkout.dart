@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/controllers/checkout_controller.dart';
+import 'package:getx_app/src/controllers/user_controller.dart';
 import 'package:getx_app/src/items/button_widget.dart';
 import 'package:getx_app/src/items/underlined_listTile.dart';
 
 class Checkout extends StatelessWidget {
   final CheckoutController checkoutController = Get.put(CheckoutController());
+  final UserController userController = Get.find();
   @override
   Widget build(BuildContext context) {
 
@@ -23,12 +25,18 @@ class Checkout extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH, vertical: 10),
                           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                             Stack(alignment: Alignment.center, children: [
-                              Container(
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.arrow_back_ios, color: Constants.APP_COLOR),
-                                    Text('my_cart'.tr, style: TextStyle(color: Constants.APP_COLOR)),
-                                  ],
+                              GestureDetector(
+                                onTap: (){
+                                  Get.back();
+                                },
+                                child: Container(
+                                  child: Row(
+                                    mainAxisAlignment:MainAxisAlignment.start,
+                                    children: [
+                                      Icon(Icons.arrow_back_ios, color: Constants.APP_COLOR),
+                                      Text('my_cart'.tr, style: TextStyle(color: Constants.APP_COLOR)),
+                                    ],
+                                  ),
                                 ),
                               ),
                               Text('checkout'.tr,
@@ -48,7 +56,7 @@ class Checkout extends StatelessWidget {
                           ]),
                         ),
                         SizedBox(height: 15),
-                        UnderLinedListTile('address'.tr, 'abc 123'),
+                        UnderLinedListTile('address'.tr, userController.user.address),
                         UnderLinedListTile('delivery_instruction'.tr, 'abc 123'),
                         UnderLinedListTile('eta'.tr, 'abc 123'),
                         SizedBox(height: 15),
@@ -64,7 +72,7 @@ class Checkout extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('dasher_tip'.tr),
-                                  Text('\$4.00',style: TextStyle(color: Constants.FONT_GREY_COLOR)),
+                                  Obx(()=>Text('\$${checkoutController.selectedDasherTip.value}',style: TextStyle(color: Constants.FONT_GREY_COLOR)),),
 
                                 ],),
                               SizedBox(height: 15),

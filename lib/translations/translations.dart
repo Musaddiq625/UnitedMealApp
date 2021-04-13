@@ -141,6 +141,8 @@ class MyTranslations extends Translations {
           'scan_card_info_text':
               'This will update your existing payment card. This card will only be charged when you place an order.',
           'scan_card': 'Scan Card',
+          'cart_empty':'Cart is Empty',
+
 
           //CHECKOUT
           'my_cart':'My Cart',

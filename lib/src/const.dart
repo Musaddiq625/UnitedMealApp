@@ -4,7 +4,8 @@ class Constants{
   static const String APP_NAME='My App';
   // ignore: non_constant_identifier_names
   static final Color APP_COLOR_SECOND = Colors.red.withOpacity(.5);
-  static const Color APP_COLOR = Colors.red;
+  // static const Color APP_COLOR = Colors.red;
+  static const Color APP_COLOR = Colors.green;
   static const Color APP_DARK_COLOR = Color(0XFFEB1701); //dark red color
   static const Color APP_BLUE_COLOR = Colors.blueAccent;
   static const Color GREY_COLOR = Color(0XFFE7E7E7);

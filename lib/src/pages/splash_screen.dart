@@ -1,5 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getx_app/database/shared_pref.dart';
+import 'package:getx_app/models/user.dart';
 import 'package:getx_app/src/const.dart';
+import 'package:getx_app/src/controllers/cart_controller.dart';
+import 'package:getx_app/src/controllers/user_controller.dart';
+import 'package:getx_app/src/dashboard.dart';
 import 'package:getx_app/src/images_path.dart';
 
 import 'get_started.dart';
@@ -10,9 +18,29 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final UserController userController = Get.put(UserController());
+  final CartController cartController = Get.put(CartController());
   toNextScreenWithDelay() {
-    Future.delayed(Duration(seconds: 2))
-        .then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => GetStartedPage())));
+    Widget page;
+    MySharedPref().getLoginDetails.then((getLoginDetailsValue) {
+      if(getLoginDetailsValue == null)
+        page = GetStartedPage();
+      else {
+        var _value = jsonDecode(getLoginDetailsValue);
+        User _user = User(
+          id: _value['id'],
+          name: _value['name'],
+          email: _value['email'],
+          phoneNo: _value['phoneNo'],
+          address: _value['address'],
+        );userController.user = _user;
+        page = Dashboard();
+      }
+      MySharedPref().updateCartItemsInSharedPref();
+      Future.delayed(Duration(seconds: 2))
+          .then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => page)));
+    });
+
   }
 
   @override

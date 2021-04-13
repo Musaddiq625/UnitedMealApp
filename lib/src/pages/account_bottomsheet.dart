@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/controllers/account_controller.dart';
+import 'package:getx_app/src/controllers/user_controller.dart';
 import 'package:getx_app/src/items/components.dart';
 import 'package:getx_app/src/pages/payment.dart';
 
 class Account extends StatelessWidget {
   final Components components = Components();
   final AccountController accountController = Get.put(AccountController());
+  final UserController userController = Get.find();
 
   
 
@@ -180,7 +182,9 @@ class Account extends StatelessWidget {
                   isBold: false,
                   addPadding: false,
                   iconData: Icons.keyboard_arrow_right,
-                  inCircleAvatar: false),
+                  inCircleAvatar: false,onPressedWidget: (){
+                    userController.logOutUser();
+                  }),
               SizedBox(height: 10),
               components.myDivider(),
               SizedBox(height: 10),

@@ -91,7 +91,7 @@ print('comment $comment');
                 trailingText: '\$' +
                     (foodModel.price * foodItemAddToOrderController.currentCount.value).toString(),
                 function: () {
-                  cartController.addToCart(foodModel, rxComment,quantity: foodItemAddToOrderController.currentCount.value);
+                  cartController.addToCart(cartController.cartItems,foodModel, rxComment,quantity: foodItemAddToOrderController.currentCount.value);
                   Get.to(()=>CartPage(foodModel.restaurantName),);
                 },
               ))),
