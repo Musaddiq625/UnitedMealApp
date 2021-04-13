@@ -41,6 +41,8 @@ class Login extends StatelessWidget {
             TextFieldWidget(
               loginController.passwordTextEditingController,
               hintText: 'password'.tr,
+              isObscure: true,
+
             ),
             SizedBox(height: 20),
             ButtonWidget(

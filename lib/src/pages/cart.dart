@@ -103,8 +103,11 @@ final CartController cartController= Get.find();
               ]),
               SizedBox(height: 30),
 
-              for (int i = 0; i < cartController.items.length; i++)
-              CartItem(i + 1, cartController.items[i]),
+              // for (int i = 0; i < cartController.items.length; i++)
+              // CartItem(i + 1, cartController.items[i]),
+              for (int i = 0; i < cartController.cartItems.length; i++)
+              CartItem(i,i + 1, cartController.cartItems[i]),
+
               // for (int i = 0; i < 2; i++)
               //   CartItem(i + 1, TempData.tempRestaurantsWithFoods[0].restaurantFoods[i]),
               SizedBox(height: 12),

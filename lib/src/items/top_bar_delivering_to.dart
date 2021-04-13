@@ -43,7 +43,7 @@ class TopBarDeliveringTo extends StatelessWidget {
           child: GestureDetector(
               onTap: () => onTapFunctionTrailing(),
               child:Obx(()=> Badge(
-                  badgeContent: Text(cartController.items.length.toString(),
+                  badgeContent: Text(cartController.cartItems.length.toString(),
                       textScaleFactor: 0.9,
                       style: TextStyle(color: Colors.white)),
                   padding: const EdgeInsets.all(4),
