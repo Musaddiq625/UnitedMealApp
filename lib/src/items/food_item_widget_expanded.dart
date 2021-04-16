@@ -5,8 +5,10 @@ import '../const.dart';
 
 class FoodItemWidgetExpanded extends StatelessWidget {
   final Food foodModel;
-  final Restaurant currentRestaurantModel;
-  FoodItemWidgetExpanded(this.foodModel,this.currentRestaurantModel);
+  // final Restaurant currentRestaurantModel;
+  FoodItemWidgetExpanded(this.foodModel
+      // ,this.currentRestaurantModel
+      );
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +26,7 @@ class FoodItemWidgetExpanded extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(.5),
                   borderRadius: BorderRadius.circular(5),
-                  image: DecorationImage(image: AssetImage(foodModel.imagePath), fit: BoxFit.cover)),
+                  image: DecorationImage(image: NetworkImage(foodModel.imagePath), fit: BoxFit.cover)),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),
@@ -43,8 +45,9 @@ class FoodItemWidgetExpanded extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          '\$ • ' +
-                              currentRestaurantModel.getCuisines(),
+                          '\$ • ',
+                              // +
+                              // currentRestaurantModel.getCuisines(),
                           textScaleFactor: 1.1,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,

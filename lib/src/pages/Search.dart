@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/database/get_firebase_data.dart';
 import 'package:getx_app/models/food.dart';
+import 'package:getx_app/models/restaurant.dart';
 import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/controllers/search_controller.dart';
 import 'package:getx_app/src/items/components.dart';
@@ -19,6 +21,12 @@ class Search extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // searchController.setSelectedIndex = 0;
+    // searchController.itemsTextFieldController.clear();
+    // searchController.storesTextFieldController.clear();
+    // searchController.itemsSearchListResult.clear();
+    // searchController.storesSearchListResult.clear();
+    print(searchController.itemsSearchListResult);
     return Column(
       children: [
         SizedBox(height: 10),
@@ -32,10 +40,24 @@ class Search extends StatelessWidget {
           ]),
           child: Row(
             children: [
-              Obx(() => Expanded(
-                  child: components.searchTextField(searchController.getSelectedIndex == 0
-                      ? searchController.storesTextFieldController
-                      : searchController.itemsTextFieldController))),
+              Obx(() =>
+                  Expanded(
+                      child: components.searchTextField(searchController.getSelectedIndex == 0
+                          ? searchController.storesTextFieldController
+                          : searchController.itemsTextFieldController,
+                            (_) {
+                          if (searchController.getSelectedIndex == 0) {
+                            if(searchController.getStores != [])
+                            searchController.onSearchStores(_, searchController.getStores);
+                          }
+                          else {
+                            if(searchController.getItems != [])
+                            searchController.onSearchItems(_, searchController.getItems);
+                          }
+                        },
+
+
+                      ))),
               GestureDetector(
                 onTap: () {
                   if (searchController.getSelectedIndex == 0)
@@ -60,15 +82,23 @@ class Search extends StatelessWidget {
           child: Column(children: [
             GestureDetector(
                 onTap: () {
+                  firebaseFunctions.getAllFoodsTotal();
                   searchController.setSelectedIndex =
-                      searchController.getSelectedIndex == 0 ? 1 : 0;
+                  searchController.getSelectedIndex == 0 ? 1 : 0;
 
                   searchController.changePageControllerValue(searchController.getSelectedIndex);
                 },
-                child: Obx(() => components.slideSelector(
-                    // searchController.searchTypesList
-                    ['stores'.toString().tr + '(50)', 'items'.toString().tr + '(3)'],
-                    searchController.getSelectedIndex)))
+                child: Obx(() =>
+                    components.slideSelector(
+                      // searchController.searchTypesList
+                        [
+                          'stores'
+                              .toString()
+                              .tr + ' ( ${searchController.getTotalStores} )',
+                          'items'
+                              .toString()
+                              .tr + ' ( ${searchController.getTotalItems} )'
+                        ], searchController.getSelectedIndex)))
           ]),
         ),
         Expanded(
@@ -76,74 +106,123 @@ class Search extends StatelessWidget {
             controller: searchController.pageController,
             physics: NeverScrollableScrollPhysics(),
             children: [
+
               ///STORES
-              SingleChildScrollView(
-                child: Column(
-                  children: [
-                    for (int i = 0; i < TempData.tempRestaurantsWithFoods.length; i++)
-                      for (int j = 0;
-                          j < TempData.tempRestaurantsWithFoods[i].restaurantFoods.length;
-                          j++)
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(RestaurantDetails(
-                              TempData.tempRestaurantsWithFoods[i].restaurantFoods[j],
-                              TempData.tempRestaurantsWithFoods[i],
-                            ));
-                          },
-                          child: RestaurantItemWidgetExpanded(
-                            TempData.tempRestaurantsWithFoods[j].restaurantFoods[i],
-                            TempData.tempRestaurantsWithFoods[j],
-                          ),
-                        )
-                  ],
-                ),
-                // StreamBuilder(
-                //     stream: firebaseFunctions.getAllFoods(),
-                //     builder: (context, snapshot) {
-                //     return Column(
-                //       children: [
-                //     snapshot.data.docs.map<Widget>((data) {
-                //             return GestureDetector(
-                //               onTap: () {
-                //                 Get.to(RestaurantDetails(
-                //                   data.data()['name'],
-                //                   TempData.tempRestaurantsWithFoods[i],
-                //                 ));
-                //               },
-                //               child: RestaurantItemWidgetExpanded(
-                //                 TempData.tempRestaurantsWithFoods[j].restaurantFoods[i],
-                //                 TempData.tempRestaurantsWithFoods[j],
-                //               ),
-                //             );}).toList(),
-                //       ],
-                //     );
-                //   }
-                // ),
-              ),
+             Obx(()=> SingleChildScrollView(
+               child: //
+               searchController.storesSearchListResult.isNotEmpty?
+               Column(
+                 children:
+                 searchController.storesSearchListResult.map<Widget>((data) {
+                   return GestureDetector(
+                     onTap: () {
+                       Get.to(() =>
+                           FoodItemAddToOrder(Food()
+                             // TempData.tempRestaurantsWithFoods[j].restaurantFoods[i]
+                           ));
+                     },
+                     child: FoodItemWidgetExpanded(
+                       // TempData.tempRestaurantsWithFoods[i].restaurantFoods[j],
+                       // TempData.tempRestaurantsWithFoods[i],
+                         Food(
+                           name: data['name'],
+                           imagePath: data['image'],
+                           price: double.parse(data['price']??'0'),
+                           cuisine: data['cuisine'],
+                         )),
+                   );
+                 }).toList(),
+               ):
+               StreamBuilder(
+                   stream: firebaseFunctions.getAllRestaurantsWithFoodsStream(),
+                   builder: (context, snapshot) {
+                     if (searchController.getStores.isEmpty && snapshot.data != null) {
+                       // searchController.storesSearchList.assignAll(snapshot.data.docs);
+                       for (int i = 0; i < snapshot.data.docs.length; i++)
+                         searchController.storesSearchList.add(snapshot.data.docs[i].data());
+                     }
+
+                     // print('snapshot.data.docs ${snapshot.data.docs}');
+                     return Column(
+                       children: snapshot.data == null
+                           ? [CircularProgressIndicator()]
+                           : snapshot.data.docs.map<Widget>((QueryDocumentSnapshot data) {
+                         return GestureDetector(
+                           child: RestaurantItemWidgetExpanded(
+                             // TempData.tempRestaurantsWithFoods[j].restaurantFoods[i],
+                             Restaurant(
+                               name: data.data()['name'],
+                               imagePath: data.data()['image'],
+                               latitude: data.data()['geopoint'].latitude,
+                               longitude: data.data()['geopoint'].longitude,
+                               ratings: double.parse(data.data()['ratings']),
+                             ),
+                           ),
+                         );
+                       }).toList(),
+                     );
+                   }),
+             )),
 
               ///ITEMS
-              SingleChildScrollView(
-                child: Column(
-                  children: [
-                    for (int i = 0; i < TempData.tempRestaurantsWithFoods.length; i++)
-                      for (int j = 0;
-                          j < TempData.tempRestaurantsWithFoods[i].restaurantFoods.length;
-                          j++)
-                        GestureDetector(
+            Obx(()=>  SingleChildScrollView(
+              child: //
+              searchController.itemsSearchListResult.isNotEmpty?
+              Column(
+                children:
+                searchController.itemsSearchListResult.map<Widget>((data) {
+                  return GestureDetector(
+                    onTap: () {
+                      Get.to(() =>
+                          FoodItemAddToOrder(Food()
+                            // TempData.tempRestaurantsWithFoods[j].restaurantFoods[i]
+                          ));
+                    },
+                    child: FoodItemWidgetExpanded(
+                      // TempData.tempRestaurantsWithFoods[i].restaurantFoods[j],
+                      // TempData.tempRestaurantsWithFoods[i],
+                        Food(
+                          name: data['name']??'',
+                          imagePath: data['image']??'',
+                          price: double.parse(data['price']??'0'),
+                          cuisine: data['cuisine']??'',
+                        )),
+                  );
+                }).toList(),
+              ):
+              StreamBuilder(
+                  stream: firebaseFunctions.getAllFoodsStream(),
+                  builder: (context, snapshot) {
+                    if (searchController.getItems.isEmpty && snapshot.data != null) {
+                      // searchController.itemsSearchList.assignAll(snapshot.data.docs);
+                      for (int i = 0; i < snapshot.data.docs.length; i++)
+                        searchController.itemsSearchList.add(snapshot.data.docs[i].data());
+                    }
+                    return Column(
+                      children: snapshot.data == null
+                          ? [CircularProgressIndicator()]
+                          : snapshot.data.docs.map<Widget>((QueryDocumentSnapshot data) {
+                        return GestureDetector(
                           onTap: () {
-                            Get.to(() => FoodItemAddToOrder(Food()
-                                // TempData.tempRestaurantsWithFoods[j].restaurantFoods[i]
+                            Get.to(() =>
+                                FoodItemAddToOrder(Food()
+                                  // TempData.tempRestaurantsWithFoods[j].restaurantFoods[i]
                                 ));
                           },
                           child: FoodItemWidgetExpanded(
-                            TempData.tempRestaurantsWithFoods[i].restaurantFoods[j],
-                            TempData.tempRestaurantsWithFoods[i],
-                          ),
-                        ),
-                  ],
-                ),
-              ),
+                            // TempData.tempRestaurantsWithFoods[i].restaurantFoods[j],
+                            // TempData.tempRestaurantsWithFoods[i],
+                              Food(
+                                name: data.data()['name'],
+                                imagePath: data.data()['image'],
+                                price: double.parse(data.data()['price'].toString()),
+                                cuisine: data.data()['cuisine'],
+                              )),
+                        );
+                      }).toList(),
+                    );
+                  }),
+            )),
             ],
           ),
         )

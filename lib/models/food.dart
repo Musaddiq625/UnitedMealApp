@@ -8,7 +8,6 @@ class Food {
   String deliveryType;
   String cuisine;
   int availableQuantity;
-
   int totalRatings;
 
   Food(

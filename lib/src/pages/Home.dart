@@ -14,7 +14,7 @@ import 'cart.dart';
 
 class Home extends StatelessWidget {
   final Components components = Components();
-  final FoodController foodController = Get.put(FoodController());
+  final FoodController foodController = Get.find();
   final CartController cartController = Get.find();
 
 
@@ -64,7 +64,7 @@ class Home extends StatelessWidget {
             components.textWithWidget('convenience_grocery_more'.tr,
                 iconData: Icons.arrow_forward),
             SizedBox(height: 10),
-            ImagesSliderFull(foodController.firebaseFunctions/*'temp_name'.tr, 'temp_time_in_min'.tr, 'Free Delivery'*/),
+            ImagesSliderFull(/*'temp_name'.tr, 'temp_time_in_min'.tr, 'Free Delivery'*/),
             SizedBox(height: 10),
             ///
             FeaturedAdsSlider(),
@@ -72,7 +72,7 @@ class Home extends StatelessWidget {
             components.textWithWidget('convenience_grocery_more'.tr,
                 iconData: Icons.arrow_forward),
             SizedBox(height: 10),
-            ImagesSliderFull(foodController.firebaseFunctions),
+            ImagesSliderFull(),
             SizedBox(height: 20),
           ],
         ),

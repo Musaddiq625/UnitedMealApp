@@ -7,18 +7,43 @@ class FirebaseFunctions {
   List formDataList = [];
   CollectionReference _firebaseFireStoreInstanceCuisines =
       FirebaseFirestore.instance.collection('cuisines');
+  CollectionReference _firebaseFireStoreInstanceUsers =
+  FirebaseFirestore.instance.collection('users');
   CollectionReference _firebaseFireStoreInstanceFoods =
       FirebaseFirestore.instance.collection('foods');
-  CollectionReference _firebaseFireStoreInstanceUsers =
-      FirebaseFirestore.instance.collection('users');
+  CollectionReference _firebaseFireStoreInstanceRestaurantsWithFoods =
+      FirebaseFirestore.instance.collection('restaurants');
 
   Stream<QuerySnapshot> getAllCuisines() {
     return _firebaseFireStoreInstanceCuisines.snapshots();
   }
-
-  Stream<QuerySnapshot> getAllFoods() {
+ //
+ // Future getAllFoodsFuture() {
+ //    return _firebaseFireStoreInstanceFoods.get();
+ //  }
+ //
+ //  Future getAllRestaurantsWithFoodsFuture() {
+ //    return _firebaseFireStoreInstanceRestaurantsWithFoods.get();
+ //  }
+ Stream<QuerySnapshot> getAllFoodsStream() {
     return _firebaseFireStoreInstanceFoods.snapshots();
   }
+
+  Stream<QuerySnapshot> getAllRestaurantsWithFoodsStream() {
+    return _firebaseFireStoreInstanceRestaurantsWithFoods.snapshots();
+  }
+
+  Future<int> getAllFoodsTotal() {
+    return _firebaseFireStoreInstanceFoods.get().then((value) => value.docs.length);
+  }
+
+  Future<int> getAllRestaurantsTotal() {
+    return _firebaseFireStoreInstanceRestaurantsWithFoods.get().then((value) => value.docs.length);
+  }
+
+  // Future getAllFoods() {
+  //   return _firebaseFireStoreInstanceFoods.get();
+  // }
 
   Stream<QuerySnapshot> getFormData() {
     print('getting form data');

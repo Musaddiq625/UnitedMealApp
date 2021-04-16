@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/database/get_firebase_data.dart';
 import 'package:getx_app/models/food.dart';
+import 'package:getx_app/src/controllers/food_controller.dart';
 import 'package:getx_app/src/controllers/user_controller.dart';
 import 'package:getx_app/src/pages/food_item_add_to_order.dart';
 import '../const.dart';
 
 class ImagesSliderFull extends StatelessWidget {
   final UserController userController = Get.find();
-  final FirebaseFunctions firebaseFunctions;
+  final FoodController  foodController = Get.find();
+  final FirebaseFunctions firebaseFunctions = FirebaseFunctions();
 
-  ImagesSliderFull(this.firebaseFunctions);
+  // ImagesSliderFull(this.firebaseFunctions);
 
 
   item(String imagePath, String name) {
@@ -48,8 +50,9 @@ class ImagesSliderFull extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: StreamBuilder(
-          stream: firebaseFunctions.getAllFoods(),
+      child:
+      StreamBuilder(
+          stream: firebaseFunctions.getAllRestaurantsWithFoodsStream(),
           builder: (context, snapshot) {
             return !snapshot.hasData
                 ? CircularProgressIndicator()
@@ -62,14 +65,32 @@ class ImagesSliderFull extends StatelessWidget {
                             name: data.data()['name'],
                             imagePath: data.data()['image'],
                             availableQuantity: data.data()['available_quantity'],
-                            price: double.parse(data.data()['price'].toString()),
+                            price: double.parse(data.data()['price']??'0'),
                           );
 
                           return Get.to(() => FoodItemAddToOrder(food));
                         },
                         child: item(data.data()['image'], data.data()['name']));
                   }).toList());
-          }),
-    );
+          }));
+      // foodController.getFoodList.isEmpty
+      //     ? CircularProgressIndicator()
+      //     : Row(
+      //     children: foodController.getFoodList.map<Widget>((Food data) {
+      //       // print( 'data.data() ${data.data()}');
+      //       return GestureDetector(
+      //           onTap: () {
+      //             Food food = Food(
+      //               name:data.name,
+      //               imagePath: data.imagePath,
+      //               availableQuantity: data.availableQuantity,
+      //               price: data.price,
+      //             );
+      //
+      //             return Get.to(() => FoodItemAddToOrder(food));
+      //           },
+      //           child: item(data.imagePath, data.name));
+      //     }).toList()
+    // ));
   }
 }

@@ -112,7 +112,7 @@ class Components {
     );
   }
 
-  searchTextField(TextEditingController controller) {
+  searchTextField(TextEditingController controller, Function onType) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
@@ -120,6 +120,7 @@ class Components {
             color: Colors.grey.withOpacity(.1), borderRadius: BorderRadius.circular(15)),
         child: TextField(
           controller: controller,
+          onChanged:(_)=> onType(_),
           decoration: InputDecoration(
             border: InputBorder.none,
             prefixIcon: Icon(Icons.search, color: Colors.black),

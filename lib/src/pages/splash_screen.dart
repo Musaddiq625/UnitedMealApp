@@ -6,6 +6,7 @@ import 'package:getx_app/database/shared_pref.dart';
 import 'package:getx_app/models/user.dart';
 import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/controllers/cart_controller.dart';
+import 'package:getx_app/src/controllers/food_controller.dart';
 import 'package:getx_app/src/controllers/user_controller.dart';
 import 'package:getx_app/src/dashboard.dart';
 import 'package:getx_app/src/images_path.dart';
@@ -20,6 +21,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   final UserController userController = Get.put(UserController());
   final CartController cartController = Get.put(CartController());
+  final FoodController foodController = Get.put(FoodController());
   toNextScreenWithDelay() {
     Widget page;
     MySharedPref().getLoginDetails.then((getLoginDetailsValue) {

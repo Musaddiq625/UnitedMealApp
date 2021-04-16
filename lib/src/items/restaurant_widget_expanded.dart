@@ -5,9 +5,11 @@ import 'package:getx_app/models/restaurant.dart';
 import '../const.dart';
 
 class RestaurantItemWidgetExpanded extends StatelessWidget {
-  final Food foodModel;
+  // final Food foodModel;
   final Restaurant currentRestaurantModel;
-  RestaurantItemWidgetExpanded(this.foodModel,this.currentRestaurantModel);
+  RestaurantItemWidgetExpanded(
+      // this.foodModel,
+      this.currentRestaurantModel);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +26,7 @@ class RestaurantItemWidgetExpanded extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(.5),
                   borderRadius: BorderRadius.circular(5),
-                  image: DecorationImage(image: AssetImage(currentRestaurantModel.imagePath), fit: BoxFit.cover)),
+                  image: DecorationImage(image: NetworkImage(currentRestaurantModel.imagePath), fit: BoxFit.cover)),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),
@@ -43,8 +45,10 @@ class RestaurantItemWidgetExpanded extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          '\$ • ' +
-                              foodModel.cuisine.toString().substring(1, foodModel.cuisine.toString().length - 1),
+                          '\$ • '//
+                              // +
+                              // foodModel.cuisine.toString().substring(1, foodModel.cuisine.toString().length - 1),
+                          ,
                           textScaleFactor: 1.1,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -55,7 +59,8 @@ class RestaurantItemWidgetExpanded extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Text('${foodModel.deliveryTimeInMin} min')
+                      // Text('${foodModel.deliveryTimeInMin} min')
+                      Text('min')
                     ],
                   ),
                   SizedBox(height: 5),
@@ -69,12 +74,14 @@ class RestaurantItemWidgetExpanded extends StatelessWidget {
                               textScaleFactor: 1.1,
                               style: TextStyle(color:Constants.FONT_GREY_COLOR, fontWeight: FontWeight.bold)),
                           Icon(Icons.star, color: Constants.FONT_GREY_COLOR,size: 22),
-                          Text(' ${foodModel.totalRatings}+' + 'ratings'.tr,
+                          // Text(' ${foodModel.totalRatings}+' + 'ratings'.tr,
+                          Text( 'ratings'.tr,
                               textScaleFactor: 1.1,
                               style: TextStyle(color: Constants.FONT_GREY_COLOR, fontWeight: FontWeight.bold)),
                         ],
                       ),
-                      Text('${foodModel.deliveryType}',
+                      // Text('${foodModel.deliveryType}',
+                      Text('type',
                           textScaleFactor: 1.1,
                           style: TextStyle(color: Constants.FONT_GREY_COLOR, fontWeight: FontWeight.bold))
                     ],

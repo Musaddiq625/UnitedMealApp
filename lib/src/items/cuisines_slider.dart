@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:getx_app/src/controllers/food_controller.dart';
 
 class CuisinesSlider extends StatelessWidget {
-  final FoodController  foodController= Get.put(FoodController());
+  // final FoodController  foodController= Get.put(FoodController());
   Widget item(String imagePath, String label) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -35,6 +35,7 @@ class CuisinesSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // print('foodController.getCuisines ${foodController.getCuisines}');
+    final FoodController foodController = Get.find();
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: StreamBuilder(
