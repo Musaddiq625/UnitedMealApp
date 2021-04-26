@@ -35,11 +35,11 @@ class Login extends StatelessWidget {
                 ),
                 SizedBox(height: 30),
                 TextFieldWidget(
-                  userController.signUpEmailTextEditingController,
+                  userController.signInEmailTextEditingController,
                   hintText: 'email'.tr,
                 ),
                 SizedBox(height: 15),
-                Obx(() => TextFieldWidget(userController.signUpPasswordTextEditingController,
+                Obx(() => TextFieldWidget(userController.signInPasswordTextEditingController,
                     hintText: 'password'.tr,
                     isObscure: userController.getLoginPasswordObscure,
                     isPasswordField: true,
@@ -49,8 +49,8 @@ class Login extends StatelessWidget {
                 ButtonWidget(
                   'login'.tr,
                   function: () {
-                    userController.loginUser(userController.signUpEmailTextEditingController.text,
-                        userController.signUpPasswordTextEditingController.text);
+                    userController.loginUser(userController.signInEmailTextEditingController.text,
+                        userController.signInPasswordTextEditingController.text);
                   },
                 ),
                 SizedBox(height: 20),

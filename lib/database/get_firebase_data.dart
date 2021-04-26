@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:getx_app/models/order.dart';
 import 'package:getx_app/models/user.dart';
 
 class FirebaseFunctions {
@@ -8,24 +9,27 @@ class FirebaseFunctions {
   CollectionReference _firebaseFireStoreInstanceCuisines =
       FirebaseFirestore.instance.collection('cuisines');
   CollectionReference _firebaseFireStoreInstanceUsers =
-  FirebaseFirestore.instance.collection('users');
+      FirebaseFirestore.instance.collection('users');
   CollectionReference _firebaseFireStoreInstanceFoods =
       FirebaseFirestore.instance.collection('foods');
   CollectionReference _firebaseFireStoreInstanceRestaurantsWithFoods =
       FirebaseFirestore.instance.collection('restaurants');
+  CollectionReference _firebaseFireStoreInstanceOrders =
+      FirebaseFirestore.instance.collection('orders');
 
   Stream<QuerySnapshot> getAllCuisines() {
     return _firebaseFireStoreInstanceCuisines.snapshots();
   }
- //
- // Future getAllFoodsFuture() {
- //    return _firebaseFireStoreInstanceFoods.get();
- //  }
- //
- //  Future getAllRestaurantsWithFoodsFuture() {
- //    return _firebaseFireStoreInstanceRestaurantsWithFoods.get();
- //  }
- Stream<QuerySnapshot> getAllFoodsStream() {
+
+  //
+  // Future getAllFoodsFuture() {
+  //    return _firebaseFireStoreInstanceFoods.get();
+  //  }
+  //
+  //  Future getAllRestaurantsWithFoodsFuture() {
+  //    return _firebaseFireStoreInstanceRestaurantsWithFoods.get();
+  //  }
+  Stream<QuerySnapshot> getAllFoodsStream() {
     return _firebaseFireStoreInstanceFoods.snapshots();
   }
 
@@ -56,8 +60,11 @@ class FirebaseFunctions {
     // .then((value) => myPopUps.mySnackBar('Uploaded', 'Data Uploaded to database'));
   }
 
-  Future signUp(User user) =>
-      _firebaseFireStoreInstanceUsers.add(user.toMap()).then((value) => value?.path != null);
+  Future<bool> signUp(User user) => _firebaseFireStoreInstanceUsers.add(user.toMap()).then((value) {
+        // value?.path != null;Adil
+        _firebaseFireStoreInstanceUsers.doc(value.id).update({'id': value.id});
+        return true;
+      });
 
   Future<String> login(String email, String password) async {
     return await _firebaseFireStoreInstanceUsers
@@ -69,5 +76,11 @@ class FirebaseFunctions {
                 ? jsonEncode(value.docs[0].data())
                 : '')
         .catchError((_) => '');
+  }
+
+  Future addOrder(Order order) async {
+    _firebaseFireStoreInstanceOrders.add(order.toMap());
+    print(order.toMap());
+    print('ADDED');
   }
 }

@@ -128,6 +128,7 @@ class MyTranslations extends Translations {
           'please_login_first_to_continue': 'Please Login First to continue',
 
           //CART
+          'cart':'Cart',
           'you_saved': 'You saved',
           'with_new_user_promotion': 'with New User Promotion',
           'add_more_items': 'Add more items',

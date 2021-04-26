@@ -82,7 +82,7 @@ class CartPage extends StatelessWidget {
                   },
                   child: Icon(Icons.close)),
               Text(
-                shopName ?? '',
+                shopName ?? 'cart'.tr,
                 textScaleFactor: 1.3,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),

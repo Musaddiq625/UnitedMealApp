@@ -16,7 +16,7 @@ class TempData {
   static List<Restaurant> tempRestaurantsWithFoods = [
     for (int r = 0; r < 5; r++)
       Restaurant(
-          id: r,
+          id: r.toString(),
           name: 'Restaurant $r',
           imagePath: 'assets/restaurant_images/r$r.jpg',
           ratings: 4.5,

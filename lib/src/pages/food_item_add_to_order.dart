@@ -7,7 +7,6 @@ import 'package:getx_app/src/controllers/food_item_add_to_order_controller.dart'
 import 'package:getx_app/src/items/IncrementDecrementCounter.dart';
 import 'package:getx_app/src/items/button_widget.dart';
 import 'package:getx_app/src/items/underlined_listTile.dart';
-import 'package:getx_app/src/pages/cart.dart';
 import 'package:getx_app/src/pages/special_instruction.dart';
 
 class FoodItemAddToOrder extends StatelessWidget {
@@ -22,9 +21,9 @@ class FoodItemAddToOrder extends StatelessWidget {
   String rxComment = '';
 
   updateCommentInstruction(String comment) {
-print('comment $comment');
-     rxComment = comment;
-     print('rxComment: ${rxComment}');
+    print('comment $comment');
+    rxComment = comment;
+    print('rxComment: ${rxComment}');
   }
 
   @override
@@ -51,14 +50,21 @@ print('comment $comment');
           )
         ],
       ),
-      SizedBox(height: 20),
+      Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+            children: [Text(foodModel.restaurantName)]),
+      ),
       Padding(
         padding: const EdgeInsets.symmetric(
             horizontal: Constants.APP_HORIZONTAL_WIDTH,
-            vertical: Constants.APP_HORIZONTAL_WIDTH * 1.2),
+            ),
+
         child:
             Text(foodModel.name, textScaleFactor: 2, style: TextStyle(fontWeight: FontWeight.bold)),
       ),
+                  SizedBox(height: 10),
       Container(
         height: 15,
         width: double.infinity,
@@ -68,7 +74,8 @@ print('comment $comment');
                 top: BorderSide(color: Constants.FONT_GREY_COLOR.withOpacity(.4)),
                 bottom: BorderSide(color: Constants.FONT_GREY_COLOR.withOpacity(.4)))),
       ),
-      UnderLinedListTile('add_special_instruction'.tr, rxComment, page: SpecialInstruction(updateCommentInstruction,foodModel)),
+      UnderLinedListTile('add_special_instruction'.tr, rxComment,
+          page: SpecialInstruction(updateCommentInstruction, foodModel)),
       SizedBox(height: 10),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -91,8 +98,9 @@ print('comment $comment');
                 trailingText: '\$' +
                     (foodModel.price * foodItemAddToOrderController.currentCount.value).toString(),
                 function: () {
-                  cartController.addToCart(cartController.cartItems,foodModel, rxComment,quantity: foodItemAddToOrderController.currentCount.value);
-                  Get.to(()=>CartPage(foodModel.restaurantName),);
+                  cartController.addToCart(cartController.cartItems, foodModel, rxComment,foodModel.restaurantId,foodModel.restaurantName,
+                      quantity: foodItemAddToOrderController.currentCount.value,
+                      foodModel.);
                 },
               ))),
       SizedBox(height: 50),

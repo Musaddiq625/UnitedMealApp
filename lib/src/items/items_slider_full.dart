@@ -52,7 +52,7 @@ class ImagesSliderFull extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child:
       StreamBuilder(
-          stream: firebaseFunctions.getAllRestaurantsWithFoodsStream(),
+          stream: firebaseFunctions.getAllFoodsStream(),
           builder: (context, snapshot) {
             return !snapshot.hasData
                 ? CircularProgressIndicator()
@@ -65,7 +65,8 @@ class ImagesSliderFull extends StatelessWidget {
                             name: data.data()['name'],
                             imagePath: data.data()['image'],
                             availableQuantity: data.data()['available_quantity'],
-                            price: double.parse(data.data()['price']??'0'),
+                            price: data.data()['price'].toDouble(),
+                            restaurantName: data.data()['restaurant']
                           );
 
                           return Get.to(() => FoodItemAddToOrder(food));

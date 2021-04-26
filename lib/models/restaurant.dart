@@ -1,7 +1,7 @@
 import 'package:getx_app/models/food.dart';
 
 class Restaurant {
-  int id;
+  String id;
   String name;
   List<String> cuisines;
   String imagePath;
@@ -20,7 +20,8 @@ class Restaurant {
     this.longitude,
     this.restaurantFoods,
     this.ratings,
-  });
+  }
+  );
 
   toMap() =>
       {

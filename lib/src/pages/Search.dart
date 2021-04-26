@@ -153,6 +153,7 @@ class Search extends StatelessWidget {
                              Restaurant(
                                name: data.data()['name'],
                                imagePath: data.data()['image'],
+                               address: data.data()['address'],
                                latitude: data.data()['geopoint'].latitude,
                                longitude: data.data()['geopoint'].longitude,
                                ratings: double.parse(data.data()['ratings']),

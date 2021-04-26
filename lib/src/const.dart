@@ -6,7 +6,8 @@ class Constants{
   static final Color APP_COLOR_SECOND = Colors.red.withOpacity(.5);
   // static const Color APP_COLOR = Colors.red;
   static const Color APP_COLOR = Colors.green;
-  static const Color APP_DARK_COLOR = Color(0XFFEB1701); //dark red color
+  static const Color APP_DARK_COLOR = Color(0xFF3DB641);
+  // static const Color APP_DARK_COLOR = Color(0XFFEB1701); //dark red color
   static const Color APP_BLUE_COLOR = Colors.blueAccent;
   static const Color GREY_COLOR = Color(0XFFE7E7E7);
   static const Color FONT_GREY_COLOR = Color(0XFF898989);

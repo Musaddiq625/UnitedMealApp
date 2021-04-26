@@ -30,7 +30,13 @@ class MySharedPref {
   Future updateCartItems(List<Cart> cartItems) async {
     List tempList = [];
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    for (int i = 0; i < cartItems.length; i++) tempList.add(cartItems[i].toMap());
+    for (int i = 0; i < cartItems.length; i++) {
+      print("cartItems[$i]");
+      print(cartItems[i].id .toString());
+      print("cartItems[$i].toMap()");
+      print(cartItems[i].toMap().toString());
+      tempList.add(cartItems[i].toMap());
+    }
     sharedPreferences.setString(_savedCartItems, jsonEncode(tempList));
   }
 
@@ -45,6 +51,8 @@ class MySharedPref {
           id: tempList[i]['id'],
           comment: tempList[i]['comment'],
           quantity: tempList[i]['quantity'],
+          restaurantId: tempList[i]['restaurant_id'],
+          restaurantName: tempList[i]['restaurant_name'],
           food: Food(
             id: tempList[i]['food']['id'],
             name: tempList[i]['food']['name'],
@@ -62,6 +70,8 @@ class MySharedPref {
     for (int j = 0; j < cartItems.length; j++) cartController.cartItems.add(cartItems[j]);
   }
   Future clearCartItemsInSharedPref()async{
+    final CartController cartController = Get.find();
+    cartController.cartItems.clear();
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.remove(_savedCartItems);

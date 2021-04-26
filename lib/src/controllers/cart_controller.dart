@@ -2,6 +2,9 @@ import 'package:get/get.dart';
 import 'package:getx_app/database/shared_pref.dart';
 import 'package:getx_app/models/cart.dart';
 import 'package:getx_app/models/food.dart';
+import 'package:getx_app/models/restaurant.dart';
+import 'package:getx_app/src/pages/cart.dart';
+import 'package:getx_app/src/utils/utilities.dart';
 
 class CartController extends GetxController {
   // RxList<Map<String,dynamic>> items =[{
@@ -17,32 +20,33 @@ class CartController extends GetxController {
       List<Cart> totalCartItems,
       Food food,
       String comment,
+      String restaurantId,
+      String restaurantName,
+      Restaurant restaurant,
       {int quantity = 1}) {
     int tempInt = 0;
-    // print('quantity: $quantity');
-    // items.add(food);
-    // print('totalCartItems: $totalCartItems');
     if (totalCartItems.length > 0) {
-      // print('in if');
-      for (int i = 0; i < totalCartItems.length; i++) {
-        // print('found');
-        // print(totalCartItems[i].food.toMap().toString());
-        // print(food.toMap().toString());
-        // print('^^^^^^');
-        if (totalCartItems[i].food.toMap().toString() == food.toMap().toString()) {
-          // print('HEREE');
-          cartItems[i].quantity = cartItems[i].quantity + quantity;
-        } else
-          tempInt++;
-      }
-      if (tempInt == totalCartItems.length)
-        cartItems.add(Cart(food: food, quantity: quantity, comment: comment));
-    } else {
-      // print('in else');
-      cartItems.add(Cart(food: food, quantity: quantity, comment: comment));
-    }
-MySharedPref().updateCartItems(cartItems);
+      // if(totalCartItems[0].food.restaurantName.toString() == food.restaurantName.toString())
+      if(totalCartItems[0].food.restaurantName.toString() != food.restaurantName.toString())
+        // Utilities().mySnackBar('Error', 'You can\'t add food from same Restaurant');
+        // else
+          {
+        for (int i = 0; i < totalCartItems.length; i++) {
+          if (totalCartItems[i].food.toMap().toString() == food.toMap().toString()) {
+            cartItems[i].quantity = cartItems[i].quantity + quantity;
+          } else
+            tempInt++;
+        }
+        if (tempInt == totalCartItems.length)
+          cartItems.add(Cart(food: food, quantity: quantity, comment: comment,restaurantId: restaurantId, restaurantName: restaurantName,re));
 
+      }
+
+    } else {
+      cartItems.add(Cart(food: food, quantity: quantity, comment: comment,restaurantId: restaurantId,restaurantName: restaurantName));
+    }
+    MySharedPref().updateCartItems(cartItems);
+    Get.to(()=>CartPage(food.restaurantName));
   }
 
   removeFromCart(

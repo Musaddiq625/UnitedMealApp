@@ -29,6 +29,7 @@ class HomeController extends GetxController {
       return false;
     } else {
       userController.logoutUserDialog();
+
     }
   }
 }

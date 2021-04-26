@@ -1,6 +1,7 @@
 class Food {
-  int id;
+  String id;
   String name;
+  String restaurantId;
   String restaurantName;
   String imagePath;
   double price;
@@ -15,11 +16,11 @@ class Food {
       this.name,
       this.restaurantName,
       this.imagePath,
-      this.price=0,
-      this.deliveryTimeInMin=0,
+      this.price = 0,
+      this.deliveryTimeInMin = 0,
       this.deliveryType,
       this.cuisine,
-      this.availableQuantity = 0  ,
+      this.availableQuantity = 0,
       this.totalRatings});
 
   toMap() => {
@@ -35,5 +36,14 @@ class Food {
         'totalRatings': totalRatings,
       };
 
-
+  Food toModel(Map<String, dynamic> foodModel) => Food(
+      id: foodModel['id'] ?? '',
+      name: foodModel['name'],
+      restaurantName: foodModel['restaurantName'],
+      imagePath: foodModel['imagePath'],
+      price: foodModel['price'],
+      deliveryTimeInMin: foodModel['deliveryTimeInMin'],
+      deliveryType: foodModel['deliveryType'],
+      availableQuantity: foodModel['available_quantity'],
+      totalRatings: foodModel['totalRatings']);
 }
