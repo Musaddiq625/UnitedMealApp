@@ -129,6 +129,8 @@ class Search extends StatelessWidget {
                            imagePath: data['image'],
                            price: double.parse(data['price']??'0'),
                            cuisine: data['cuisine'],
+                           restaurantId: data['restaurant_id'],
+                             restaurantName:data['restaurant_name']
                          )),
                    );
                  }).toList(),
@@ -156,7 +158,7 @@ class Search extends StatelessWidget {
                                address: data.data()['address'],
                                latitude: data.data()['geopoint'].latitude,
                                longitude: data.data()['geopoint'].longitude,
-                               ratings: double.parse(data.data()['ratings']),
+                               ratings: double.parse(data.data()['ratings'].toString()),
                              ),
                            ),
                          );
@@ -203,22 +205,26 @@ class Search extends StatelessWidget {
                       children: snapshot.data == null
                           ? [CircularProgressIndicator()]
                           : snapshot.data.docs.map<Widget>((QueryDocumentSnapshot data) {
-                        return GestureDetector(
-                          onTap: () {
-                            Get.to(() =>
-                                FoodItemAddToOrder(Food()
-                                  // TempData.tempRestaurantsWithFoods[j].restaurantFoods[i]
-                                ));
-                          },
-                          child: FoodItemWidgetExpanded(
-                            // TempData.tempRestaurantsWithFoods[i].restaurantFoods[j],
-                            // TempData.tempRestaurantsWithFoods[i],
-                              Food(
+                            Food food =  Food(
                                 name: data.data()['name'],
                                 imagePath: data.data()['image'],
                                 price: double.parse(data.data()['price'].toString()),
                                 cuisine: data.data()['cuisine'],
-                              )),
+                                restaurantId: data.data()['restaurant_id'],
+                                restaurantName:data.data()['restaurant_name']
+                            );
+                        return GestureDetector(
+                          onTap: () {
+                            Get.to(() =>
+                                FoodItemAddToOrder(food
+                                  // TempData.tempRestaurantsWithFoods[j].restaurantFoods[i]
+                                ));
+                          },
+                          child: FoodItemWidgetExpanded(
+                            food
+                            // TempData.tempRestaurantsWithFoods[i].restaurantFoods[j],
+                            // TempData.tempRestaurantsWithFoods[i],
+                             ),
                         );
                       }).toList(),
                     );

@@ -38,7 +38,7 @@ class CartController extends GetxController {
             tempInt++;
         }
         if (tempInt == totalCartItems.length)
-          cartItems.add(Cart(food: food, quantity: quantity, comment: comment,restaurantId: restaurantId, restaurantName: restaurantName,re));
+          cartItems.add(Cart(food: food, quantity: quantity, comment: comment,restaurantId: restaurantId, restaurantName: restaurantName,));
 
       }
 

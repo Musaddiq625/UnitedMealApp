@@ -14,6 +14,7 @@ class Food {
   Food(
       {this.id,
       this.name,
+      this.restaurantId,
       this.restaurantName,
       this.imagePath,
       this.price = 0,
@@ -39,6 +40,7 @@ class Food {
   Food toModel(Map<String, dynamic> foodModel) => Food(
       id: foodModel['id'] ?? '',
       name: foodModel['name'],
+      restaurantId: foodModel['restaurant_id'],
       restaurantName: foodModel['restaurantName'],
       imagePath: foodModel['imagePath'],
       price: foodModel['price'],

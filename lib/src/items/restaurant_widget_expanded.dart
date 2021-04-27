@@ -23,7 +23,11 @@ class RestaurantItemWidgetExpanded extends StatelessWidget {
           children: [
             Container(
               height: 150,
-              decoration: BoxDecoration(
+              decoration:
+              (currentRestaurantModel.imagePath==''|| currentRestaurantModel.imagePath==null)?BoxDecoration(
+                color: Colors.grey.withOpacity(.5),
+                borderRadius: BorderRadius.circular(5)):
+              BoxDecoration(
                   color: Colors.grey.withOpacity(.5),
                   borderRadius: BorderRadius.circular(5),
                   image: DecorationImage(image: NetworkImage(currentRestaurantModel.imagePath), fit: BoxFit.cover)),

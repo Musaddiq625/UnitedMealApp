@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:getx_app/models/order.dart';
+import 'package:getx_app/src/dashboard.dart';
 import 'package:getx_app/src/pages/live_map.dart';
 
 import 'cart_controller.dart';
@@ -21,7 +22,8 @@ class CheckoutController extends GetxController {
     isPaying.value = true;
     Future.delayed(Duration(seconds: 2)).then((value) {
       isPaying.value = false;
-      Get.to(LiveMap());
+      // Get.to(()=>LiveMap());
+      Get.offAll(()=>Dashboard());
     });
   }
   uploadCart(){

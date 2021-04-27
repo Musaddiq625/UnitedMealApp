@@ -31,6 +31,8 @@ class FirebaseFunctions {
   //  }
   Stream<QuerySnapshot> getAllFoodsStream() {
     return _firebaseFireStoreInstanceFoods.snapshots();
+  }Stream<QuerySnapshot> getAllOrdersStream() {
+    return _firebaseFireStoreInstanceOrders.snapshots();
   }
 
   Stream<QuerySnapshot> getAllRestaurantsWithFoodsStream() {
@@ -43,6 +45,13 @@ class FirebaseFunctions {
 
   Future<int> getAllRestaurantsTotal() {
     return _firebaseFireStoreInstanceRestaurantsWithFoods.get().then((value) => value.docs.length);
+  }
+
+  Future<Map<String, dynamic>> getFoodWithRestaurantId(String restaurantId) async{
+    return _firebaseFireStoreInstanceRestaurantsWithFoods
+        .doc(restaurantId)
+        .get()
+        .then((value) => value.data());
   }
 
   // Future getAllFoods() {

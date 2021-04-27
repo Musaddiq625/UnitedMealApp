@@ -11,7 +11,10 @@ class CuisinesSlider extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(height: 50, width: 50, child: Image.network(imagePath)),
+            child: Container(height: 50, width: 50, child:
+            (imagePath==''||imagePath==null)?
+                Icon(Icons.info_outline):
+            Image.network(imagePath)),
           ),
           SizedBox(height: 10),
           Text(label.toString(), style: TextStyle(fontWeight: FontWeight.bold))
@@ -48,7 +51,7 @@ class CuisinesSlider extends StatelessWidget {
           // CircularProgressIndicator():
 
             Row(
-            children:snapshot.data.docs.map<Widget>((e) =>item(e.data()['image'], e.data()['label'])).toList(),
+            children:snapshot.data.docs.map<Widget>((e) =>item(e.data()['image'], e.data()['name'])).toList(),
           );
         }
       ),

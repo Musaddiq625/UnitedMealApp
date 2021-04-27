@@ -51,7 +51,7 @@ class MySharedPref {
           id: tempList[i]['id'],
           comment: tempList[i]['comment'],
           quantity: tempList[i]['quantity'],
-          restaurantId: tempList[i]['restaurant_id'],
+          restaurantId: tempList[i]['restaurant_id'].toString(),
           restaurantName: tempList[i]['restaurant_name'],
           food: Food(
             id: tempList[i]['food']['id'],

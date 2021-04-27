@@ -23,7 +23,11 @@ class FoodItemWidgetExpanded extends StatelessWidget {
             Container(
               height: 150,
               // width: 110,
-              decoration: BoxDecoration(
+              decoration:
+              (foodModel.imagePath==''|| foodModel.imagePath==null)?
+              BoxDecoration(
+                  color: Colors.grey.withOpacity(.5),
+                  borderRadius: BorderRadius.circular(5)):BoxDecoration(
                   color: Colors.grey.withOpacity(.5),
                   borderRadius: BorderRadius.circular(5),
                   image: DecorationImage(image: NetworkImage(foodModel.imagePath), fit: BoxFit.cover)),

@@ -23,8 +23,9 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // cartController.cartItems.clear();
-    for (int i = 0; i < cartController.cartItems.length; i++)
-      print(cartController.cartItems[i].food.toMap());
+    for (int i = 0; i < cartController.cartItems.length; i++) {
+      print(cartController.cartItems[i].toMap().toString());
+    }
     cartItemBox(String totalPCs, Food foodModel) {
       return Container(
         width: 280,

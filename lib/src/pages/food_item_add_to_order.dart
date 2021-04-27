@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/models/food.dart';
+import 'package:getx_app/models/restaurant.dart';
 import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/controllers/cart_controller.dart';
 import 'package:getx_app/src/controllers/food_item_add_to_order_controller.dart';
@@ -12,8 +13,11 @@ import 'package:getx_app/src/pages/special_instruction.dart';
 class FoodItemAddToOrder extends StatelessWidget {
   // final Food foodModel;
   final Food foodModel;
+  // final Restaurant restaurantModel;
 
-  FoodItemAddToOrder(this.foodModel);
+  FoodItemAddToOrder(this.foodModel,
+      // this.restaurantModel
+      );
 
   FoodItemAddToOrderController foodItemAddToOrderController;
 
@@ -38,7 +42,9 @@ class FoodItemAddToOrder extends StatelessWidget {
         children: [
           Container(
             height: 220,
-            decoration: BoxDecoration(
+
+            decoration:(foodModel.imagePath==''||foodModel.imagePath==null)? BoxDecoration():
+            BoxDecoration(
                 image:
                     DecorationImage(image: NetworkImage(foodModel.imagePath), fit: BoxFit.cover)),
           ),
@@ -63,6 +69,7 @@ class FoodItemAddToOrder extends StatelessWidget {
 
         child:
             Text(foodModel.name, textScaleFactor: 2, style: TextStyle(fontWeight: FontWeight.bold)),
+            // Text(foodItemAddToOrderController.restaurant.value.toMap().toString(), textScaleFactor: 2, style: TextStyle(fontWeight: FontWeight.bold)),
       ),
                   SizedBox(height: 10),
       Container(
@@ -93,16 +100,20 @@ class FoodItemAddToOrder extends StatelessWidget {
       SizedBox(height: 120),
       Padding(
           padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH),
-          child: Obx(() => ButtonWidget(
+          child:
+          Obx(() =>
+              ButtonWidget(
                 'add_to_order'.tr,
                 trailingText: '\$' +
                     (foodModel.price * foodItemAddToOrderController.currentCount.value).toString(),
                 function: () {
-                  cartController.addToCart(cartController.cartItems, foodModel, rxComment,foodModel.restaurantId,foodModel.restaurantName,
+                  cartController.addToCart(cartController.cartItems, foodModel, rxComment,foodModel.restaurantId,foodModel.restaurantName,null,
                       quantity: foodItemAddToOrderController.currentCount.value,
-                      foodModel.);
+                      );
                 },
-              ))),
+              )
+      )
+        ),
       SizedBox(height: 50),
     ]))));
   }

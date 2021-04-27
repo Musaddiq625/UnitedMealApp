@@ -134,56 +134,56 @@ class Checkout extends StatelessWidget {
                                   ButtonWidget('buy_with_pay'.tr,
                                       btnColor: Colors.black,
                                       fontColor: Colors.white, function: () {
-                                    // checkoutController.startPaymentProcess();
+                                    checkoutController.startPaymentProcess();
                                     for (int i = 0; i < cartController.cartItems.length; i++)
                                       print(cartController.cartItems[i].food.toMap());
-                                    Order order = Order(
-                                        _dateFormat.format(DateTime.now()),
-                                        20,
-                                        10,
-                                        cartController.getTotalPriceOfCartItems,
-                                        cartController.getTotalPriceOfCartItemsWithAllCharges,
-                                        userController.user.id,
-                                        userController.user.name,
-                                        cartController.cartItems[0].restaurantId,
-                                        cartController.cartItems[0].restaurantName,
-                                        Restaurant(
-                                          name: 'Mantra Restaurant',
-                                          imagePath: '',
-                                          address: '',
-                                          latitude: 1.1,
-                                          longitude: 2.2,
-                                          ratings: 2.6,
-                                          cuisines: ['cuisine1'],
-                                        ),
-                                        cartController.cartItems.length,
-                                        []);
-                                    firebaseFunctions.addOrder(Order(
-                                      _dateFormat.format(DateTime.now()),
-                                      20,
-                                      10,
-                                      cartController.getTotalPriceOfCartItems,
-                                      cartController.getTotalPriceOfCartItemsWithAllCharges,
-                                      userController.user.id,
-                                      userController.user.name,
 
-                                      'HaZCfCEXUri5JcnLoqE8',
-                                      'Mantra Restaurant',
-                                      Restaurant(
-                                        name: 'Mantra Restaurant',
-                                        imagePath: '',
-                                        address: '',
-                                        latitude: 1.1,
-                                        longitude: 2.2,
-                                        ratings: 2.6,
-                                        cuisines: ['cuisine1'],
-                                      ),
-                                      2,
-                                      [
-                                        for (int i = 0; i < cartController.cartItems.length; i++)
-                                          Food().toModel(cartController.cartItems[i].food.toMap())
-                                      ],
+                                    // firebaseFunctions.addOrder(Order(
+                                    //   _dateFormat.format(DateTime.now()),
+                                    //   20,
+                                    //   10,
+                                    //   cartController.getTotalPriceOfCartItems,
+                                    //   cartController.getTotalPriceOfCartItemsWithAllCharges,
+                                    //   userController.user.id,
+                                    //   userController.user.name,
+                                    //
+                                    //   'HaZCfCEXUri5JcnLoqE8',
+                                    //   'Mantra Restaurant',
+                                    //   Restaurant(
+                                    //     name: 'Mantra Restaurant',
+                                    //     imagePath: '',
+                                    //     address: '',
+                                    //     latitude: 1.1,
+                                    //     longitude: 2.2,
+                                    //     ratings: 2.6,
+                                    //     cuisines: ['cuisine1'],
+                                    //   ),
+                                    //   2,
+                                    //   [
+                                    //     for (int i = 0; i < cartController.cartItems.length; i++)
+                                    //       Food().toModel(cartController.cartItems[i].food.toMap())
+                                    //   ],
+                                    // ));
+
+                                    // Order({ this.deliveryFee,
+                                    //   this.feeAndTaxes,
+                                    //   this.subtotal,
+                                    //   this.total,
+                                    //   this.userId,
+                                    //   this.userName,
+                                    //   this.restaurantId,
+                                    //   this.restaurantName,});
+                                    firebaseFunctions.addOrder(Order(
+                                      deliveryFee: 0,
+                                      feeAndTaxes: cartController.tempTax,
+                                      subtotal: cartController.getTotalPriceOfCartItems,
+                                      total: cartController.getTotalPriceOfCartItemsWithAllCharges,restaurantName: cartController.cartItems[0].restaurantName,
+                                      restaurantId: cartController.cartItems[0].restaurantId,
+                                      userId: userController.user.id,
+                                      userName: userController.user.name
                                     ));
+                                    cartController.cartItems.clear();
+
                                   }),
                                 ],
                               ),

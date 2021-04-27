@@ -15,8 +15,6 @@ class Cart{
   Map<String, dynamic> toMap()=>
       {
         'id':id,
-        'restaurant':restaurant.toMap(),
-        'food':food.toMap(),
         'quantity':quantity,
         'comment':comment,
         'restaurant_id':restaurantId,
