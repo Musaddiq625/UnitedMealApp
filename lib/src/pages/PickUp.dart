@@ -6,6 +6,8 @@ import 'package:getx_app/src/items/components.dart';
 import 'package:getx_app/src/items/food_item_bottomsheet.dart';
 import 'package:getx_app/temp_data.dart';
 
+import 'pickup_google_map.dart';
+
 class PickUp extends StatelessWidget {
   final GlobalKey<ExpandableBottomSheetState> bottomSheetKey = new GlobalKey();
   final Components components = Components();
@@ -24,7 +26,7 @@ class PickUp extends StatelessWidget {
               width: double.infinity,
               color: Colors.grey.withOpacity(.5),
               alignment: Alignment.center,
-              child: Text('Map Here'),
+              child: PickupGoogleMap(),
             ),
           ),
           persistentHeader: Container(

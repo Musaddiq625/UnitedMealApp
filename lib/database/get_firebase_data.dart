@@ -38,6 +38,9 @@ class FirebaseFunctions {
   Stream<QuerySnapshot> getAllRestaurantsWithFoodsStream() {
     return _firebaseFireStoreInstanceRestaurantsWithFoods.snapshots();
   }
+  Stream<QuerySnapshot> getAllRestaurantsWithFoodsStream2() {
+    return _firebaseFireStoreInstanceRestaurantsWithFoods.snapshots();
+  }
 
   Future<int> getAllFoodsTotal() {
     return _firebaseFireStoreInstanceFoods.get().then((value) => value.docs.length);

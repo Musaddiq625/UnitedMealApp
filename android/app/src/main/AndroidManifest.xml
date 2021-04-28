@@ -1,9 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.solutionhub.foodapp1">
     <uses-permission android:name="android.permission.INTERNET"/>
+
+
    <application
         android:label="United Meal"
         android:icon="@mipmap/ic_launcher">
+<!--       <meta-data android:name="com.google.android.geo.API_KEY"-->
+<!--           android:value="AIzaSyDLn-53PsQuxaailKY0DP5jrr752mmQtas"/>-->
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyBwrnBrSIpD96QmD3TYLWKl1XJB65_xgTA"/>
+<!--           android:value="AIzaSyDJ6B31h_uE4ICWSYsv9MdE2ozhvG2_yPs"/>-->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -19,6 +26,7 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
+
             <!-- Displays an Android View that continues showing the launch screen
                  Drawable until Flutter paints its first frame, then this splash
                  screen fades out. A splash screen is useful to avoid any visual

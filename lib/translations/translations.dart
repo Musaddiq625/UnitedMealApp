@@ -102,6 +102,14 @@ class MyTranslations extends Translations {
           //ORDERS
           'no_previous_orders': 'No Previous Orders',
 
+          //ORDER DETAILS
+          'order_details': 'Order Details',
+          'order_no':'Order No',
+          'order_from':'Order from',
+          'delivery_address':'Delivery Address',
+          'order_date':'Order date',
+
+
           //PAYMENT
           'add_payment_method': 'Add Payment Method',
           'credit_debit_card': 'Credit/Debit Card',
@@ -134,6 +142,7 @@ class MyTranslations extends Translations {
           'add_more_items': 'Add more items',
           'people_also_ordered': 'People also ordered',
           'total': 'Total',
+          'incl_GST': 'incl. GST',
           'promo_code': 'Promo code',
           'subtotal': 'Subtotal',
           'fees_and_estimated_tax': 'Fees & Estimated Tax',

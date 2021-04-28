@@ -27,12 +27,12 @@ class FoodItemAddToOrder extends StatelessWidget {
   updateCommentInstruction(String comment) {
     print('comment $comment');
     rxComment = comment;
-    print('rxComment: ${rxComment}');
+    // print('rxComment: ${rxComment}');
   }
 
   @override
   Widget build(BuildContext context) {
-    print('rxComment:: ${rxComment}');
+    // print('rxComment:: ${rxComment}');
     foodItemAddToOrderController = Get.put(FoodItemAddToOrderController(foodModel));
     return SafeArea(
         child: Scaffold(
