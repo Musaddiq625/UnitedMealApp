@@ -7,9 +7,10 @@ import '../const.dart';
 class RestaurantItemWidgetExpanded extends StatelessWidget {
   // final Food foodModel;
   final Restaurant currentRestaurantModel;
+  final double distance;
   RestaurantItemWidgetExpanded(
       // this.foodModel,
-      this.currentRestaurantModel);
+      this.currentRestaurantModel,{this.distance =0.0});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,33 +46,24 @@ class RestaurantItemWidgetExpanded extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 5),
-                  Row(
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                        child: Text(
-                          '\$ • '//
-                              // +
-                              // foodModel.cuisine.toString().substring(1, foodModel.cuisine.toString().length - 1),
-                          ,
-                          textScaleFactor: 1.1,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: Constants.FONT_GREY_COLOR,
-                            // Colors.grey,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      // Text('${foodModel.deliveryTimeInMin} min')
-                      Text('min')
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  SizedBox(height: 5),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                      // Expanded(
+                      //   child: Text(
+                      //     // '\$ • '//
+                      //         ''
+                      //         // foodModel.cuisine.toString().substring(1, foodModel.cuisine.toString().length - 1),
+                      //     ,
+                      //     textScaleFactor: 1.1,
+                      //     maxLines: 1,
+                      //     overflow: TextOverflow.ellipsis,
+                      //     style: TextStyle(
+                      //       color: Constants.FONT_GREY_COLOR,
+                      //       // Colors.grey,
+                      //       fontWeight: FontWeight.bold,
+                      //     ),
+                      //   ),
+                      // ),
                       Row(
                         children: [
                           Text('${currentRestaurantModel.ratings}',
@@ -84,12 +76,33 @@ class RestaurantItemWidgetExpanded extends StatelessWidget {
                               style: TextStyle(color: Constants.FONT_GREY_COLOR, fontWeight: FontWeight.bold)),
                         ],
                       ),
-                      // Text('${foodModel.deliveryType}',
-                      Text('type',
-                          textScaleFactor: 1.1,
-                          style: TextStyle(color: Constants.FONT_GREY_COLOR, fontWeight: FontWeight.bold))
+                      // Text('${foodModel.deliveryTimeInMin} min')
+                      Text(distance.toStringAsFixed(2)+' m')
                     ],
-                  )
+                  ),
+                  SizedBox(height: 5),
+                  SizedBox(height: 5),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     Row(
+                  //       children: [
+                  //         Text('${currentRestaurantModel.ratings}',
+                  //             textScaleFactor: 1.1,
+                  //             style: TextStyle(color:Constants.FONT_GREY_COLOR, fontWeight: FontWeight.bold)),
+                  //         Icon(Icons.star, color: Constants.FONT_GREY_COLOR,size: 22),
+                  //         // Text(' ${foodModel.totalRatings}+' + 'ratings'.tr,
+                  //         Text( 'ratings'.tr,
+                  //             textScaleFactor: 1.1,
+                  //             style: TextStyle(color: Constants.FONT_GREY_COLOR, fontWeight: FontWeight.bold)),
+                  //       ],
+                  //     ),
+                  //     // Text('${foodModel.deliveryType}',
+                  //     Text('',
+                  //         textScaleFactor: 1.1,
+                  //         style: TextStyle(color: Constants.FONT_GREY_COLOR, fontWeight: FontWeight.bold))
+                  //   ],
+                  // )
                 ],
               ),
             )

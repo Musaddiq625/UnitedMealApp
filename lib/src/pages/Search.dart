@@ -6,18 +6,23 @@ import 'package:getx_app/models/food.dart';
 import 'package:getx_app/models/restaurant.dart';
 import 'package:getx_app/src/const.dart';
 import 'package:getx_app/src/controllers/search_controller.dart';
+import 'package:getx_app/src/controllers/user_controller.dart';
 import 'package:getx_app/src/items/components.dart';
 import 'package:getx_app/src/items/food_item_widget_expanded.dart';
 import 'package:getx_app/src/items/restaurant_widget_expanded.dart';
 import 'package:getx_app/src/pages/restaurant_details.dart';
+import 'package:getx_app/src/utils/utilities.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../temp_data.dart';
 import 'food_item_add_to_order.dart';
 
 class Search extends StatelessWidget {
+  final UserController userController = Get.find();
   final Components components = Components();
   final SearchController searchController = Get.put(SearchController());
   final FirebaseFunctions firebaseFunctions = FirebaseFunctions();
+  final Utilities utilities = Utilities();
 
   @override
   Widget build(BuildContext context) {
@@ -148,21 +153,24 @@ class Search extends StatelessWidget {
                      return Column(
                        children: snapshot.data == null
                            ? [CircularProgressIndicator()]
-                           : snapshot.data.docs.map<Widget>((QueryDocumentSnapshot data) {
-                         return GestureDetector(
-                           child: RestaurantItemWidgetExpanded(
-                             // TempData.tempRestaurantsWithFoods[j].restaurantFoods[i],
-                             Restaurant(
-                               name: data.data()['name'],
-                               imagePath: data.data()['image'],
-                               address: data.data()['address'],
-                               latitude: data.data()['geopoint'].latitude,
-                               longitude: data.data()['geopoint'].longitude,
-                               ratings: double.parse(data.data()['ratings'].toString()),
-                             ),
-                           ),
-                         );
-                       }).toList(),
+                           : utilities.getNearbyRestaurants(snapshot.data.docs,LatLng(userController?.user?.latitude, userController?.user?.longitude)).map((restaurantLatLng) =>
+                         Container(
+                           child: GestureDetector(
+                               onTap: () {
+
+
+
+                               },
+                               child: RestaurantItemWidgetExpanded( Restaurant(
+                                 name: restaurantLatLng['name'],
+                                 imagePath: restaurantLatLng['image'],
+                                 address: restaurantLatLng['address'],
+                                 latitude: restaurantLatLng['geopoint'].latitude,
+                                 longitude: restaurantLatLng['geopoint'].longitude,
+                                 ratings: double.parse(restaurantLatLng['ratings'].toString()),
+                               ),distance: restaurantLatLng['distance'],)),
+                         )
+                     ).toList()
                      );
                    }),
              )),
@@ -176,10 +184,17 @@ class Search extends StatelessWidget {
                 searchController.itemsSearchListResult.map<Widget>((data) {
                   return GestureDetector(
                     onTap: () {
-                      Get.to(() =>
-                          FoodItemAddToOrder(Food()
-                            // TempData.tempRestaurantsWithFoods[j].restaurantFoods[i]
-                          ));
+                      Food food = Food(
+
+                          name: data.data()['name'],
+                          imagePath: data.data()['image'],
+                          availableQuantity: data.data()['availableQuantity'],
+                          price: double.parse(data.data()['price'].toString()),
+                          cuisine: data.data()['cuisine'],
+                          restaurantId: data.data()['restaurant_id'],
+                          restaurantName:data.data()['restaurant_name']);
+
+                      Get.to(() => FoodItemAddToOrder(food));
                     },
                     child: FoodItemWidgetExpanded(
                       // TempData.tempRestaurantsWithFoods[i].restaurantFoods[j],

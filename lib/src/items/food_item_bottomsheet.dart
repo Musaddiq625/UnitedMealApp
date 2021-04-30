@@ -6,11 +6,12 @@ import 'package:getx_app/models/restaurant.dart';
 import '../const.dart';
 class FoodItemBottomSheet extends StatelessWidget {
   final Food foodModel;
-  final Restaurant restaurantModel;
-  FoodItemBottomSheet(this.foodModel, this.restaurantModel);
+  // final Restaurant restaurantModel;
+  FoodItemBottomSheet(this.foodModel);//, this.restaurantModel);
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       width: double.infinity,
       decoration:
@@ -27,16 +28,16 @@ class FoodItemBottomSheet extends StatelessWidget {
                     height: 150,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        image: DecorationImage(image: AssetImage(foodModel.imagePath)))),
+                        image: DecorationImage(image: NetworkImage(foodModel.imagePath)))),
               ),
-              SizedBox(width: 15),
-              Expanded(
-                child: Container(
-                    height: 150,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        image: DecorationImage(image: AssetImage(foodModel.imagePath)))),
-              ),
+              // SizedBox(width: 15),
+              // Expanded(
+              //   child: Container(
+              //       height: 150,
+              //       decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(5),
+              //           image: DecorationImage(image: NetworkImage(foodModel.imagePath)))),
+              // ),
             ],
           ),
           Text(foodModel.name, textScaleFactor: 1.4, style: TextStyle(fontWeight: FontWeight.bold)),
@@ -45,7 +46,8 @@ class FoodItemBottomSheet extends StatelessWidget {
               Expanded(
                   flex: 3,
                   child: Text(
-                    restaurantModel.getCuisines()
+                    // restaurantModel.getCuisines()
+                    foodModel.restaurantName
                     ,textScaleFactor: 1.2,
                     style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
                   )),

@@ -7,6 +7,7 @@ import 'package:getx_app/src/items/components.dart';
 import 'package:getx_app/src/items/cuisines_slider.dart';
 import 'package:getx_app/src/items/featured_ads_slider.dart';
 import 'package:getx_app/src/items/items_slider_full.dart';
+import 'package:getx_app/src/items/nearby_restaurants.dart';
 import 'package:getx_app/src/items/top_bar_delivering_to.dart';
 import 'package:getx_app/src/pages/account_bottomsheet.dart';
 
@@ -61,10 +62,10 @@ class Home extends StatelessWidget {
             SizedBox(height: 10),
             FeaturedAdsSlider(),
             SizedBox(height: 10),
-            components.textWithWidget('convenience_grocery_more'.tr,
+            components.textWithWidget('restaurants_nearby'.tr,
                 iconData: Icons.arrow_forward),
             SizedBox(height: 10),
-            ImagesSliderFull(/*'temp_name'.tr, 'temp_time_in_min'.tr, 'Free Delivery'*/),
+            NearByRestaurants(/*'temp_name'.tr, 'temp_time_in_min'.tr, 'Free Delivery'*/),
             SizedBox(height: 10),
             ///
             FeaturedAdsSlider(),

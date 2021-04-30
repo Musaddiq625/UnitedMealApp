@@ -6,10 +6,21 @@ import 'package:getx_app/src/pages/Orders.dart';
 import 'package:getx_app/src/pages/PickUp.dart';
 import 'package:getx_app/src/pages/Search.dart';
 import 'package:getx_app/src/pages/Home.dart';
+import 'package:getx_app/src/utils/utilities.dart';
 
 class HomeController extends GetxController {
-  // final Rx<GlobalKey<State<StatefulWidget>>> bottomSheetKey = GlobalKey().obs;
+  HomeController(){
+    setUserLocation();
+  }
+  // final Rx<GlobalKey<State<StatefulWidget>>> bottomSheetKey = GlobalKey().obs;0
   final UserController userController = Get.find();
+  Utilities utilities = Utilities();
+  setUserLocation()async{
+    await utilities.determinePosition().then((value) {
+      userController.user.latitude = value.latitude;
+      userController.user.longitude = value.longitude;
+    });
+  }
   RxInt currentIndex = 0.obs;
   final List<Map> navBarItemsMap = [
     {'label': 'home', 'page': Home(), 'icon': Icons.home_outlined},

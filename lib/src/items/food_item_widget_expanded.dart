@@ -49,7 +49,7 @@ class FoodItemWidgetExpanded extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          '\$ • ',
+                          '\$ • ${foodModel.price}',
                               // +
                               // currentRestaurantModel.getCuisines(),
                           textScaleFactor: 1.1,

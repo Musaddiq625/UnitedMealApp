@@ -16,7 +16,7 @@ class FeaturedAdsSlider extends StatelessWidget {
             height: 130,
             width: 350,
             decoration: BoxDecoration(
-              color: Constants.GREEN_COLOR,
+              color: Constants.APP_COLOR,
               borderRadius: BorderRadius.circular(5),
             ),
           ),
@@ -48,7 +48,7 @@ class FeaturedAdsSlider extends StatelessWidget {
                       child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                           decoration: BoxDecoration(
-                              color: Colors.black54, borderRadius: BorderRadius.circular(50)),
+                              color: Colors.black38, borderRadius: BorderRadius.circular(50)),
                           child: Text(btnText,
                               textScaleFactor: 0.9,
                               style: TextStyle(

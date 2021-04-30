@@ -38,7 +38,7 @@ class ImagesSliderFull extends StatelessWidget {
               children: [
                 Text(name, textScaleFactor: 1.1, style: TextStyle(fontWeight: FontWeight.bold)),
                 Row(
-                  children: [Text('16' + ' min'.tr + ' • ' + 'Free Delivery')],
+                  children: [Text(/*'16' + ' min'.tr + */'• ' + 'Free Delivery')],
                 )
               ],
             ),

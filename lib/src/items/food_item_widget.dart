@@ -24,7 +24,7 @@ class FoodItemWidget extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(.5),
                   borderRadius: BorderRadius.circular(5),
-                  image: DecorationImage(image: AssetImage(foodModel.imagePath), fit: BoxFit.cover)),
+                  image: DecorationImage(image: NetworkImage(foodModel.imagePath), fit: BoxFit.cover)),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),

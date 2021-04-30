@@ -6,6 +6,8 @@ class User {
   bool isGuest;
   String phoneNo;
   String address;
+  double latitude;
+  double longitude;
 
   User({
     this.id,
@@ -15,6 +17,8 @@ class User {
     this.isGuest = false,
     this.phoneNo,
     this.address,
+    this.latitude,
+    this.longitude
   });
 
   toMap() => {
@@ -25,5 +29,7 @@ class User {
         'isGuest': isGuest,
         'phoneNo': phoneNo,
         'address': address,
+        'latitude': latitude,
+        'longitude': longitude,
       };
 }

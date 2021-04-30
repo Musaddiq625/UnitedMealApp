@@ -17,7 +17,9 @@ class PickupGoogleMap extends StatelessWidget {
           markers: pickupGoogleMapController.markers,
           mapType: MapType.hybrid,
           initialCameraPosition: pickupGoogleMapController.getInitialCameraPosition,
+
           onMapCreated: (_) => pickupGoogleMapController.googleMapController.complete(_),
+          myLocationEnabled: true,
 
         )),
       ),

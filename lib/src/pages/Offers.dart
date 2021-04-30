@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:getx_app/database/get_firebase_data.dart';
+import 'package:getx_app/models/food.dart';
 import 'package:getx_app/src/items/chip_widget.dart';
 import 'package:getx_app/src/items/closable_dialog.dart';
 import 'package:getx_app/src/items/components.dart';
@@ -6,8 +8,10 @@ import 'package:get/get.dart';
 import 'package:getx_app/src/items/food_item_widget.dart';
 import 'package:getx_app/temp_data.dart';
 
+import 'food_item_add_to_order.dart';
+
 class Offers extends StatelessWidget {
-  final Components components = Components();
+  final Components components = Components();final FirebaseFunctions firebaseFunctions = FirebaseFunctions();
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +49,41 @@ class Offers extends StatelessWidget {
             SizedBox(height: 10),
             components.textWithWidget('Top Picks For You'),
             SizedBox(height: 10),
-            for (int i = 0; i < TempData.tempRestaurantsWithFoods.length; i++)
-              FoodItemWidget(
-                  TempData.tempRestaurantsWithFoods[0].restaurantFoods[i])
+            StreamBuilder(
+                stream:  firebaseFunctions.getAllFoodsStream(),
+              builder: (context, snapshot) {
+                return Column(
+                    children: snapshot.data == null
+                    ? [CircularProgressIndicator()]
+                        : snapshot.data.docs.map<Widget>((data) {
+                  Food food =  Food(
+                      name: data.data()['name'],
+                      imagePath: data.data()['image'],
+                      price: double.parse(data.data()['price'].toString()),
+                      cuisine: data.data()['cuisine'],
+                      restaurantId: data.data()['restaurant_id'],
+                      restaurantName:data.data()['restaurant_name']
+                  );
+                  return GestureDetector(
+                      onTap: () {
+                        // Get.to(() =>
+                        //     FoodItemWidget(food
+                        //       // TempData.tempRestaurantsWithFoods[j].restaurantFoods[i]
+                        //     ));
+                         Get.to(() => FoodItemAddToOrder(food));
+                      },
+                      child: FoodItemWidget(
+                        food,
+                        // TempData.tempRestaurantsWithFoods[0],
+                      )
+                  );
+                }).toList(),
+                );
+              }
+            ),
+            // for (int i = 0; i < TempData.tempRestaurantsWithFoods.length; i++)
+            //   FoodItemWidget(
+            //       TempData.tempRestaurantsWithFoods[0].restaurantFoods[i])
           ],
         ),
       ),
