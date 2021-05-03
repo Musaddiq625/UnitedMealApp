@@ -3,9 +3,22 @@ import 'package:get/get.dart';
 import 'package:getx_app/src/controllers/pickup_google_map_controller.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class PickupGoogleMap extends StatelessWidget {
+class PickupGoogleMap extends StatefulWidget {
+  @override
+  _PickupGoogleMapState createState() => _PickupGoogleMapState();
+}
 
-  final PickupGoogleMapController pickupGoogleMapController = Get.put(PickupGoogleMapController());
+class _PickupGoogleMapState extends State<PickupGoogleMap> {
+  PickupGoogleMapController pickupGoogleMapController; // = Get.put(PickupGoogleMapController());
+  @override
+  void initState() {
+    pickupGoogleMapController = Get.put(PickupGoogleMapController(update));
+
+    super.initState();
+  }
+
+  update() => setState(() {});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,15 +26,13 @@ class PickupGoogleMap extends StatelessWidget {
         color: Colors.white,
         height: Get.height,
         width: Get.width,
-        child:Obx(()=> GoogleMap(
+        child: GoogleMap(
           markers: pickupGoogleMapController.markers,
           mapType: MapType.hybrid,
           initialCameraPosition: pickupGoogleMapController.getInitialCameraPosition,
-
           onMapCreated: (_) => pickupGoogleMapController.googleMapController.complete(_),
           myLocationEnabled: true,
-
-        )),
+        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/database/get_firebase_data.dart';
@@ -34,8 +35,8 @@ class PickupGoogleMapController extends GetxController {
 
   // static const LatLng _center = const LatLng(45.521563, -122.677433);
 
-  PickupGoogleMapController() {
-    _getRestaurants();
+  PickupGoogleMapController(Function updateWidget) {
+    _getRestaurants(updateWidget);
     getPosition();
   }
 
@@ -48,7 +49,7 @@ class PickupGoogleMapController extends GetxController {
   // void _onCameraMove(CameraPosition position) {
   //   _lastMapPosition = position.target;
   // }
-  _getRestaurants() {
+  _getRestaurants(Function updateWidget) {
     print('_getRestaurants');
     _firebaseFunctions
         .getAllRestaurantsWithFoodsStream2()
@@ -63,11 +64,11 @@ class PickupGoogleMapController extends GetxController {
             ratings: double.parse(streamSubscription.docs[i].data()['ratings'].toString()),
             address: streamSubscription.docs[i].data()['address']));
 
-      _setMarkers(restaurantsList);
+      _setMarkers(restaurantsList,updateWidget);
     });
   }
 
-  _setMarkers(List<Restaurant> _restaurantsList) {
+  _setMarkers(List<Restaurant> _restaurantsList,Function updateWidget) {
     for (int i = 0; i < _restaurantsList.length; i++) {
       print('setting marker $i');
       markers.add(Marker(
@@ -79,6 +80,7 @@ class PickupGoogleMapController extends GetxController {
         ),
         icon: BitmapDescriptor.defaultMarker,
       ));
+      updateWidget();
     }
     print('_markers');
     print(markers);

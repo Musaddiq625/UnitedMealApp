@@ -66,7 +66,7 @@ class NearByRestaurants extends StatelessWidget {
                   ? CircularProgressIndicator()
                   : Row(
                       children: utilities
-                          .getNearbyRestaurants(snapshot.data.docs, LatLng(userController?.user?.latitude, userController?.user?.longitude))
+                          .getNearbyRestaurants(snapshot.data.docs, LatLng(userController?.user?.latitude??0.0, userController?.user?.longitude??0.0))
                           .map((restaurantLatLng) => GestureDetector(
                         onTap: (){
 
