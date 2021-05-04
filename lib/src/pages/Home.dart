@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/src/controllers/cart_controller.dart';
 import 'package:getx_app/src/controllers/food_controller.dart';
+import 'package:getx_app/src/controllers/home_controller.dart';
 import 'package:getx_app/src/items/chip_widget.dart';
 import 'package:getx_app/src/items/components.dart';
 import 'package:getx_app/src/items/cuisines_slider.dart';
@@ -17,6 +18,9 @@ class Home extends StatelessWidget {
   final Components components = Components();
   final FoodController foodController = Get.find();
   final CartController cartController = Get.find();
+  Home(this.homeController);
+  final  homeController;
+  // final HomeController homeController = Get.put(HomeController());
 
 
   @override
@@ -34,7 +38,7 @@ class Home extends StatelessWidget {
                 Get.to(()=>CartPage(''));
               }
             ),
-            CuisinesSlider(),
+            CuisinesSlider(homeController),
             SizedBox(height: 10),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -65,7 +69,7 @@ class Home extends StatelessWidget {
             components.textWithWidget('restaurants_nearby'.tr,
                 iconData: Icons.arrow_forward),
             SizedBox(height: 10),
-            NearByRestaurants(/*'temp_name'.tr, 'temp_time_in_min'.tr, 'Free Delivery'*/),
+            NearByRestaurants(homeController/*'temp_name'.tr, 'temp_time_in_min'.tr, 'Free Delivery'*/),
             SizedBox(height: 10),
             ///
             FeaturedAdsSlider(),
@@ -73,7 +77,7 @@ class Home extends StatelessWidget {
             components.textWithWidget('convenience_grocery_more'.tr,
                 iconData: Icons.arrow_forward),
             SizedBox(height: 10),
-            ImagesSliderFull(),
+            ImagesSliderFull(homeController),
             SizedBox(height: 20),
           ],
         ),

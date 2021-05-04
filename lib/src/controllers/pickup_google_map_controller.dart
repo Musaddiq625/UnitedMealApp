@@ -27,7 +27,7 @@ class PickupGoogleMapController extends GetxController {
   //         zoom: 14.4746)
   //     .obs;
   static final Rx<CameraPosition> _initialCameraPosition = CameraPosition(
-          target: LatLng(userController.user.latitude, userController.user.longitude),
+          target: LatLng(userController.user.value.latitude, userController.user.value.longitude),
           zoom: 14.4746)
       .obs;
 

@@ -153,7 +153,7 @@ class Search extends StatelessWidget {
                      return Column(
                        children: snapshot.data == null
                            ? [CircularProgressIndicator()]
-                           : utilities.getNearbyRestaurants(snapshot.data.docs,LatLng(userController?.user?.latitude, userController?.user?.longitude)).map((restaurantLatLng) =>
+                           : utilities.getNearbyRestaurants(snapshot.data.docs,LatLng(userController?.user?.value.latitude, userController?.user?.value.longitude)).map((restaurantLatLng) =>
                          Container(
                            child: GestureDetector(
                                onTap: () {

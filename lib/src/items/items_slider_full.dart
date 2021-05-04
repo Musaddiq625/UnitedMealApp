@@ -4,11 +4,14 @@ import 'package:getx_app/database/get_firebase_data.dart';
 import 'package:getx_app/models/food.dart';
 import 'package:getx_app/models/restaurant.dart';
 import 'package:getx_app/src/controllers/food_controller.dart';
+import 'package:getx_app/src/controllers/home_controller.dart';
 import 'package:getx_app/src/controllers/user_controller.dart';
 import 'package:getx_app/src/pages/food_item_add_to_order.dart';
 import '../const.dart';
 
 class ImagesSliderFull extends StatelessWidget {
+  ImagesSliderFull(this.homeController);
+  final HomeController homeController;
   final UserController userController = Get.find();
   final FoodController foodController = Get.find();
   final FirebaseFunctions firebaseFunctions = FirebaseFunctions();
@@ -57,35 +60,39 @@ class ImagesSliderFull extends StatelessWidget {
             builder: (context, snapshot) {
               return !snapshot.hasData
                   ? CircularProgressIndicator()
-                  : Row(
-                      children: snapshot.data.docs.map<Widget>((data) {
-                      // print( 'data.data() ${data.data()}');
-                      return GestureDetector(
-                          onTap: () async {
-                            print('data.data().toString()');
-                            print(data.data().toString());
+                  :
 
-                            Food food = Food(
+              Obx(()=>Row(
+                  children: snapshot.data.docs.map<Widget>((data) {
 
-                                name: data.data()['name'],
-                                imagePath: data.data()['image'],
-                                availableQuantity: data.data()['availableQuantity'],
-                                price: double.parse(data.data()['price'].toString()),
-                                cuisine: data.data()['cuisine'],
-                                restaurantId: data.data()['restaurant_id'],
-                                restaurantName:data.data()['restaurant_name']);
+                    // print( 'data.data() ${data.data()}');
+                    return (homeController.activeCuisines .contains(data.data()['cuisine']) &&
+                        homeController.activeCuisines.isNotEmpty || homeController.activeCuisines.isEmpty)? GestureDetector(
+                        onTap: () async {
+                          print('data.data().toString()');
+                          print(data.data().toString());
 
-                              // food = Food(
-                              //     name: value['name'],
-                              //     imagePath: value['image'],
-                              //     availableQuantity: value['available_quantity'],
-                              //     price: value['price'],
-                              //     restaurantName: value['name']);
-                              Get.to(() => FoodItemAddToOrder(food));
+                          Food food = Food(
 
-                          },
-                          child: item(data.data()['image'], data.data()['name']));
-                    }).toList());
+                              name: data.data()['name'],
+                              imagePath: data.data()['image'],
+                              availableQuantity: data.data()['availableQuantity'],
+                              price: double.parse(data.data()['price'].toString()),
+                              cuisine: data.data()['cuisine'],
+                              restaurantId: data.data()['restaurant_id'],
+                              restaurantName:data.data()['restaurant_name']);
+
+                          // food = Food(
+                          //     name: value['name'],
+                          //     imagePath: value['image'],
+                          //     availableQuantity: value['available_quantity'],
+                          //     price: value['price'],
+                          //     restaurantName: value['name']);
+                          Get.to(() => FoodItemAddToOrder(food));
+
+                        },
+                        child: item(data.data()['image'], data.data()['name'])):Container();
+                  }).toList()));
             }));
     // foodController.getFoodList.isEmpty
     //     ? CircularProgressIndicator()

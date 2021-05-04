@@ -68,7 +68,7 @@ class Checkout extends StatelessWidget {
                           ]),
                         ),
                         SizedBox(height: 15),
-                        UnderLinedListTile('address'.tr, userController.user.address),
+                        UnderLinedListTile('address'.tr, userController.user.value.address),
                         UnderLinedListTile('delivery_instruction'.tr, 'abc 123'),
                         UnderLinedListTile('eta'.tr, 'abc 123'),
                         SizedBox(height: 15),
@@ -179,8 +179,8 @@ class Checkout extends StatelessWidget {
                                       subtotal: cartController.getTotalPriceOfCartItems,
                                       total: cartController.getTotalPriceOfCartItemsWithAllCharges,restaurantName: cartController.cartItems[0].restaurantName,
                                       restaurantId: cartController.cartItems[0].restaurantId,
-                                      userId: userController.user.id,
-                                      userName: userController.user.name
+                                      userId: userController.user.value.id,
+                                      userName: userController.user.value.name
                                     ));
                                     cartController.cartItems.clear();
 

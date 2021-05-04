@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/src/controllers/user_controller.dart';
-import 'package:getx_app/src/pages/Offers.dart';
-import 'package:getx_app/src/pages/Orders.dart';
-import 'package:getx_app/src/pages/PickUp.dart';
-import 'package:getx_app/src/pages/Search.dart';
-import 'package:getx_app/src/pages/Home.dart';
+
 import 'package:getx_app/src/utils/utilities.dart';
+
+import 'food_controller.dart';
 
 class HomeController extends GetxController {
   HomeController(){
-    setUserLocation();
+    // setUserLocation();
   }
+  RxList activeCuisines = [].obs;
+  selectCuisine(newName) {
+    if (activeCuisines.contains(newName)) {
+      activeCuisines.remove(newName);
+    } else
+      activeCuisines.add(newName);
+  }
+  final FoodController foodController = Get.find();
+  getCuisines() => foodController.firebaseFunctions.getAllCuisines();
   // final Rx<GlobalKey<State<StatefulWidget>>> bottomSheetKey = GlobalKey().obs;0
   final UserController userController = Get.find();
   Utilities utilities = Utilities();
-  setUserLocation()async{
+  Future setUserLocation()async{
     await utilities.determinePosition().then((value) {
-      userController.user.latitude = value.latitude;
-      userController.user.longitude = value.longitude;
+      userController.user.value.latitude = value.latitude;
+      userController.user.value.longitude = value.longitude;
     });
   }
   RxInt currentIndex = 0.obs;
-  final List<Map> navBarItemsMap = [
-    {'label': 'home', 'page': Home(), 'icon': Icons.home_outlined},
-    {'label': 'pickup', 'page': PickUp(), 'icon': Icons.directions_run_sharp},
-    {'label': 'offers', 'page': Offers(), 'icon': Icons.local_offer_outlined},
-    {'label': 'search', 'page': Search(), 'icon': Icons.search},
-    {'label': 'orders', 'page': Orders(), 'icon': Icons.bookmark_border},
-  ];
 
   changeIndex(int index) => currentIndex.value = index;
 

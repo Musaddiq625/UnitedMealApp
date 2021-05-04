@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
           email: _value['email'],
           phoneNo: _value['phoneNo'],
           address: _value['address'],
-        );userController.user = _user;
+        );userController.user.value = _user;
         page = Dashboard();
       }
       MySharedPref().updateCartItemsInSharedPref();

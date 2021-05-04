@@ -17,8 +17,11 @@ class FirebaseFunctions {
   CollectionReference _firebaseFireStoreInstanceOrders =
       FirebaseFirestore.instance.collection('orders');
 
-  Stream<QuerySnapshot> getAllCuisines() {
-    return _firebaseFireStoreInstanceCuisines.snapshots();
+  // Stream<QuerySnapshot> getAllCuisines() {
+  //   return _firebaseFireStoreInstanceCuisines.snapshots();
+  // }
+  Future<QuerySnapshot> getAllCuisines() {
+    return _firebaseFireStoreInstanceCuisines.get();
   }
 
   //

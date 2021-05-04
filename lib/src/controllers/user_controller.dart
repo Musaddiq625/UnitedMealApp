@@ -10,7 +10,7 @@ import 'package:getx_app/src/pages/login.dart';
 import 'package:getx_app/src/utils/utilities.dart';
 
 class UserController extends GetxController {
-  User user = User();
+  Rx<User> user = User().obs;
   FirebaseFunctions firebaseFunctions = FirebaseFunctions();
   Utilities utilities = Utilities();
   RxBool isLoading = false.obs, _loginPasswordObscure = true.obs, _signUpPasswordObscure = true.obs;
@@ -53,13 +53,13 @@ class UserController extends GetxController {
       MySharedPref().clearLoginDetails();
       MySharedPref().clearCartItemsInSharedPref();
       _clearSignInTextFields();
-      user = User(isGuest: true);
+      user.value = User(isGuest: true);
       print('loggging out');
       Get.offAll(()=>Login());
     }
 
     Future checkIsLoggedIn() async {
-      if (user.isGuest) {
+      if (user.value.isGuest) {
         Get.defaultDialog(
             title: '',
             titleStyle: TextStyle(fontSize: 1),
@@ -94,7 +94,7 @@ class UserController extends GetxController {
     }
 
     Future logoutUserDialog() async {
-      if (user.isGuest)
+      if (user.value.isGuest)
         Get.offAll(Login());
       else
         Get.defaultDialog(
@@ -144,7 +144,7 @@ class UserController extends GetxController {
     }
 
     Future loginAsGuest() async {
-      user = User(isGuest: true);
+      user.value = User(isGuest: true);
       Get.to(() => Dashboard());
     }
 
@@ -165,7 +165,7 @@ class UserController extends GetxController {
             );
 
             isLoading.value = false;
-            user = _user;
+            user.value = _user;
             MySharedPref().setLoginDetails(_user);
 
             return Get.to(() => Dashboard());

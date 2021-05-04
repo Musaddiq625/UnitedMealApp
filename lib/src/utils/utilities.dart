@@ -44,39 +44,39 @@ class Utilities {
     return await Geolocator.getCurrentPosition();
   }
 
-  List<Map<String, dynamic>> getNearbyRestaurants(List restaurantLatLng, LatLng userLatLng) {
+  List<Map<String, dynamic>> getNearbyRestaurants(List restaurantLatLng, LatLng userLatLng, {Function reload}) {
     // final UserController userController = Get.find();
 
 
 
-      // if(userLatLng.latitude == null || userLatLng.longitude ==null)
-      //   {
-      //     return restaurantLatLng;
-      //   }
-      // else {
-      //   List<Map<String, dynamic>> tempList = [];
-      //   List<double> distanceList = [];
-      //
-      //   for (int i = 0; i < restaurantLatLng.length; i++) tempList.add(restaurantLatLng[i].data());
-      //   for (int i = 0; i < tempList.length; i++) {
-      //     distanceList.add(Geolocator.distanceBetween(tempList[i]['geopoint'].latitude,
-      //         tempList[i]['geopoint'].longitude,userLatLng.latitude, userLatLng.longitude));
-      //     tempList[i]['distance'] = distanceList[i];
-      //   }
-      //   tempList.sort((a, b) => a['distance'].compareTo(b['distance']));
-      //   return tempList;
-      // }
+      if(userLatLng.latitude == null || userLatLng.longitude ==null)
+        {
+          return restaurantLatLng;
+        }
+      else if (userLatLng?.latitude !=null || userLatLng?.longitude != null) {
+        List<Map<String, dynamic>> tempList = [];
+        List<double> distanceList = [];
 
-    List<Map<String, dynamic>> tempList = [];
-    List<double> distanceList = [];
+        for (int i = 0; i < restaurantLatLng.length; i++) tempList.add(restaurantLatLng[i].data());
+        for (int i = 0; i < tempList.length; i++) {
+          distanceList.add(Geolocator.distanceBetween(tempList[i]['geopoint'].latitude,
+              tempList[i]['geopoint'].longitude,userLatLng?.latitude, userLatLng?.longitude));
+          tempList[i]['distance'] = distanceList[i];
+        }
+        tempList.sort((a, b) => a['distance'].compareTo(b['distance']));
+        return tempList;
+      }
 
-    for (int i = 0; i < restaurantLatLng.length; i++) tempList.add(restaurantLatLng[i].data());
-    for (int i = 0; i < tempList.length; i++) {
-      distanceList.add(Geolocator.distanceBetween(tempList[i]['geopoint'].latitude,
-          tempList[i]['geopoint'].longitude, 24.9045195, 67.0756364));
-      tempList[i]['distance'] = distanceList[i];
-    }
-    tempList.sort((a, b) => a['distance'].compareTo(b['distance']));
-    return tempList;
+    // List<Map<String, dynamic>> tempList = [];
+    // List<double> distanceList = [];
+    //
+    // for (int i = 0; i < restaurantLatLng.length; i++) tempList.add(restaurantLatLng[i].data());
+    // for (int i = 0; i < tempList.length; i++) {
+    //   distanceList.add(Geolocator.distanceBetween(tempList[i]['geopoint'].latitude,
+    //       tempList[i]['geopoint'].longitude, 24.9045195, 67.0756364));
+    //   tempList[i]['distance'] = distanceList[i];
+    // }
+    // tempList.sort((a, b) => a['distance'].compareTo(b['distance']));
+    // return tempList;
   }
 }

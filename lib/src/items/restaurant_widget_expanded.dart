@@ -77,6 +77,7 @@ class RestaurantItemWidgetExpanded extends StatelessWidget {
                         ],
                       ),
                       // Text('${foodModel.deliveryTimeInMin} min')
+                      // currentRestaurantModel.latitude.toStringAsFixed(1)=='0.0'?Container():
                       Text(distance.toStringAsFixed(2)+' m')
                     ],
                   ),

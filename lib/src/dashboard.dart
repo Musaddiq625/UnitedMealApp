@@ -5,21 +5,33 @@ import 'package:getx_app/src/controllers/home_controller.dart';
 
 import 'const.dart';
 import 'pages/account_bottomsheet.dart';
+import 'package:getx_app/src/pages/Offers.dart';
+import 'package:getx_app/src/pages/Orders.dart';
+import 'package:getx_app/src/pages/PickUp.dart';
+import 'package:getx_app/src/pages/Search.dart';
+import 'package:getx_app/src/pages/Home.dart';
 
 class Dashboard extends StatelessWidget {
-  final  homeController = Get.put(HomeController());
+  static final HomeController homeController = Get.put(HomeController());
   final GlobalKey<ExpandableBottomSheetState> bottomSheetKey = new GlobalKey();
+  final List<Map> navBarItemsMap = [
+    {'label': 'home', 'page': Home(homeController), 'icon': Icons.home_outlined},
+    {'label': 'pickup', 'page': PickUp(), 'icon': Icons.directions_run_sharp},
+    {'label': 'offers', 'page': Offers(), 'icon': Icons.local_offer_outlined},
+    {'label': 'search', 'page': Search(), 'icon': Icons.search},
+    {'label': 'orders', 'page': Orders(), 'icon': Icons.bookmark_border},
+  ];
 
   BottomNavigationBarItem bottomNavItem(index) => BottomNavigationBarItem(
         backgroundColor: Colors.blue,
         // ignore: deprecated_member_use
-        title: Text(homeController.navBarItemsMap[index]['label'].toString().tr,
+        title: Text(navBarItemsMap[index]['label'].toString().tr,
             style: TextStyle(
                 color: homeController.currentIndex.value == index
                     ? Constants.APP_COLOR
                     : Colors.grey)),
         icon: Icon(
-          homeController.navBarItemsMap[index]['icon'],
+          navBarItemsMap[index]['icon'],
           color: homeController.currentIndex.value == index ? Constants.APP_COLOR : Colors.grey,
         ),
       );
@@ -33,7 +45,7 @@ class Dashboard extends StatelessWidget {
             body: ExpandableBottomSheet(
                 key: bottomSheetKey,
                 background: Obx(
-                    () => homeController.navBarItemsMap[homeController.currentIndex.value]['page']),
+                    () => navBarItemsMap[homeController.currentIndex.value]['page']),
                 expandableContent: Account()),
             bottomNavigationBar: Obx(() => BottomNavigationBar(
                     unselectedFontSize: 13,
