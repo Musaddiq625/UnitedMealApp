@@ -15,7 +15,7 @@ class UnderLinedListTile extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (page != null)
-          Get.to(page);
+          Get.to(()=>page);
       },
       child: Container(
         decoration: BoxDecoration(

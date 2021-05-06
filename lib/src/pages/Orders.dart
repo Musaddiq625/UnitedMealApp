@@ -54,7 +54,7 @@ class Orders extends StatelessWidget {
                                       onTap: () => Get.to(() =>
                                           OrderDetails(Order.toJson(snapshot.data.docs[i].data()))),
                                       title: Text(
-                                        snapshot.data.docs[i].data()['resturant_name'] ?? '',
+                                        snapshot.data.docs[i].data()['restaurant_name'] ?? '',
                                         style: TextStyle(color: Constants.APP_COLOR),
                                       ),
                                       trailing: Text(

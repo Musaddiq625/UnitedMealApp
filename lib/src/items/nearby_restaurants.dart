@@ -8,6 +8,7 @@ import 'package:getx_app/src/controllers/home_controller.dart';
 import 'package:getx_app/src/controllers/restaurant_controller.dart';
 import 'package:getx_app/src/controllers/user_controller.dart';
 import 'package:getx_app/src/pages/food_item_add_to_order.dart';
+import 'package:getx_app/src/pages/restaurant_details.dart';
 import 'package:getx_app/src/utils/utilities.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../const.dart';
@@ -90,7 +91,17 @@ class NearByRestaurants extends StatelessWidget {
                                   child: Container(
                                     width: Get.size.width * 0.8,
                                     child: GestureDetector(
-                                        onTap: () {},
+                                        onTap: () {
+                                          Get.to(()=>RestaurantDetails( Restaurant(
+                                            name: restaurantLatLng['name'],
+                                            imagePath: restaurantLatLng['image'],
+                                            address: restaurantLatLng['address'],
+                                            latitude: restaurantLatLng['geopoint'].latitude,
+                                            longitude: restaurantLatLng['geopoint'].longitude,
+                                            ratings: double.parse(
+                                                restaurantLatLng['ratings'].toString()),
+                                          ),restaurantLatLng['distance']));
+                                        },
                                         child: RestaurantItemWidgetExpanded(
                                           Restaurant(
                                             name: restaurantLatLng['name'],
@@ -100,7 +111,9 @@ class NearByRestaurants extends StatelessWidget {
                                             longitude: restaurantLatLng['geopoint'].longitude,
                                             ratings: double.parse(
                                                 restaurantLatLng['ratings'].toString()),
+
                                           ),
+
                                           distance: restaurantLatLng['distance'],
                                         )),
                                   ),

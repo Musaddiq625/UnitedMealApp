@@ -63,7 +63,9 @@ class FirebaseFunctions {
   // Future getAllFoods() {
   //   return _firebaseFireStoreInstanceFoods.get();
   // }
-
+  Future<QuerySnapshot> getRestaurantFoods(String restaurantName)async{
+    return _firebaseFireStoreInstanceFoods.where('restaurant_name',isEqualTo:restaurantName ).get();
+  }
   Stream<QuerySnapshot> getFormData() {
     print('getting form data');
     // formDataList = firebaseFireStoreInstanceForm2.orderBy('date_time',descending: true) .snapshots().toList() as List;

@@ -4,22 +4,25 @@ import 'package:get/get.dart';
 import 'package:getx_app/models/food.dart';
 import 'package:getx_app/models/restaurant.dart';
 import 'package:getx_app/src/const.dart';
-import 'package:getx_app/src/controllers/food_item_details_controller.dart';
+import 'package:getx_app/src/controllers/restaurant_controller.dart';
 import 'package:getx_app/src/items/underlined_listTile.dart';
 import 'package:getx_app/src/pages/popular_items.dart';
 import 'package:getx_app/temp_data.dart';
 import '../items/app_bar.dart';
 import '../items/item_selector_widget.dart';
+import 'food_item_add_to_order.dart';
 
 class RestaurantDetails extends StatelessWidget {
-  final Food foodModel;
+  // final Food foodModel;
   final Restaurant restaurantModel;
+  final double distance;
 
-  RestaurantDetails(this.foodModel, this.restaurantModel);
+  RestaurantDetails(/*this.foodModel,*/ this.restaurantModel, this.distance);
 
-  final FoodItemDetailsController foodItemDetailsController = Get.put(FoodItemDetailsController());
+  RestaurantController restaurantController;
 
-  myWidget(String label1, double value1, String label2, double value2, String label3, double value3) {
+  myWidget(
+      String label1, double value1, String label2, double value2, String label3, double value3) {
     return Row(children: [
       Column(children: [
         Text('\$$value1', textScaleFactor: 1.3, style: TextStyle(fontWeight: FontWeight.bold)),
@@ -40,6 +43,7 @@ class RestaurantDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    restaurantController = Get.put(RestaurantController(restaurantModel.name));
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -102,21 +106,24 @@ class RestaurantDetails extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH),
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Obx(()=>myWidget(
-                'fees'.tr,foodItemDetailsController.selectedIndex.value==0?1.99:0,
-                'min'.tr,foodItemDetailsController.selectedIndex.value==0?46:15,
-                'miles'.tr, 3.5,
-              )),
+              Obx(() => myWidget(
+                    'fees'.tr,
+                    restaurantController.selectedIndex.value == 0 ? 0 : 0,
+                    'min'.tr,
+                    restaurantController.selectedIndex.value == 0 ? 0 : 0,
+                    'miles'.tr,
+                    double.parse(distance.toStringAsFixed(2)),
+                  )),
               Obx(() => ItemSelectorWidget(
                   'delivery'.tr,
                   'pickup'.tr,
-                  foodItemDetailsController.selectedIndex.value,
-                  (int updatedIndex) => foodItemDetailsController.changeDeliveryType(updatedIndex)))
+                  restaurantController.selectedIndex.value,
+                  (int updatedIndex) => restaurantController.changeDeliveryType(updatedIndex)))
             ]),
           ),
           SizedBox(height: 15),
           Obx(() => Column(children: [
-                foodItemDetailsController.selectedIndex.value == 0
+                restaurantController.selectedIndex.value == 0
                     ? Container()
                     : Container(
                         color: Constants.APP_COLOR.withOpacity(.15),
@@ -161,7 +168,7 @@ class RestaurantDetails extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(children: [
-              for (int i = 0; i < 4; i++)
+              for (int i = 0; i < 0; i++)
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: Constants.APP_HORIZONTAL_WIDTH),
                   child: Column(
@@ -209,11 +216,27 @@ class RestaurantDetails extends StatelessWidget {
             ),
           ),
           SizedBox(height: 25),
-          UnderLinedListTile('popular_items'.tr, restaurantModel.restaurantFoods.length.toString(), page: PopularItems(restaurantModel)),
+          // UnderLinedListTile('popular_items'.tr, restaurantModel.restaurantFoods.length.toString(), page: PopularItems(restaurantModel)),
           UnderLinedListTile('weekend_special'.tr, '1'),
-          for (int i = 0; i < TempData.tempRestaurantsWithFoods[0].restaurantFoods.length; i++)
-            UnderLinedListTile(TempData.tempRestaurantsWithFoods[0].restaurantFoods[i].name,
-                TempData.tempRestaurantsWithFoods[0].restaurantFoods.length.toString()),
+          // for (int i = 0; i < TempData.tempRestaurantsWithFoods[0].restaurantFoods.length; i++)
+          //   UnderLinedListTile(TempData.tempRestaurantsWithFoods[0].restaurantFoods[i].name,
+          //       TempData.tempRestaurantsWithFoods[0].restaurantFoods.length.toString()),
+          Obx(() => Column(children: [
+                for (int i = 0; i < restaurantController.foodsList.length; i++)
+                  UnderLinedListTile(
+                    restaurantController.foodsList[i].name,
+                    // restaurantController.foodsList[i]
+                    '${ restaurantController.foodsList[i].availableQuantity}',
+                    page: FoodItemAddToOrder(Food(
+                        name: restaurantController.foodsList[i].name,
+                        imagePath: restaurantController.foodsList[i].imagePath,
+                        availableQuantity: restaurantController.foodsList[i].availableQuantity,
+                        price: restaurantController.foodsList[i].price,
+                        cuisine: restaurantController.foodsList[i].cuisine,
+                        restaurantId: restaurantController.foodsList[i].restaurantId,
+                        restaurantName: restaurantController.foodsList[i].restaurantName)),
+                  ),
+              ]))
         ])),
       ),
     );

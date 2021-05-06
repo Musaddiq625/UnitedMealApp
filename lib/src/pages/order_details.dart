@@ -69,7 +69,7 @@ class OrderDetails extends StatelessWidget {
                       SizedBox(height: 10),
                           Divider(),
                          Column(children: [
-                           for(int i=0;i<3;i++)
+                           for(int i=0;i<=0;i++)
                              Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
                                SizedBox(height: 10),
                                Row(
@@ -108,7 +108,7 @@ class OrderDetails extends StatelessWidget {
                       Expanded(child: Text('total'.tr+':',
                           textScaleFactor: 1.2,
                           style: TextStyle(fontWeight: FontWeight.bold))),
-                      Expanded(flex: 2, child: Text('\$'+orderDetails.total.toString(),textScaleFactor: 1.2,textAlign: TextAlign.end))
+                      Expanded(flex: 2, child: Text('\$'+orderDetails.total.toStringAsFixed(2),textScaleFactor: 1.2,textAlign: TextAlign.end))
                     ]),
                   ),
                 ],
