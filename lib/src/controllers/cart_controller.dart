@@ -13,7 +13,7 @@ class CartController extends GetxController {
   // }].obs;
   // List<String> comments;
   RxList<Cart> cartItems = <Cart>[].obs;
-  double tempTax = 3.70, tempDeliveryFee = 0.52;
+  double tempTax = 3.70, tempDeliveryFee = 0.00;
 
   addToCart(
       // String id,

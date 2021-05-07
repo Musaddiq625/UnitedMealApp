@@ -95,8 +95,10 @@ class FirebaseFunctions {
         .catchError((_) => '');
   }
 
-  Future addOrder(Order order) async {
-    _firebaseFireStoreInstanceOrders.add(order.toMap());
+  Future addOrder(Order order, int updatedQuantity) async {
+    _firebaseFireStoreInstanceOrders.add(order.toMap()).then((value) {
+      // _firebaseFireStoreInstanceFoods.doc(order.restaurantId).update({'availableQuantity': updatedQuantity});
+    });
     print(order.toMap());
     print('ADDED');
   }

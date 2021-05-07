@@ -181,7 +181,8 @@ class Checkout extends StatelessWidget {
                                       restaurantId: cartController.cartItems[0].restaurantId,
                                       userId: userController.user.value.id,
                                       userName: userController.user.value.name
-                                    ));
+                                    ),0/*cartController.cartItems[0].quantity-1*/);
+
                                     cartController.cartItems.clear();
 
                                   }),

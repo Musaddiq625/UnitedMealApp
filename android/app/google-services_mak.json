@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "22916775466",
-    "project_id": "unitedmeal-f0a28",
-    "storage_bucket": "unitedmeal-f0a28.appspot.com"
+    "project_number": "365291327030",
+    "project_id": "foodapp1-ffad6",
+    "storage_bucket": "foodapp1-ffad6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:22916775466:android:04502602cc4c8570554d53",
+        "mobilesdk_app_id": "1:365291327030:android:849acd354328da60add297",
         "android_client_info": {
           "package_name": "com.solutionhub.foodapp1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "22916775466-oj9i13u7oguduhmmv8gl7ji1i0lc8d56.apps.googleusercontent.com",
+          "client_id": "365291327030-jh9rdls6qk7mm5c2jnsknjq4v5441lp0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCVl3aMOfdEgVNFN_yrCjVR1UpOMDqWVa4"
+          "current_key": "AIzaSyDLn-53PsQuxaailKY0DP5jrr752mmQtas"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "22916775466-oj9i13u7oguduhmmv8gl7ji1i0lc8d56.apps.googleusercontent.com",
+              "client_id": "365291327030-jh9rdls6qk7mm5c2jnsknjq4v5441lp0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

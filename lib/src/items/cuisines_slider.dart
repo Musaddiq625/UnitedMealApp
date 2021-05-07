@@ -51,26 +51,21 @@ class CuisinesSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // print('foodController.getCuisines ${foodController.getCuisines}');
     final FoodController foodController = Get.find();
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: FutureBuilder(
           future: homeController.getCuisines(),
           builder: (context, snapshot) {
-// print('snapshot.data ${snapshot.data.docs[0].data()}');
             return !snapshot.hasData
                 ? CircularProgressIndicator()
                 :
-                // snapshot.data?
-                // CircularProgressIndicator():
-
-                Obx(() => Row(
+               Row(
                       children: snapshot.data.docs
-                          .map<Widget>((e) => item(e.data()['image'], e.data()['name'],
-                          homeController.activeCuisines.contains(e.data()['name'])))
+                          .map<Widget>((e) =>  Obx(() => item(e.data()['image'], e.data()['name'],
+                          homeController.activeCuisines.contains(e.data()['name']))))
                           .toList(),
-                    ));
+                    );
           }),
     );
   }
